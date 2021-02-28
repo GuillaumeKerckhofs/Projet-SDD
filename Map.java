@@ -1,10 +1,8 @@
-package Projet;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-//import Projet.Segment;
+//import Segment;
 
 public class Map {
     //private Segment segmentList[];

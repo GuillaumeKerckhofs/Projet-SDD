@@ -1,5 +1,3 @@
-package Projet;
-
 public class Segment{
     private int x1;
     private int y1;
