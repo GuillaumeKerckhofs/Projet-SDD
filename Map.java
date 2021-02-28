@@ -10,7 +10,7 @@ public class Map {
     //private Segment segmentList[];
 
     public Map(/*String map*/){
-        loadPoint("fichier1.txt");
+        loadPoint("cartes/fichier1.txt");
         //showMap();
     }
     private void loadPoint(String map) throws IOException{
