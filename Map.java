@@ -8,7 +8,11 @@ public class Map {
     //private Segment segmentList[];
 
     public Map(/*String map*/){
-        loadPoint("cartes/fichier1.txt");
+        try {
+            loadPoint("cartes/fichier1.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //showMap();
     }
     private void loadPoint(String map) throws IOException{
