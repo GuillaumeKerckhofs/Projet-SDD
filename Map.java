@@ -2,10 +2,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 //import Segment;
 
 public class Map {
-    //private Segment segmentList[];
+    private ArrayList<Segment> segmentList = new ArrayList<Segment>();
 
     public Map(/*String map*/){
         try {
@@ -29,9 +30,12 @@ public class Map {
         
         while ((line = lecteurAvecBuffer.readLine()) != null){
             String point[]=line.split(" ");
-            System.out.println(point);
-            /*Segment segment=new Segment(point);
-            segmentList.append(segment);*/
+            ArrayList<Float> seg = new ArrayList<Float>();
+            for (int i=0;i<4;i++)
+                seg.add(Float.parseFloat(point[i]));
+            System.out.println(seg);
+            Segment segment=new Segment((Float)seg.get(0),(Float)seg.get(1),(Float)seg.get(2),(Float)seg.get(3));
+            segmentList.add(segment);
         }
         
         lecteurAvecBuffer.close();

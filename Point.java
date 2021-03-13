@@ -1,18 +1,18 @@
 public class Point {
-    private int x;
-    private int y;
+    private float x;
+    private float y;
 
     private boolean upper_point;
 
-    public Point(int x,int y,boolean upper_point){   //j'ai enlevé le =false car ça mettait une erreur
+    public Point(float x,float y,boolean upper_point){   //j'ai enlevé le =false car ça mettait une erreur
         this.x=x;
         this.y=y;
         this.upper_point=upper_point;
     }
 
     public boolean smallerThan(Point point2){
-        int x2=point2.getX();
-        int y2=point2.getY();
+        float x2=point2.getX();
+        float y2=point2.getY();
         if(this.y>y2 || (this.y==y2 && this.x<x2)){
             return true;
         }
@@ -28,11 +28,11 @@ public class Point {
         return upper_point;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 

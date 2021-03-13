@@ -50,13 +50,14 @@ public class Test {
 
 
     public static void main(String[] args){
-        truc();
-        ArrayList a=getlist();
-        ArrayList<Float>seg2 = (ArrayList<Float>) a.get(0);
+        //truc();
+        //ArrayList a=getlist();
+        //ArrayList<Float>seg2 = (ArrayList<Float>) a.get(0);
 
-        seg2.get(0);
-        System.out.println(seg2);
+        //seg2.get(0);
+        //System.out.println(seg2);
 
+        Map map =new Map();
 
         JFrame fenetre = new JFrame();
         //Définit un titre pour notre fenêtre

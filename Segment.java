@@ -7,7 +7,7 @@ public class Segment{
         this.lower_point=lower_point;
     }
 
-    public Segment(int x1,int y1,int x2,int y2){
+    public Segment(float x1,float y1,float x2,float y2){
         if(y1>y2 || (y1==y2 && x1<x2)){
             this.upper_point=new Point(x1,y1,true);
             this.lower_point=new Point (x2,y2,false);  // j'ai rajouté ",false" car erreur avant
