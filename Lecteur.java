@@ -4,34 +4,49 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Lecteur {
-        public static void main(String args[])
-        {
-            try
-            {
-                // Le fichier d'entrée
-                FileInputStream file = new FileInputStream("cartes/fichier1.txt");
-                Scanner scanner = new Scanner(file);
-                List<List> listSeg = new ArrayList<List>();   // liste des points
+    /*static ArrayList<List> listSeg = new ArrayList<List>();
 
-                //renvoie true s'il y a une autre ligne à lire
-                while(scanner.hasNextLine())
-                {
-                    String a=scanner.nextLine();
-                    System.out.println(a);
-                    String str[]=a.split(" ");
-                    List<Float> seg = new ArrayList<Float>();
-                    for (int i=0;i<4;i++)
-                        seg.add(Float.parseFloat(str[i]));
-                    listSeg.add(seg);
-                    System.out.println(listSeg);
-                    System.out.println("---");
-                }
-                scanner.close();
-            }
-            catch(IOException e)
+    public List truc(){
+    // Le fichier d'entrée
+        FileInputStream file;
+
+    {
+        try {
+            file = new FileInputStream("cartes/fichier1.txt");
+            Scanner scanner = new Scanner(file);
+            // liste des points
+
+            //renvoie true s'il y a une autre ligne à lire
+            while(scanner.hasNextLine())
             {
-                e.printStackTrace();
+                String a=scanner.nextLine();
+                System.out.println(a);
+                String str[]=a.split(" ");
+                ArrayList<Float> seg = new ArrayList<Float>();
+                for (int i=0;i<4;i++)
+                    seg.add(Float.parseFloat(str[i]));
+                ArrayList list = getlist();
+                list.add(seg);
+                setlist(list);
+                //System.out.println(listSeg);
+                System.out.println("---");
             }
+            scanner.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+    }
+    System.out.println(listSeg);
+    return listSeg;
+    }
 
+
+    public ArrayList getlist() {
+        return listSeg;
+    }
+
+    public void setlist(ArrayList listSeg) {
+        this.listSeg = listSeg;
+    } */
 }

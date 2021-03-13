@@ -10,11 +10,11 @@ public class Segment{
     public Segment(int x1,int y1,int x2,int y2){
         if(y1>y2 || (y1==y2 && x1<x2)){
             this.upper_point=new Point(x1,y1,true);
-            this.lower_point=new Point (x2,y2);
+            this.lower_point=new Point (x2,y2,false);  // j'ai rajouté ",false" car erreur avant
         }
         else{
             this.upper_point=new Point(x2,y2,true);
-            this.lower_point=new Point (x1,y1);
+            this.lower_point=new Point (x1,y1,false);
         }
     }
 

@@ -4,7 +4,7 @@ public class Point {
 
     private boolean upper_point;
 
-    public Point(int x,int y,boolean upper_point=false){
+    public Point(int x,int y,boolean upper_point){   //j'ai enlevé le =false car ça mettait une erreur
         this.x=x;
         this.y=y;
         this.upper_point=upper_point;
