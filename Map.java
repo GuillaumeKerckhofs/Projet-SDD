@@ -1,9 +1,9 @@
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-//import Segment;
+
 
 public class Map {
     private ArrayList<Segment> segmentList = new ArrayList<Segment>();
@@ -36,6 +36,7 @@ public class Map {
             System.out.println(seg);
             Segment segment=new Segment((Float)seg.get(0),(Float)seg.get(1),(Float)seg.get(2),(Float)seg.get(3));
             segmentList.add(segment);
+            System.out.println(segmentList);
         }
         
         lecteurAvecBuffer.close();

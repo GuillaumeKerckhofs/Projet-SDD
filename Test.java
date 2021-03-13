@@ -1,61 +1,14 @@
 
 
 import javax.swing.JFrame;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+
 
 
 public class Test {
 
 
-    static ArrayList<ArrayList> listSeg = new ArrayList<ArrayList>();
-    public static void truc(){
-        // Le fichier d'entrée
-        FileInputStream file;
-
-
-        {
-            try {
-                file = new FileInputStream("cartes/fichier1.txt");
-                Scanner scanner = new Scanner(file);
-                // liste des points
-
-                //renvoie true s'il y a une autre ligne à lire
-                while(scanner.hasNextLine())
-                {
-                    String a=scanner.nextLine();
-                    System.out.println(a);
-                    String str[]=a.split(" ");
-                    ArrayList<Float> seg = new ArrayList<Float>();
-                    for (int i=0;i<4;i++)
-                        seg.add(Float.parseFloat(str[i]));
-                    listSeg.add(seg);
-                    //System.out.println(listSeg);
-                    System.out.println("---");
-                }
-                scanner.close();
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static ArrayList getlist() {
-        return listSeg;
-    }
-
-
     public static void main(String[] args){
-        //truc();
-        //ArrayList a=getlist();
-        //ArrayList<Float>seg2 = (ArrayList<Float>) a.get(0);
 
-        //seg2.get(0);
-        //System.out.println(seg2);
 
         Map map =new Map();
 
