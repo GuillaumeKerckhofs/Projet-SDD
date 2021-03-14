@@ -1,7 +1,7 @@
 
 
 import javax.swing.JFrame;
-
+import java.util.ArrayList;
 
 
 public class Test {
@@ -11,6 +11,7 @@ public class Test {
 
 
         Map map =new Map();
+        //ArrayList<Segment> a= map.getSegmentList();
 
         JFrame fenetre = new JFrame();
         //Définit un titre pour notre fenêtre
@@ -24,6 +25,7 @@ public class Test {
         //Et enfin, la rendre visible
         fenetre.setVisible(true);
         fenetre.setContentPane(new Panneau());
+        new MenuBar(fenetre);
     }
 
 
