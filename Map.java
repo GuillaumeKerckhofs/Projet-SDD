@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 public class Map {
-    private ArrayList<Segment> segmentList = new ArrayList<Segment>();
+    private static ArrayList<Segment> segmentList = new ArrayList<Segment>();
 
     public Map(/*String map*/){
         try {
@@ -36,9 +36,13 @@ public class Map {
             System.out.println(seg);
             Segment segment=new Segment((Float)seg.get(0),(Float)seg.get(1),(Float)seg.get(2),(Float)seg.get(3));
             segmentList.add(segment);
-            System.out.println(segmentList);
         }
         
         lecteurAvecBuffer.close();
     }
+
+    public static ArrayList<Segment> getSegmentList() {
+        return segmentList;
+    }
+
 }
