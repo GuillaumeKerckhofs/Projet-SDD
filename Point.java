@@ -20,6 +20,10 @@ public class Point {
             return false;
     }
 
+    public boolean isEqualTo(Point point2){
+        return (this.x==point2.getX() && this.y==point2.getY());
+    }
+
     public void setUpper_point(boolean upper_point) {
         this.upper_point = upper_point;
     }
