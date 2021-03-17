@@ -1,156 +1,78 @@
 public class Q_Tree{
-    private Point point;
-    private Segment[] segments;
-    private Q_Tree Tr;
-    private Q_Tree Tl;
-    private int height;
+    private Q_Node root;
 
-    public Q_Tree(Point point,Segment segment,Q_Tree Tr,Q_Tree Tl){
-        this.point=point;
-        this.segments.append(segment);
-        this.Tr=Tr;
-        this.Tl=Tl;
-        this.height=1;
+    public Q_Tree(Q_Node root){
+        this.root=root;
     }
 
-    public Q_Tree(){this.(null,null,null,null);}
+    public Q_Tree(){this.(null);}
 
-    public void Height(){
-        if(this.isLeaf()){
-            this.height=1;
-        }
-        else{
-            Q_Tree tl=this.Tl;
-            Q_Tree tr=this.Tr;
-            if(tl==null){
-                this.Height=tr.getHeight()+1;
-            }
-            else if(tr==null){
-                this.Height=tl.getHeight()+1;
-            }
-            else{
-                this.Height=max(tl.getHeight(),tr.getHeight())+1;
-            }
-        }
-    }
 
-    public int Bal({
-        if(this.isLeaf()){
-            return 0;
-        }
-        else{
-            Q_Tree tl=this.Tl;
-            Q_Tree tr=this.Tr;
-            if(tl.getPoint()==null){
-                return(tr.getHeight());
-            }
-            else if(tr.getPoint()==null){
-                return(-(tl.getHeight()));
-            }
-            else{
-                return(tr.getHeight()-tl.getHeight());
-            }
-        }
-    }
 
-    public void insertionEmpty(Point point,Segment segment){
+    """public void insertionEmpty(Point point,Segment segment){
         this.point=point;
         this.addSegment(segment);
-        this.Tl=new Q_Tree();
-        this.Tr=new Q_Tree();
-        this.height=1;
-    }
+    }"""
 
-    public void insertion(Point point,Segment segment){
-        if(this.isEmpty()){
-            this.insertionEmpty(point,segment);
+    public void insertion(Q_Node current,Point point,Segment segment){
+        if(current==null){
+            current=new Q_Node(point,segment);
         }
         else{
-            if(point.isEqualTo(this.point)){
-                this.addSegment(segment);
-                this.Equilibrate();
+            if(point.isEqualTo(current.getPoint())){
+                current.addSegment(segment);
             }
-            else if(point.smallerThan(this.point)){
-                this.Tl.insertion(point,segment);
+            else if(point.smallerThan(current.getPoint())){
+                insertion(current.getLeft(),point,segment);
+                Equilibrate(current);
             }
             else{
-                this.Tr.insertion(point, segment);
-                this.Equilibrate();
+                insertion(current.getRight(),point, segment);
+                Equilibrate(current);
             }
         }
     }
 
-    public void Equilibrate(){
-        if(this.Bal()==2){
-            if(this.Tr.Bal()>=0){
-                this.RotateL();
+    public void Equilibrate(Q_Node node){
+        if(node.Bal()==2){
+            if(node.getRight().Bal()>=0){
+                RotateL(node);
             }
             else{
-                this.Tr.RotateR();
-                this.RotateL();
+                RotateR(node.getRight());
+                RotateL(node);
             }
         }
-        else if(this.Bal()==-2){
-            if(this.Tl.Bal()<=0){
-                this.RotateR();
+        else if(node.Bal()==-2){
+            if(node.getLeft.Bal()<=0){
+                RotateR(node);
             }
             else{
-                this.Tl.RotateL();
-                this.RotateR();
+                RotateL(node.getLeft());
+                RotateR(node);
             }
         }
         else{
-            this.Height();
+            node.Height();
         }
     }
 
-    public void RotateL(){
-        Q_Tree tmp=this;
-        
+    public void RotateL(Q_Node node){
+        Q_Node tmp=node;
+        node=node.getRight();
+        tmp.setRight(node.getLeft());
+        node.setLeft(tmp);
+        tmp.Height();
+        node.Height();
     }
 
-    public void RotateR(){}
-
-    public boolean isLeaf(){
-        return (Tr.getPoint()==null && Tl.getPoint()==null);
+    public void RotateR(Q_Node node){
+        Q_Node tmp=node;
+        node=node.getLeft();
+        tmp.setLeft(node.getRight());
+        node.setRight(tmp);
+        tmp.Height();
+        node.Height();
     }
 
-    public boolean isEmpty(){
-        (this.point==null && this.Tr==null && this.Tl=null)
-    }
-    public void addSegment(Segment segment) {
-        this.segments.append(segment);
-    }
-
-    public void setTr(Q_Tree tr) {
-        this.Tr = tr;
-    }
-
-    public void setTl(Q_Tree tl) {
-        this.Tl = tl;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getBal() {
-        return bal;
-    }
-
-    public Point getPoint() {
-        return point;
-    }
-
-    public Q_Tree getTr() {
-        return Tr;
-    }
-
-    public Q_Tree getTl() {
-        return Tl;
-    }
-
-    public int getHeight() {
-        return height;
-    }
 }
