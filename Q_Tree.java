@@ -5,6 +5,10 @@ public class Q_Tree{
         this.root=root;
     }
 
+    public Q_Tree(Point point,Segment segment){
+        this(new Q_Node(point,segment));
+    }
+
     public Q_Tree(){this(null);}
 
 
@@ -75,4 +79,24 @@ public class Q_Tree{
         node.Height();
     }
 
+    public Q_Node removeNextEvent(Q_Node node){
+        if(node.getLeft()!=null) {
+            removeNextEvent(node.getLeft());
+            Equilibrate(node);
+        }
+        Q_Node tmp=node;
+        else{
+            remove(node);
+        }
+        return tmp;
+    }
+
+    public void remove(Q_Node node){
+        if (node.isLeaf()){
+            node=null;
+        }
+        else{
+            node=node.getLeft();
+        }
+    }
 }

@@ -59,7 +59,7 @@ public class Q_Node{
         this.segments.add(segment);
     }
 
-    public boolean isLeaf(){ return (Right.getPoint()==null && Left.getPoint()==null);}
+    public boolean isLeaf(){ return (this.Right==null && this.Left==null);}
 
     public boolean isEmpty(){ return (this.point==null && this.Right==null && this.Left==null);}
 
