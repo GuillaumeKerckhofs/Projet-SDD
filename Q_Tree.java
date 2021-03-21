@@ -5,14 +5,14 @@ public class Q_Tree{
         this.root=root;
     }
 
-    public Q_Tree(){this.(null);}
+    public Q_Tree(){this(null);}
 
 
 
-    """public void insertionEmpty(Point point,Segment segment){
+    /*public void insertionEmpty(Point point,Segment segment){
         this.point=point;
         this.addSegment(segment);
-    }"""
+    } */
 
     public void insertion(Q_Node current,Point point,Segment segment){
         if(current==null){
@@ -44,7 +44,7 @@ public class Q_Tree{
             }
         }
         else if(node.Bal()==-2){
-            if(node.getLeft.Bal()<=0){
+            if(node.getLeft().Bal()<=0){
                 RotateR(node);
             }
             else{

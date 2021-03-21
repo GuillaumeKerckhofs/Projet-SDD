@@ -1,19 +1,19 @@
-import org.w3c.dom.Node;
 
-public class Tree <Segment>{
+
+public class T_Tree <Segment>{
     private Segment data;
-    private Tree <Segment> Ltree;
-    private Tree <Segment> Rtree;
+    private T_Tree <Segment> Ltree;
+    private T_Tree <Segment> Rtree;
     private int height;
 
-    public Tree(Segment data, Tree<Segment> Ltree, Tree<Segment> Rtree){
+    public T_Tree(Segment data, T_Tree<Segment> Ltree, T_Tree<Segment> Rtree){
         data = data;
-        Ltree=Ltree;
-        Rtree=Rtree;
+        Ltree = Ltree;
+        Rtree = Rtree;
         height = 0;
     }
 
-    public Tree() {
+    public T_Tree() {
         this(null,null,null);
     }
 
@@ -25,17 +25,17 @@ public class Tree <Segment>{
         return data;
     }
 
-    public void setLeft(Tree<Segment> l) {
+    public void setLeft(T_Tree<Segment> l) {
         Ltree = l;
     }
-    public Tree<Segment> getLeft() {
+    public T_Tree<Segment> getLeft() {
         return Ltree;
     }
 
-    public void setRight(Tree<Segment> r) {
+    public void setRight(T_Tree<Segment> r) {
         Rtree = r;
     }
-    public Tree<Segment> getRight() {
+    public T_Tree<Segment> getRight() {
         return Rtree;
     }
 
@@ -72,8 +72,8 @@ public class Tree <Segment>{
 
     public void insertEmpty(Segment data) {
         data = data;
-        Ltree = new Tree();
-        Rtree = new Tree();
+        Ltree = new T_Tree();
+        Rtree = new T_Tree();
         height = 1;
     }
 
