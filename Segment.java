@@ -17,6 +17,9 @@ public class Segment{
             this.lower_point=new Point (x1,y1,false);
         }
     }
+    public boolean smallerThan (Segment segment){
+        return true;
+    }
 
     public Point getUpper_point(){
         return this.upper_point;

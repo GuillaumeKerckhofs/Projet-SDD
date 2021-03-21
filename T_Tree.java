@@ -1,12 +1,12 @@
 
 
-public class T_Tree <Segment>{
+public class T_Tree {
     private Segment data;
-    private T_Tree <Segment> Ltree;
-    private T_Tree <Segment> Rtree;
+    private T_Tree Ltree;
+    private T_Tree Rtree;
     private int height;
 
-    public T_Tree(Segment data, T_Tree<Segment> Ltree, T_Tree<Segment> Rtree){
+    public T_Tree(Segment data, T_Tree Ltree, T_Tree Rtree){
         data = data;
         Ltree = Ltree;
         Rtree = Rtree;
@@ -18,24 +18,24 @@ public class T_Tree <Segment>{
     }
 
 
-    public void setData(Segment dara) {
+    public void setData(Segment data) {
         data = data;
     }
     public Segment getData() {
         return data;
     }
 
-    public void setLeft(T_Tree<Segment> l) {
+    public void setLeft(T_Tree l) {
         Ltree = l;
     }
-    public T_Tree<Segment> getLeft() {
+    public T_Tree getLeft() {
         return Ltree;
     }
 
-    public void setRight(T_Tree<Segment> r) {
+    public void setRight(T_Tree r) {
         Rtree = r;
     }
-    public T_Tree<Segment> getRight() {
+    public T_Tree getRight() {
         return Rtree;
     }
 
@@ -69,6 +69,21 @@ public class T_Tree <Segment>{
             return getRight().getHeight() - getLeft().getHeight();
     }
 
+    public void insert(T_Tree T, Segment data){
+        if (isEmpty())
+            insertEmpty(data);
+        else {
+            if (data.smallerThan(T.getData())){
+                insert(T.getLeft(),data);
+                equilibrate(T);
+            }
+            else
+            if (T.getData().smallerThan(data)){
+                insert(T.getRight(),data);
+                equilibrate(T);
+            }
+        }
+    }
 
     public void insertEmpty(Segment data) {
         data = data;
@@ -77,7 +92,47 @@ public class T_Tree <Segment>{
         height = 1;
     }
 
+    public void equilibrate(T_Tree T){
+        if(T.balance()==2){
+            if(T.getRight().balance()>=0){
+                rotateLeft(T);
+            }
+            else{
+                rotateRight(T.getRight());
+                rotateLeft(T);
+            }
+        }
+        else if(T.balance()==-2){
+            if(T.getLeft().balance()<=0){
+                rotateRight(T);
+            }
+            else{
+                rotateLeft(T.getLeft());
+                rotateRight(T);
+            }
+        }
+        else{
+            T.height();
+        }
+    }
 
+    public void rotateLeft(T_Tree T){
+        T_Tree tmp=T;
+        T=T.getRight();
+        tmp.setRight(T.getLeft());
+        T.setLeft(tmp);
+        tmp.height();
+        T.height();
+    }
+
+    public void rotateRight(T_Tree T){
+        T_Tree tmp=T;
+        T=T.getLeft();
+        tmp.setLeft(T.getRight());
+        T.setRight(tmp);
+        tmp.height();
+        T.height();
+    }
 
 
 
