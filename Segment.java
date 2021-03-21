@@ -17,7 +17,7 @@ public class Segment{
             this.lower_point=new Point (x1,y1,false);
         }
     }
-    public boolean smallerThan (Segment segment){
+    public boolean smallerThan (Segment segment){                    //à faire
         return true;
     }
 
