@@ -19,23 +19,26 @@ public class Q_Tree {
         this.addSegment(segment);
     } */
     public void startInsertion(Point point, Segment segment) {
-        insertion(this.root, point, segment);
+        this.root=insertion(this.root, point, segment);
     }
 
-    public void insertion(Q_Node current, Point point, Segment segment) {
+    public Q_Node insertion(Q_Node current, Point point, Segment segment) {
         if (current == null) {
-            current = new Q_Node(point, segment);
+            return(new Q_Node(point, segment));
         } else {
             if (point.isEqualTo(current.getPoint())) {
                 current.addSegment(segment);
+                return current;
             } else if (point.smallerThan(current.getPoint())) {
-                insertion(current.getLeft(), point, segment);
-                System.out.println(current.getPoint());
+                Q_Node node=insertion(current.getLeft(), point, segment);
+                current.setLeft(node);
                 Equilibrate(current);
+                return current;
             } else {
-                insertion(current.getRight(), point, segment);
-                System.out.println(current.getPoint());
+                Q_Node node=insertion(current.getRight(), point, segment);
+                current.setRight(node);
                 Equilibrate(current);
+                return current;
             }
         }
     }
@@ -119,6 +122,7 @@ public class Q_Tree {
             System.out.print(" ");
         }
         System.out.print(node.getPoint());
+        printTree(node.getLeft(),space);
     }
 
     public Q_Node getRoot() {

@@ -43,10 +43,10 @@ public class Q_Node{
             return 0;
         }
         else{
-            if(Left.getPoint()==null){
+            if(this.Left==null){
                 return(Right.getHeight());
             }
-            else if(Right.getPoint()==null){
+            else if(this.Right==null){
                 return(-(Left.getHeight()));
             }
             else{
