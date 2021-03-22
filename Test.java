@@ -9,6 +9,7 @@ public class Test {
 
     public static void main(String[] args){
 
+        /*
 
         Map map =new Map();
         //ArrayList<Segment> a= map.getSegmentList();
@@ -27,6 +28,8 @@ public class Test {
         fenetre.setContentPane(new Panneau());
         new MenuBar(fenetre);
 
+         */
+
         Point p1=new Point(0.5f,1);
         Point p2=new Point(1,0.5f);
         Point p3=new Point(1,1);
@@ -44,6 +47,20 @@ public class Test {
         Q.startInsertion(p1,s);
         Q.startInsertion(p7,s);
         Q.print();
+
+        System.out.println("");
+        System.out.println("______________________________");
+        System.out.println("");
+
+        Segment s2=new Segment(p1,p2);
+        T_Tree T=new T_Tree();
+        T.insert(s2);
+        T.insert(s);
+        T.insert(s2);
+
+        T.print();
+
+
     }
 
 

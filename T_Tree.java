@@ -18,9 +18,7 @@ public class T_Tree {
     }
 
 
-    public void setData(Segment data) {
-        data = data;
-    }
+    public void setData(Segment data) { this.data=data;}
     public Segment getData() {
         return data;
     }
@@ -32,9 +30,7 @@ public class T_Tree {
         return Ltree;
     }
 
-    public void setRight(T_Tree r) {
-        Rtree = r;
-    }
+    public void setRight(T_Tree r) { Rtree = r; }
     public T_Tree getRight() {
         return Rtree;
     }
@@ -69,27 +65,35 @@ public class T_Tree {
             return getRight().getHeight() - getLeft().getHeight();
     }
 
-    public void insert(T_Tree T, Segment data){
-        if (isEmpty())
+    public void insert(Segment data){
+
+        if (isEmpty()){
             insertEmpty(data);
+            }
         else {
-            if (data.smallerThan(T.getData())){
-                insert(T.getLeft(),data);
+            /*if (data.smallerThan(T.getData())){
+                getLeft().insert(data);
                 equilibrate(T);
             }
             else
             if (T.getData().smallerThan(data)){
-                insert(T.getRight(),data);
+                getRight().insert(data);
                 equilibrate(T);
+
             }
+            */
+            getLeft().insert(data);
+            equilibrate(this);
+
         }
     }
 
     public void insertEmpty(Segment data) {
-        data = data;
-        Ltree = new T_Tree();
-        Rtree = new T_Tree();
-        height = 1;
+
+        this.setData (data);
+        this.setLeft (new T_Tree());
+        this.setRight (new T_Tree());
+        this.height = 1;
     }
 
     public void equilibrate(T_Tree T){
@@ -133,7 +137,13 @@ public class T_Tree {
         tmp.height();
         T.height();
     }
-
+    public void print() {
+        if (!isEmpty()) {
+            Ltree.print();
+            System.out.println(data);
+            Rtree.print();
+        }
+    }
 
 
 }
