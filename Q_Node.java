@@ -11,7 +11,7 @@ public class Q_Node{
 
     public Q_Node(Point point,Segment segment){
         this.point=point;
-        this.segments.add(segment);
+        //this.segments.add(segment);
         this.Right=null;
         this.Left=null;
         this.height=1;
@@ -62,7 +62,6 @@ public class Q_Node{
     public boolean isLeaf(){ return (this.Right==null && this.Left==null);}
 
     public boolean isEmpty(){ return (this.point==null && this.Right==null && this.Left==null);}
-
 
     public void setRight(Q_Node right) {
         this.Right = right;

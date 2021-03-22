@@ -10,6 +10,10 @@ public class Point {
         this.upper_point=upper_point;
     }
 
+    public Point(float x,float y){
+        this(x,y,false);
+    }
+
     public boolean smallerThan(Point point2){
         float x2=point2.getX();
         float y2=point2.getY();
@@ -46,5 +50,9 @@ public class Point {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public String toString(){
+        return ("("+this.x+","+this.y+")");
     }
 }
