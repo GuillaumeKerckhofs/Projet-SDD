@@ -66,6 +66,11 @@ public class Q_Tree {
     public void RotateL(Q_Node node) {
         Q_Node tmp = node;
         node = node.getRight();
+        if (tmp==this.root){
+            System.out.println(root.getPoint());
+            this.root=node;
+            System.out.println(root.getPoint());
+        }
         tmp.setRight(node.getLeft());
         node.setLeft(tmp);
         tmp.Height();
@@ -75,6 +80,11 @@ public class Q_Tree {
     public void RotateR(Q_Node node) {
         Q_Node tmp = node;
         node = node.getLeft();
+        if (tmp==this.root){
+            System.out.println(root.getPoint());
+            this.root=node;
+            System.out.println(root.getPoint());
+        }
         tmp.setLeft(node.getRight());
         node.setRight(tmp);
         tmp.Height();
@@ -114,7 +124,7 @@ public class Q_Tree {
             return;
         }
 
-        space+=1;
+        space+=5;
 
         printTree(node.getRight(),space);
         System.out.print("\n");

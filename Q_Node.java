@@ -33,9 +33,10 @@ public class Q_Node{
                 this.height=Left.getHeight()+1;
             }
             else{
-                this.height=max(Left.getHeight(),Right.getHeight())+1;
+                this.height=1+max(Left.getHeight(),Right.getHeight());
             }
         }
+
     }
 
     public int Bal(){

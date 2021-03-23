@@ -42,11 +42,11 @@ public class Test {
         Q_Tree Q=new Q_Tree(node);
         Q.startInsertion(p2,s);
         Q.startInsertion(p3,s);
-        Q.startInsertion(p6,s);
+        System.out.println(Q.getRoot().getPoint());
+        /*Q.startInsertion(p6,s);
         Q.startInsertion(p5,s);
         Q.startInsertion(p1,s);
-        Q.startInsertion(p7,s);
-        Q.print();
+        Q.startInsertion(p7,s);*/
 
         System.out.println("");
         System.out.println("______________________________");
