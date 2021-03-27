@@ -36,4 +36,8 @@ public class Segment{
     public void setUpper_point(Point upper_point) {
         this.upper_point = upper_point;
     }
+
+    public String toString(){
+        return ("("+this.upper_point+","+this.lower_point+")");
+    }
 }
