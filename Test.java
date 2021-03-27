@@ -47,6 +47,7 @@ public class Test {
         Q.startInsertion(p1,s);
         Q.startInsertion(p7,s);
         Q.print();
+
         System.out.println("");
         System.out.println("");
         Q.removeNextEvent();
@@ -67,11 +68,42 @@ public class Test {
         System.out.println("______________________________");
         System.out.println("");
 
-        Segment s2=new Segment(p1,p2);
+
+        Point a1=new Point(5,5);
+        Point a2=new Point(10,7);
+        Point a3=new Point(1,1);
+        Point a4=new Point(7,6);
+        Point a5=new Point(9,2);
+        Point a6=new Point(4,2);
+        Point a7=new Point(2,2);
+
+        Segment s1=new Segment(a1,a3);
+        Segment s2=new Segment(a2,a3);
+        Segment s3=new Segment(a4,a5);
+        Segment s4=new Segment(a6,a5);
+        Segment s5=new Segment(a1,a5);
         T_Tree T=new T_Tree();
+        T.insert(s1);
         T.insert(s2);
-        T.insert(s);
-        T.insert(s2);
+        T.insert(s3);
+        T.insert(s4);
+        T.insert(s5);
+
+
+
+
+        System.out.println("S1 ="+s1);
+        System.out.println("S2 ="+s2);
+        System.out.println("S3 ="+s3);
+        System.out.println("S4 ="+s4);
+        System.out.println("S5 ="+s5);
+
+        System.out.println("*****************");
+
+
+
+        
+
 
         T.print();
 

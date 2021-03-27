@@ -69,22 +69,26 @@ public class T_Tree {
 
         if (isEmpty()){
             insertEmpty(data);
+            System.out.println("---------");
             }
         else {
-            /*if (data.smallerThan(T.getData())){
-                getLeft().insert(data);
-                equilibrate(T);
-            }
-            else
-            if (T.getData().smallerThan(data)){
+            if (getData().tSmallerThan(data)){
+                System.out.println(getData().getUpper_point().getX()+"<"+data.getUpper_point().getX());
+
+                if (getLeft().isEmpty()&& getRight().isEmpty())
+                    getLeft().insert(getData());
                 getRight().insert(data);
-                equilibrate(T);
+                equilibrate();
+            }
+            else {   //pas trop sûr
+                System.out.println(getData().getUpper_point().getX()+">"+data.getUpper_point().getX());
+
+                if (getLeft().isEmpty()&& getRight().isEmpty())
+                    getRight().insert(getData());
+                getLeft().insert(data);
+                equilibrate();
 
             }
-            */
-            getLeft().insert(data);
-            equilibrate(this);
-
         }
     }
 
@@ -96,52 +100,74 @@ public class T_Tree {
         this.height = 1;
     }
 
-    public void equilibrate(T_Tree T){
-        if(T.balance()==2){
-            if(T.getRight().balance()>=0){
-                rotateLeft(T);
+    public void equilibrate(){
+        if(balance()==2){
+            if(getRight().balance()>=0){
+                rotateLeft(this);
             }
             else{
-                rotateRight(T.getRight());
-                rotateLeft(T);
+                rotateRight(getRight());
+                rotateLeft(this);
             }
         }
-        else if(T.balance()==-2){
-            if(T.getLeft().balance()<=0){
-                rotateRight(T);
+        else if(balance()==-2){
+            if(getLeft().balance()<=0){
+                rotateRight(this);
             }
             else{
-                rotateLeft(T.getLeft());
-                rotateRight(T);
+                rotateLeft(getLeft());
+                rotateRight(this);
             }
         }
         else{
-            T.height();
+            this.height();
         }
     }
 
     public void rotateLeft(T_Tree T){
-        T_Tree tmp=T;
-        T=T.getRight();
-        tmp.setRight(T.getLeft());
-        T.setLeft(tmp);
-        tmp.height();
+
+
+        Segment d = T.getData();
+        T_Tree t = T.getRight();
+        T.setData(t.getData());
+        T.setRight(t.getRight());
+        t.setData(d);
+        t.setRight(t.getLeft());
+        t.setLeft(T.getLeft());
+        T.setLeft(t);
+        t.height();
         T.height();
     }
 
     public void rotateRight(T_Tree T){
-        T_Tree tmp=T;
-        T=T.getLeft();
-        tmp.setLeft(T.getRight());
-        T.setRight(tmp);
-        tmp.height();
+
+        Segment d = T.getData();
+        T_Tree t = T.getLeft();
+        T.setData(t.getData());
+        T.setLeft(t.getLeft());
+        t.setData(d);
+        t.setLeft(t.getRight());
+        t.setRight(T.getRight());
+        T.setRight(t);
+        t.height();
         T.height();
     }
-    public void print() {
+    public boolean isLeaf (){
+        if (getRight().isEmpty()&& getLeft().isEmpty())
+            return true;
+        return false;
+    }
+
+    public void print() {   // a nettoyer quand fini
         if (!isEmpty()) {
+            //System.out.println("left");
             Ltree.print();
+            //System.out.println("remonte");
+            if(isLeaf())
             System.out.println(data);
+            //System.out.println("right");
             Rtree.print();
+
         }
     }
 
