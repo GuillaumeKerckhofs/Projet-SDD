@@ -73,17 +73,19 @@ public class T_Tree {
             }
         else {
             if (getData().tSmallerThan(data)){
-                System.out.println(getData().getUpper_point().getX());
-                System.out.println(data.getUpper_point().getX());
-                System.out.println("left");
-                getLeft().insert(data);
+                System.out.println(getData().getUpper_point().getX()+"<"+data.getUpper_point().getX());
+
+                if (getLeft().isEmpty()&& getRight().isEmpty())
+                    getLeft().insert(getData());
+                getRight().insert(data);
                 equilibrate();
             }
             else {   //pas trop sûr
-                System.out.println(getData().getUpper_point().getX());
-                System.out.println(data.getUpper_point().getX());
-                System.out.println("right");
-                getRight().insert(data);
+                System.out.println(getData().getUpper_point().getX()+">"+data.getUpper_point().getX());
+
+                if (getLeft().isEmpty()&& getRight().isEmpty())
+                    getRight().insert(getData());
+                getLeft().insert(data);
                 equilibrate();
 
             }
@@ -150,11 +152,18 @@ public class T_Tree {
         t.height();
         T.height();
     }
+    public boolean isLeaf (){
+        if (getRight().isEmpty()&& getLeft().isEmpty())
+            return true;
+        return false;
+    }
+
     public void print() {   // a nettoyer quand fini
         if (!isEmpty()) {
             //System.out.println("left");
             Ltree.print();
             //System.out.println("remonte");
+            if(isLeaf())
             System.out.println(data);
             //System.out.println("right");
             Rtree.print();

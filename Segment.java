@@ -21,7 +21,6 @@ public class Segment{
 
         float p1 = getUpper_point().getX();
         float p2 = segment.getUpper_point().getX();
-
         if(p1<p2){
             return true;
         }
