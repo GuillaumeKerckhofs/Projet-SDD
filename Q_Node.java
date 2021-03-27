@@ -9,16 +9,16 @@ public class Q_Node{
     private Q_Node Left;
     private int height;
 
-    public Q_Node(Point point,Segment segment){
+    public Q_Node(Point point,Segment segment,Q_Node Left,Q_Node Right){
         this.point=point;
         //this.segments.add(segment);
-        this.Right=null;
-        this.Left=null;
+        this.Right=Right;
+        this.Left=Left;
         this.height=1;
     }
 
     public Q_Node(){
-        this(null,null);
+        this(null,null,null,null);
     }
 
     public void Height(){
@@ -26,10 +26,10 @@ public class Q_Node{
             this.height=1;
         }
         else{
-            if(Left==null){
+            if(Left.isEmpty()){
                 this.height=Right.getHeight()+1;
             }
-            else if(Right==null){
+            else if(Right.isEmpty()){
                 this.height=Left.getHeight()+1;
             }
             else{
@@ -44,10 +44,10 @@ public class Q_Node{
             return 0;
         }
         else{
-            if(this.Left==null){
+            if(this.Left.isEmpty()){
                 return(Right.getHeight());
             }
-            else if(this.Right==null){
+            else if(this.Right.isEmpty()){
                 return(-(Left.getHeight()));
             }
             else{
@@ -56,11 +56,18 @@ public class Q_Node{
         }
     }
 
+    public void changeNode(Q_Node node2){
+        this.point=node2.getPoint();
+        //this.segments=node2.getSegments();
+        this.Left=node2.getLeft();
+        this.Right=node2.getRight();
+
+    }
     public void addSegment(Segment segment) {
         this.segments.add(segment);
     }
 
-    public boolean isLeaf(){ return (this.Right==null && this.Left==null);}
+    public boolean isLeaf(){ return (this.Right.isEmpty() && this.Left.isEmpty());}
 
     public boolean isEmpty(){ return (this.point==null && this.Right==null && this.Left==null);}
 
@@ -74,6 +81,10 @@ public class Q_Node{
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public void setPoint(Point point) {
+        this.point = point;
     }
 
     public Point getPoint() {
@@ -90,5 +101,9 @@ public class Q_Node{
 
     public int getHeight() {
         return height;
+    }
+
+    public ArrayList<Segment> getSegments() {
+        return segments;
     }
 }

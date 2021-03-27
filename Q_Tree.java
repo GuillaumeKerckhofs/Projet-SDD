@@ -1,12 +1,14 @@
 public class Q_Tree {
     private Q_Node root;
+    private Q_Node lastRemoved;
 
     public Q_Tree(Q_Node root) {
         this.root = root;
+        this.lastRemoved=new Q_Node();
     }
 
     public Q_Tree(Point point, Segment segment) {
-        this(new Q_Node(point, segment));
+        this(new Q_Node(point, segment,new Q_Node(),new Q_Node()));
     }
 
     public Q_Tree() {
@@ -19,26 +21,24 @@ public class Q_Tree {
         this.addSegment(segment);
     } */
     public void startInsertion(Point point, Segment segment) {
-        this.root=insertion(this.root, point, segment);
+        insertion(this.root, point, segment);
     }
 
-    public Q_Node insertion(Q_Node current, Point point, Segment segment) {
-        if (current == null) {
-            return(new Q_Node(point, segment));
+    public void insertion(Q_Node current, Point point, Segment segment) {
+        if (current.isEmpty()) {
+            current.setPoint(point);
+            //current.addSegment(segment);
+            current.setLeft(new Q_Node());
+            current.setRight(new Q_Node());
         } else {
             if (point.isEqualTo(current.getPoint())) {
-                current.addSegment(segment);
-                return current;
+                //current.addSegment(segment);
             } else if (point.smallerThan(current.getPoint())) {
-                Q_Node node=insertion(current.getLeft(), point, segment);
-                current.setLeft(node);
+                insertion(current.getLeft(), point, segment);
                 Equilibrate(current);
-                return current;
             } else {
-                Q_Node node=insertion(current.getRight(), point, segment);
-                current.setRight(node);
+                insertion(current.getRight(), point, segment);
                 Equilibrate(current);
-                return current;
             }
         }
     }
@@ -64,12 +64,11 @@ public class Q_Tree {
     }
 
     public void RotateL(Q_Node node) {
-        Q_Node tmp = node;
-        node = node.getRight();
+        Q_Node tmp =new Q_Node();
+        tmp.changeNode(node);
+        node.changeNode(node.getRight());
         if (tmp==this.root){
-            System.out.println(root.getPoint());
-            this.root=node;
-            System.out.println(root.getPoint());
+            this.root.changeNode(node);
         }
         tmp.setRight(node.getLeft());
         node.setLeft(tmp);
@@ -78,12 +77,11 @@ public class Q_Tree {
     }
 
     public void RotateR(Q_Node node) {
-        Q_Node tmp = node;
-        node = node.getLeft();
+        Q_Node tmp =new Q_Node();
+        tmp.changeNode(node);
+        node.changeNode(node.getLeft());
         if (tmp==this.root){
-            System.out.println(root.getPoint());
             this.root=node;
-            System.out.println(root.getPoint());
         }
         tmp.setLeft(node.getRight());
         node.setRight(tmp);
@@ -91,28 +89,31 @@ public class Q_Tree {
         node.Height();
     }
 
-    public Q_Node startRemove() {
-        return removeNextEvent(this.root);
-    }
-
-    public Q_Node removeNextEvent(Q_Node node) {
-        Q_Node tmp = node;
-        if (node.getLeft() != null) {
-            removeNextEvent(node.getLeft());
-            Equilibrate(node);
-        }
-        else{
-            remove(node);
-        }
-        return tmp;
+    public void removeNextEvent() {
+       remove(this.root);
     }
 
     public void remove(Q_Node node) {
-        if (node.isLeaf()) {
-            node = null;
-        } else {
-            node = node.getLeft();
+        if (!node.getLeft().isEmpty()) {
+            remove(node.getLeft());
+            Equilibrate(node);
         }
+        else{
+            removeNode(node);
+        }
+    }
+
+    public void removeNode(Q_Node node) {
+
+        // Save the removed Node
+        lastRemoved.changeNode(node);
+
+        //replace the node by is right son, and change the root if the removed node is the root
+        Q_Node nodeR=node.getRight();
+        if(node==this.root){
+            this.root.changeNode(nodeR);
+        }
+        node.changeNode(nodeR);
     }
 
     public void print() {
@@ -137,6 +138,10 @@ public class Q_Tree {
 
     public Q_Node getRoot() {
         return root;
+    }
+
+    public Q_Node getLastRemoved() {
+        return lastRemoved;
     }
 
     public void setRoot(Q_Node root) {
