@@ -1,3 +1,5 @@
+package code;
+
 public class Segment{
     private Point upper_point;
     private Point lower_point;

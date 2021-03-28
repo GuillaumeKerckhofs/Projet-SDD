@@ -1,3 +1,5 @@
+package code;
+
 public class Q_Tree {
     private Q_Node root;
     private Q_Node lastRemoved;

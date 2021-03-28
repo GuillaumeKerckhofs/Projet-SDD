@@ -1,4 +1,4 @@
-
+package code;
 
 public class T_Tree {
     private Segment data;
@@ -164,7 +164,8 @@ public class T_Tree {
             Ltree.print();
             //System.out.println("remonte");
             if(isLeaf())
-            System.out.println(data);
+            System.out.println(data );
+
             //System.out.println("right");
             Rtree.print();
 

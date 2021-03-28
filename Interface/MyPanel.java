@@ -1,8 +1,13 @@
+package Interface;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import code.*;
 
-public class Panneau extends JPanel {
+
+
+public class MyPanel extends JPanel {
     public void paintComponent(Graphics g) {
         ArrayList a = Map.getSegmentList();
 
@@ -15,4 +20,3 @@ public class Panneau extends JPanel {
         }
     }
 }
-

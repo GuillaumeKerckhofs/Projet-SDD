@@ -1,3 +1,5 @@
+package code;
+
 import java.util.ArrayList;
 
 import static java.lang.Integer.max;
@@ -9,7 +11,7 @@ public class Q_Node{
     private Q_Node Left;
     private int height;
 
-    public Q_Node(Point point,Segment segment,Q_Node Left,Q_Node Right){
+    public Q_Node(Point point, Segment segment, Q_Node Left, Q_Node Right){
         this.point=point;
         //this.segments.add(segment);
         this.Right=Right;
