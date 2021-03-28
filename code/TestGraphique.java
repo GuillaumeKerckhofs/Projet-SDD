@@ -10,6 +10,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 public class TestGraphique {
 
+    static MyPanel mp=new MyPanel();
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         Map map =new Map();
@@ -17,16 +18,15 @@ public class TestGraphique {
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
         MyWindow myWindow = new MyWindow();
         myWindow.setVisible(true);
-        myWindow.setSize(600,400);
-        myWindow.setContentPane(new MyPanel());
-        new MyMenuBarre(myWindow);
+        myWindow.setSize(800,600);
+        myWindow.setContentPane(mp);
+        new MyMenuBarre(myWindow,mp);
 
 
 
+    }
 
-
-
-
-
+    public static MyPanel getMp() {
+        return mp;
     }
 }

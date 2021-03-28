@@ -1,12 +1,5 @@
 package code;
 
-import code.Q_Node;
-import code.Q_Tree;
-import code.T_Tree;
-
-import javax.swing.JFrame;
-import java.util.ArrayList;
-
 
 public class TestLogique {
 
