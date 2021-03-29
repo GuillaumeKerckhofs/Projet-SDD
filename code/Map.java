@@ -43,14 +43,17 @@ public class Map {
     public void addSegment (Segment segment){ segmentList.add(segment);}
 
     public void Save (String saveName){
-        File file=new File("cartes"+File.separator+"testsave");
+        File file=new File("cartes"+File.separator+saveName);
         FileOutputStream fos;
         try
         {
             fos=new FileOutputStream(file);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
             String line="";
+
+            System.out.println("");
             System.out.println("save?");
+            System.out.println("");
             for (int i=0;i<this.segmentList.size();i++){
                 Segment tmp = segmentList.get(i);
                 line = tmp.stringSegment();
@@ -59,6 +62,10 @@ public class Map {
                 bw.newLine();
                 line = "";
             }
+            System.out.println("");
+            System.out.println("save!");
+            System.out.println("");
+
         } catch (IOException e) {
             System.out.println("Erreur de sauvegarde");
         }
