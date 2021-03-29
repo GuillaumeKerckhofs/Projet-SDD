@@ -24,11 +24,5 @@ public class TestGraphique {
         myWindow.setContentPane(mp);
         new MyMenuBarre(myWindow,mp);
 
-
-
-    }
-
-    public static MyPanel getMp() {
-        return mp;
     }
 }

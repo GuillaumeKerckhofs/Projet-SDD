@@ -3,8 +3,6 @@ package Interface;
 import javax.swing.*;
 import java.awt.*;
 
-import static code.TestGraphique.getMp;
-
 public class MyWindow extends JFrame {
 
 

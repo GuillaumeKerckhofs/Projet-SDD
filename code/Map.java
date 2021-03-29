@@ -1,9 +1,6 @@
 package code;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -46,21 +43,24 @@ public class Map {
     public void addSegment (Segment segment){ segmentList.add(segment);}
 
     public void Save (String saveName){
-        File file=new File("cartes"+File.separator+saveName);
+        File file=new File("cartes"+File.separator+"testsave");
         FileOutputStream fos;
         try
         {
-            fos=new FileOutputStream(fichier);
+            fos=new FileOutputStream(file);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
             String line="";
-            for int (i=0,i<this.segmentList.size(),i++){
+            System.out.println("save?");
+            for (int i=0;i<this.segmentList.size();i++){
                 Segment tmp = segmentList.get(i);
-                line = segment.stringSegment();
+                line = tmp.stringSegment();
                 System.out.println(line);
                 bw.write(line);
                 bw.newLine();
                 line = "";
             }
+        } catch (IOException e) {
+            System.out.println("Erreur de sauvegarde");
         }
     }
 
