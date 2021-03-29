@@ -49,4 +49,6 @@ public class Segment{
     public String toString(){
         return ("("+this.upper_point+","+this.lower_point+")");
     }
+
+    public String stringSegment(){ return (this.upper_point.stringPoint()+" "+this.lower_point.stringPoint());}
 }

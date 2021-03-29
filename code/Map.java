@@ -43,6 +43,27 @@ public class Map {
         lecteurAvecBuffer.close();
     }
 
+    public void addSegment (Segment segment){ segmentList.add(segment);}
+
+    public void Save (String saveName){
+        File file=new File("cartes"+File.separator+saveName);
+        FileOutputStream fos;
+        try
+        {
+            fos=new FileOutputStream(fichier);
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+            String line="";
+            for int (i=0,i<this.segmentList.size(),i++){
+                Segment tmp = segmentList.get(i);
+                line = segment.stringSegment();
+                System.out.println(line);
+                bw.write(line);
+                bw.newLine();
+                line = "";
+            }
+        }
+    }
+
     public static ArrayList<Segment> getSegmentList() {
         return segmentList;
     }

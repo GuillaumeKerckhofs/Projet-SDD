@@ -3,6 +3,7 @@ package code;
 import Interface.MyMenuBarre;
 import Interface.MyPanel;
 import Interface.MyWindow;
+import code.Map;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -14,6 +15,7 @@ public class TestGraphique {
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         Map map =new Map();
+        map.Save("test");
 
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
         MyWindow myWindow = new MyWindow();
