@@ -6,13 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+import static code.TestGraphique.*;
+
 
 public class MyMenuBarre extends MyPanel implements ActionListener {
 
     JMenu menu, secondMenu,thirdMenu;
     JMenuItem i1, i2, i3, i4, i5,i6;
 
-    public MyMenuBarre(JFrame fenetre,MyPanel mp){
+    public MyMenuBarre(JFrame fenetre){
 
         JMenuBar mb=new JMenuBar();
         menu=new JMenu("File");
@@ -31,12 +33,20 @@ public class MyMenuBarre extends MyPanel implements ActionListener {
         i3.addActionListener(this);
         i6.addActionListener(this);
 
+        i2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                getMap().Save("buttonsave");
+            }
+        });
+        mb.add(i2);
 
         i4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                mp.setZoom(mp.getZoomFactor()*1.5);
+                getMp().setZoom(getMp().getZoomFactor()*1.5);
             }
         });
         mb.add(i4);
@@ -45,7 +55,7 @@ public class MyMenuBarre extends MyPanel implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                mp.setZoom(mp.getZoomFactor()*0.5);
+                getMp().setZoom(getMp().getZoomFactor()*0.5);
             }
         });
         mb.add(i5);
@@ -70,9 +80,7 @@ public class MyMenuBarre extends MyPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         Object source = e.getSource();
         if (source==i1){System.out.println(1);}
-        else if (source==i2){System.out.println(2);}
-        else if (source==i4){
-            this.repaint();}
+        else if (source==i4){ this.repaint();}
         else if (source==i5){System.out.println(2);}
         else if (source ==i6){System.exit(0);}
     }
