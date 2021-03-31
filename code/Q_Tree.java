@@ -27,7 +27,10 @@ public class Q_Tree {
     }
 
     public void insertion(Q_Node current, Point point, Segment segment) {
-        if (current.isEmpty()) {
+        if (this.root==null){
+            this.root=new Q_Node(point,segment);
+        }
+        else if (current.isEmpty()) {
             current.setPoint(point);
             //current.addSegment(segment);
             current.setLeft(new Q_Node());
