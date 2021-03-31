@@ -6,7 +6,7 @@ public class TestLogique {
 
     public static void main(String[] args) {
 
-
+        Map map =new Map();
         Point p1 = new Point(0.5f, 1);
         Point p2 = new Point(1, 0.5f);
         Point p3 = new Point(1, 1.5f);
@@ -77,6 +77,8 @@ public class TestLogique {
 
 
         T.print();
+        System.out.println("**********************************");
+        Algo.FindIntersections(Map.getSegmentList());
 
     }
 }

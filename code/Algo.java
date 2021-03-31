@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Algo {
 
-    public void FindIntersections(ArrayList<Segment> segmentList){
+    public static void FindIntersections(ArrayList<Segment> segmentList){
 
         /*
         1.Initialize an empty event queue Q. Next, insert the segment endpoints intoQ; when an upper endpoint is inserted, the corresponding segment should be stored with it.
@@ -17,18 +17,23 @@ public class Algo {
         Segment segment;
         for (int i=0;i< segmentList.size();i++){
             segment=segmentList.get(i);
+            System.out.println(segment.getUpper_point());
             q.startInsertion(segment.getUpper_point(), segment);
+            System.out.println("oui");
         }
         T_Tree t=new T_Tree();
 
         while (q.getRoot()!=null){
-            Point p =q.getLastRemoved().getPoint();
             q.removeNextEvent();
+            Point p =q.getLastRemoved().getPoint();
+            System.out.println(p.getX());
+            System.out.println(p.getY());
+            System.out.println("-------------------------");
             HandleEventPoint(p);
         }
     }
 
-    public void HandleEventPoint(Point p){
+    public static void HandleEventPoint(Point p){
         /*
         1.Let U(p)be the set of segments whose upper endpoint isp; these segments are stored with the event point p.  (For horizontal segments, the upperendpoint is by definition the left endpoint.)
         2.Find all segments stored in T that contain p; they are adjacent in T. Let L(p)denote the subset of segments found whose lower endpoint isp, and let C(p)denote the subset of segments found that contain p in their interior.
