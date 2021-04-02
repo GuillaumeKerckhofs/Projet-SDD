@@ -69,11 +69,11 @@ public class T_Tree {
 
         if (isEmpty()){
             insertEmpty(data);
-            System.out.println("---------");
+            //System.out.println("---------");
             }
         else {
             if (getData().tSmallerThan(data)){
-                System.out.println(getData().getUpper_point().getX()+"<"+data.getUpper_point().getX());
+                //System.out.println(getData().getUpper_point().getX()+"<"+data.getUpper_point().getX());
 
                 if (getLeft().isEmpty()&& getRight().isEmpty())
                     getLeft().insert(getData());
@@ -81,7 +81,7 @@ public class T_Tree {
                 equilibrate();
             }
             else {   //pas trop sûr
-                System.out.println(getData().getUpper_point().getX()+">"+data.getUpper_point().getX());
+                //System.out.println(getData().getUpper_point().getX()+">"+data.getUpper_point().getX());
 
                 if (getLeft().isEmpty()&& getRight().isEmpty())
                     getRight().insert(getData());
@@ -156,6 +156,71 @@ public class T_Tree {
         if (getRight().isEmpty()&& getLeft().isEmpty())
             return true;
         return false;
+    }
+
+    public boolean search(Segment data) {
+        if (isEmpty())
+            return false;
+        else	if (getData().compareTo(data) < 0)
+            return getRight().search(data);
+        else 	if (getData().compareTo(data) > 0)
+            return getLeft().search(data);
+        else 	return true;
+    }
+
+
+
+    public void suppress(Segment data) {
+
+        if (!isEmpty()) {
+            if (getData().compareTo(data)<0)
+                getRight().suppress(data);
+            else if (getData().compareTo(data)>0)
+                getLeft().suppress(data);
+            else if (isLeaf())	{
+                //System.out.println("feuille");
+                suppressRoot(); }
+                else {if (getRight().getData().compareTo(data)==0)
+                    getRight().suppress(data);
+                    else if (getLeft().getData().compareTo(data)==0)
+                        getLeft().suppress(data);
+                }
+            equilibrate();
+        }
+
+    }
+
+    public Segment suppressMin() {
+        Segment min;
+        if (getLeft().isEmpty()) {
+            min = getData();
+            T_Tree t = getRight();
+            setData(t.getData());
+            setLeft(t.getLeft());
+            setRight(t.getRight());
+        }
+        else
+            min = getLeft().suppressMin();
+        equilibrate();
+        return min;
+    }
+
+    public void suppressRoot() {
+        if (getLeft().isEmpty()) {
+            T_Tree t = getRight();
+            setData(t.getData());
+            setLeft(t.getLeft());
+            setRight(t.getRight());
+        }
+        else if (getRight().isEmpty()) {
+            T_Tree t = getLeft();
+            setData(t.getData());
+            setRight(t.getRight());
+            setLeft(t.getLeft());
+        }
+        else
+            setData(getRight().suppressMin());
+        equilibrate();
     }
 
     public void print() {   // a nettoyer quand fini

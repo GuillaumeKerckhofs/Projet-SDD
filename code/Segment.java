@@ -1,5 +1,7 @@
 package code;
 
+import java.util.ArrayList;
+
 public class Segment{
     private Point upper_point;
     private Point lower_point;
@@ -19,6 +21,11 @@ public class Segment{
             this.lower_point=new Point (x1,y1,false);
         }
     }
+
+    public void segmentContain (Point p, ArrayList<Segment> lp,ArrayList<Segment> cp){
+
+    }
+
     public boolean tSmallerThan (Segment segment){                    //à faire
 
         float p1 = getUpper_point().getX();
@@ -27,8 +34,35 @@ public class Segment{
             return true;
         }
         else return false;
-
     }
+
+    public int compareTo(Segment segment){
+        if (this.getUpper_point().getX()>segment.getUpper_point().getX()||(this.getUpper_point().getX()==segment.getUpper_point().getX()&&this.getUpper_point().getY()>segment.getUpper_point().getY())){
+
+            /*System.out.println(this.getUpper_point().getX()+this.getUpper_point().getY());
+            System.out.println(segment.getUpper_point().getX()+segment.getUpper_point().getY());
+            System.out.println(1);
+
+             */
+            return 1;
+        }
+
+
+        else if (this.getUpper_point().getX()<segment.getUpper_point().getX()||(this.getUpper_point().getX()==segment.getUpper_point().getX()&&this.getUpper_point().getY()<segment.getUpper_point().getY()))
+            return -1;
+        else if((this.getUpper_point().getX()==segment.getUpper_point().getX()&&this.getUpper_point().getY()==segment.getUpper_point().getY())&&(this.getLower_point().getX()==segment.getLower_point().getX()&&this.getLower_point().getY()==segment.getLower_point().getY())) {
+            /*System.out.println(this.getUpper_point().getX()+","+this.getUpper_point().getY());
+            System.out.println(segment.getUpper_point().getX()+","+segment.getUpper_point().getY());
+            System.out.println(this.getLower_point().getX()+","+this.getLower_point().getY());
+            System.out.println(segment.getLower_point().getX()+","+segment.getLower_point().getY());
+            System.out.println(0);
+
+             */
+            return 0;
+        }
+        return 2;
+    }
+
 
     public Point getUpper_point(){
         return this.upper_point;

@@ -22,7 +22,7 @@ public class Algo {
             q.startInsertion(segment.getLower_point(),null);
             //System.out.println("oui");
         }
-        System.out.println("ici");
+        //System.out.println("ici");
         //q.print();
         T_Tree t=new T_Tree();
 
@@ -31,10 +31,13 @@ public class Algo {
             //System.out.println(q.getRoot().getPoint());
             q.removeNextEvent();
             Q_Node p =q.getLastRemoved();
+            /*
             System.out.println("-------------------------");
             System.out.println(p.getPoint().getX());
             System.out.println(p.getPoint().getY());
             System.out.println("-------------------------");
+
+             */
             HandleEventPoint(p);
         }
         System.out.println("fin");
@@ -42,10 +45,10 @@ public class Algo {
 
     public static void HandleEventPoint(Q_Node p){
         /*
-        1.Let U(p)be the set of segments whose upper endpoint isp; these segments are stored with the event point p.  (For horizontal segments, the upperendpoint is by definition the left endpoint.)
+        1.Let U(p)be the set of segments whose upper endpoint is p; these segments are stored with the event point p.  (For horizontal segments, the upperendpoint is by definition the left endpoint.)
         2.Find all segments stored in T that contain p; they are adjacent in T. Let L(p)denote the subset of segments found whose lower endpoint isp, and let C(p)denote the subset of segments found that contain p in their interior.
         3.if L(p)∪U(p)∪C(p)contains more than one segment
-        4.then Report pas an intersection, together with L(p),U(p), andC(p).
+        4.then Report p as an intersection, together with L(p),U(p), andC(p).
         5.Delete the segments in L(p)∪C(p)from T.
         6.Insert the segments in U(p)∪C(p)into T. The order of the segments inTshould correspond to the order in which they are intersected by a sweepline just belowp. If there is a horizontal segment, it comes last among all segments containing p.
         7.(∗Deleting and re-inserting the segments of C(p)reverses their order.∗)
@@ -61,6 +64,6 @@ public class Algo {
 
          */
         ArrayList<Segment> Up=p.getSegments();
-        System.out.println("handle");
+        //System.out.println("handle");
     }
 }
