@@ -75,6 +75,8 @@ public class TestLogique {
 
         System.out.println("*****************");
         T.suppress(s5);
+        T.suppress(s1);
+        T.suppress(s3);
 
         T.print();
         System.out.println("**********************************");

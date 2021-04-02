@@ -180,10 +180,12 @@ public class T_Tree {
             else if (isLeaf())	{
                 //System.out.println("feuille");
                 suppressRoot(); }
-                else {if (getRight().getData().compareTo(data)==0)
+                else {suppressRoot();
+                equilibrate();
+                if (getRight().getData().compareTo(data)==0)
                     getRight().suppress(data);
-                    else if (getLeft().getData().compareTo(data)==0)
-                        getLeft().suppress(data);
+                else if (getLeft().getData().compareTo(data)==0)
+                    getLeft().suppress(data);
                 }
             equilibrate();
         }
