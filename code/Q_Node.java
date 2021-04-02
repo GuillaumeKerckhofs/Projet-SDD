@@ -13,6 +13,7 @@ public class Q_Node{
 
     public Q_Node(Point point, Segment segment, Q_Node Left, Q_Node Right){
         this.point=point;
+        this.segments=new ArrayList<Segment>();
         this.addSegment(segment);
         this.Right=Right;
         this.Left=Left;
@@ -60,8 +61,7 @@ public class Q_Node{
 
     public void changeNode(Q_Node node2){
         this.point=node2.getPoint();
-        for (int i=0; i<node2.getSegments().size();i++)             //modifié
-        this.addSegment(node2.getSegments().get(i));
+        this.segments=node2.getSegments();
         this.Left=node2.getLeft();
         this.Right=node2.getRight();
 
