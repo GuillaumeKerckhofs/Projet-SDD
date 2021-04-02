@@ -26,7 +26,7 @@ public class Algo {
 
         while (q.getRoot()!=null){
             q.removeNextEvent();
-            Point p =q.getLastRemoved().getPoint();
+            Q_Node p =q.getLastRemoved();
             System.out.println(p.getX());
             System.out.println(p.getY());
             System.out.println("-------------------------");
@@ -34,7 +34,7 @@ public class Algo {
         }
     }
 
-    public static void HandleEventPoint(Point p){
+    public static void HandleEventPoint(Q_Node p){
         /*
         1.Let U(p)be the set of segments whose upper endpoint isp; these segments are stored with the event point p.  (For horizontal segments, the upperendpoint is by definition the left endpoint.)
         2.Find all segments stored in T that contain p; they are adjacent in T. Let L(p)denote the subset of segments found whose lower endpoint isp, and let C(p)denote the subset of segments found that contain p in their interior.
@@ -54,6 +54,7 @@ public class Algo {
         16.FINDNEWEVENT(s′′,sr,p)
 
          */
+        ArrayList<Segment> Up=p.getSegments();
         System.out.println("handle");
     }
 }
