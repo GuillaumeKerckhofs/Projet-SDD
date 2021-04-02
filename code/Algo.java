@@ -26,7 +26,9 @@ public class Algo {
         //q.print();
         T_Tree t=new T_Tree();
 
-        while (q!=null){
+        while (q.getRoot().getPoint()!=null){
+            //System.out.println("q=");
+            //System.out.println(q.getRoot().getPoint());
             q.removeNextEvent();
             Q_Node p =q.getLastRemoved();
             System.out.println("-------------------------");
@@ -34,7 +36,6 @@ public class Algo {
             System.out.println(p.getPoint().getY());
             System.out.println("-------------------------");
             HandleEventPoint(p);
-            q.print();
         }
         System.out.println("fin");
     }
