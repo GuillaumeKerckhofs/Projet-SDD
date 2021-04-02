@@ -60,13 +60,14 @@ public class Q_Node{
 
     public void changeNode(Q_Node node2){
         this.point=node2.getPoint();
-        this.addSegment(node2.getSegments);
+        for (int i=0; i<node2.getSegments().size();i++)             //modifié
+        this.addSegment(node2.getSegments().get(i));
         this.Left=node2.getLeft();
         this.Right=node2.getRight();
 
     }
     public void addSegment(Segment segment) {
-        if(segment =!null){
+        if(segment !=null){                                             //modifié
             this.segments.add(segment);
         }
     }

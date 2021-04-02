@@ -17,21 +17,26 @@ public class Algo {
         Segment segment;
         for (int i=0;i< segmentList.size();i++){
             segment=segmentList.get(i);
-            System.out.println(segment.getUpper_point());
+            //System.out.println(segment.getUpper_point());
             q.startInsertion(segment.getUpper_point(), segment);
-            q.startInsetion(segment.getLower_point(),null);
-            System.out.println("oui");
+            q.startInsertion(segment.getLower_point(),null);
+            //System.out.println("oui");
         }
+        System.out.println("ici");
+        //q.print();
         T_Tree t=new T_Tree();
 
-        while (q.getRoot()!=null){
+        while (q!=null){
             q.removeNextEvent();
             Q_Node p =q.getLastRemoved();
-            System.out.println(p.getX());
-            System.out.println(p.getY());
+            System.out.println("-------------------------");
+            System.out.println(p.getPoint().getX());
+            System.out.println(p.getPoint().getY());
             System.out.println("-------------------------");
             HandleEventPoint(p);
+            q.print();
         }
+        System.out.println("fin");
     }
 
     public static void HandleEventPoint(Q_Node p){
