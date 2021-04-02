@@ -19,6 +19,7 @@ public class Algo {
             segment=segmentList.get(i);
             System.out.println(segment.getUpper_point());
             q.startInsertion(segment.getUpper_point(), segment);
+            q.startInsetion(segment.getLower_point(),null);
             System.out.println("oui");
         }
         T_Tree t=new T_Tree();

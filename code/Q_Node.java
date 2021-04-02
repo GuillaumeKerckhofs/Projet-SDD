@@ -13,7 +13,7 @@ public class Q_Node{
 
     public Q_Node(Point point, Segment segment, Q_Node Left, Q_Node Right){
         this.point=point;
-        //this.segments.add(segment);
+        this.addSegment(segment);
         this.Right=Right;
         this.Left=Left;
         this.height=1;
@@ -60,13 +60,15 @@ public class Q_Node{
 
     public void changeNode(Q_Node node2){
         this.point=node2.getPoint();
-        //this.segments=node2.getSegments();
+        this.addSegment(node2.getSegments);
         this.Left=node2.getLeft();
         this.Right=node2.getRight();
 
     }
     public void addSegment(Segment segment) {
-        this.segments.add(segment);
+        if(segment =!null){
+            this.segments.add(segment);
+        }
     }
 
     public boolean isLeaf(){ return (this.Right.isEmpty() && this.Left.isEmpty());}

@@ -18,10 +18,6 @@ public class Q_Tree {
     }
 
 
-    /*public void insertionEmpty(Point point,Segment segment){
-        this.point=point;
-        this.addSegment(segment);
-    } */
     public void startInsertion(Point point, Segment segment) {
         insertion(this.root, point, segment);
     }
@@ -32,12 +28,12 @@ public class Q_Tree {
         }
         else if (current.isEmpty()) {
             current.setPoint(point);
-            //current.addSegment(segment);
+            current.addSegment(segment);
             current.setLeft(new Q_Node());
             current.setRight(new Q_Node());
         } else {
             if (point.isEqualTo(current.getPoint())) {
-                //current.addSegment(segment);
+                current.addSegment(segment);
             } else if (point.smallerThan(current.getPoint())) {
                 insertion(current.getLeft(), point, segment);
                 Equilibrate(current);
