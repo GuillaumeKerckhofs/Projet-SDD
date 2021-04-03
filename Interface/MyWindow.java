@@ -13,6 +13,8 @@ public class MyWindow extends JFrame {
 
     }
 
+
+
     @Override
     public void remove(Component comp) {
         super.remove(comp);

@@ -12,7 +12,7 @@ import static code.TestGraphique.*;
 public class MyMenuBarre extends MyPanel implements ActionListener {
 
     JMenu menu, secondMenu,thirdMenu;
-    JMenuItem i1, i2, i3, i4, i5,i6;
+    JMenuItem open, save,fastSave, i3, zoomIn, zoomOut, exit;
 
     public MyMenuBarre(JFrame fenetre){
 
@@ -21,54 +21,64 @@ public class MyMenuBarre extends MyPanel implements ActionListener {
         secondMenu=new JMenu("Zoom");
         thirdMenu=new JMenu("help");
 
-        i1=new JMenuItem("Open");
-        i2=new JMenuItem("Save");
+        open =new JMenuItem("Open");
+        fastSave=new JMenuItem("Fast save");
+        save=new JMenuItem("Save");
         i3=new JMenuItem("modify");
-        i4=new JMenuItem("zoom in");
-        i5=new JMenuItem("zoom out");
-        i6=new JMenuItem("Quit");
+        zoomIn=new JMenuItem("zoom in");
+        zoomOut=new JMenuItem("zoom out");
+        exit =new JMenuItem("Quit");
 
-        i1.addActionListener(this);
-        i2.addActionListener(this);
+        open.addActionListener(this);
+        save.addActionListener(this);
         i3.addActionListener(this);
-        i6.addActionListener(this);
+        exit.addActionListener(this);
 
-        i2.addActionListener(new ActionListener() {
+        save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                getMap().Save("buttonsave");
+                getMap().chooseSave();
             }
         });
-        mb.add(i2);
+        mb.add(save);
 
-        i4.addActionListener(new ActionListener() {
+        fastSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (getMap().getSavePath()==null){
+                    getMap().chooseSave();
+                }
+                else{getMap().Save();}
+
+            }
+        });
+        mb.add(save);
+
+        zoomIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 getMp().setZoom(getMp().getZoomFactor()*1.5);
             }
         });
-        mb.add(i4);
+        mb.add(zoomIn);
 
-        i5.addActionListener(new ActionListener() {
+        zoomOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 getMp().setZoom(getMp().getZoomFactor()*0.5);
             }
         });
-        mb.add(i5);
+        mb.add(zoomOut);
 
 
+        menu.add(open);menu.add(fastSave); menu.add(save); menu.add(i3);
 
+        secondMenu.add(zoomIn); secondMenu.add(zoomOut);
 
-
-        menu.add(i1); menu.add(i2); menu.add(i3);
-
-        secondMenu.add(i4); secondMenu.add(i5);
-
-        thirdMenu.add(i6);
+        thirdMenu.add(exit);
         mb.add(menu);
         mb.add(secondMenu);
         mb.add(thirdMenu);
@@ -79,10 +89,10 @@ public class MyMenuBarre extends MyPanel implements ActionListener {
     }
     public void actionPerformed(ActionEvent e){
         Object source = e.getSource();
-        if (source==i1){System.out.println(1);}
-        else if (source==i4){ this.repaint();}
-        else if (source==i5){System.out.println(2);}
-        else if (source ==i6){System.exit(0);}
+        if (source== open){System.out.println(1);}
+        else if (source== zoomIn){ this.repaint();}
+        else if (source==zoomOut){System.out.println(2);}
+        else if (source == exit){System.exit(0);}
     }
 
 }

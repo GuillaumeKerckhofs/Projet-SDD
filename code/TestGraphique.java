@@ -16,7 +16,7 @@ public class TestGraphique {
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
 
-        map.Save("test");
+
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
         MyWindow myWindow = new MyWindow();
         myWindow.setVisible(true);

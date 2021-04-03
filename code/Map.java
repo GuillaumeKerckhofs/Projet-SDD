@@ -1,11 +1,13 @@
 package code;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
 
 public class Map {
     private static ArrayList<Segment> segmentList = new ArrayList<Segment>();
+    private static String savePath;
 
     public Map(/*String map*/){
         try {
@@ -42,8 +44,8 @@ public class Map {
 
     public void addSegment (Segment segment){ segmentList.add(segment);}
 
-    public void Save (String saveName){
-        File file=new File("cartes"+File.separator+saveName);
+    public void Save (){
+        File file=new File(savePath);
         FileOutputStream fos;
         try
         {
@@ -70,6 +72,25 @@ public class Map {
         } catch (IOException e) {
             System.out.println("Erreur de sauvegarde");
         }
+    }
+
+    public void chooseSave() {
+        final JFrame fenetre = new JFrame();
+        final JFileChooser fc = new JFileChooser();
+        int val_retour = fc.showSaveDialog(fenetre);
+
+        if (val_retour == JFileChooser.APPROVE_OPTION) {
+            File fichier = fc.getSelectedFile();
+            //System.out.println("Chemin absolu : " + fichier.getAbsolutePath() + "\n");
+            savePath=fichier.getAbsolutePath();
+            Save();
+        } else {
+            //System.out.println("L'enregistrement est annulée\n");
+        }
+    }
+
+    public static String getSavePath() {
+        return savePath;
     }
 
     public static ArrayList<Segment> getSegmentList() {
