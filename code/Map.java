@@ -62,6 +62,7 @@ public class Map {
                 bw.newLine();
                 line = "";
             }
+            bw.close();
             System.out.println("");
             System.out.println("save!");
             System.out.println("");
