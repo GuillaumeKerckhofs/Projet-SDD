@@ -46,18 +46,19 @@ public class Segment{
              */
             return 1;
         }
-
-
         else if (this.getUpper_point().getX()<segment.getUpper_point().getX()||(this.getUpper_point().getX()==segment.getUpper_point().getX()&&this.getUpper_point().getY()<segment.getUpper_point().getY()))
             return -1;
         else if((this.getUpper_point().getX()==segment.getUpper_point().getX()&&this.getUpper_point().getY()==segment.getUpper_point().getY())&&(this.getLower_point().getX()==segment.getLower_point().getX()&&this.getLower_point().getY()==segment.getLower_point().getY())) {
-            /*System.out.println(this.getUpper_point().getX()+","+this.getUpper_point().getY());
+            /*
+            System.out.println(this.getUpper_point().getX()+","+this.getUpper_point().getY());
             System.out.println(segment.getUpper_point().getX()+","+segment.getUpper_point().getY());
             System.out.println(this.getLower_point().getX()+","+this.getLower_point().getY());
             System.out.println(segment.getLower_point().getX()+","+segment.getLower_point().getY());
-            System.out.println(0);
+            System.out.println("égaux");
 
              */
+            //System.out.println(0);
+
             return 0;
         }
         return 2;

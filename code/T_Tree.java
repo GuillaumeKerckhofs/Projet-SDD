@@ -65,29 +65,46 @@ public class T_Tree {
             return getRight().getHeight() - getLeft().getHeight();
     }
 
-    public void insert(Segment data){
+    public void insert (Segment data){
+        T_Tree T = new T_Tree();
+        insert2(T,data);
+    }
 
-        if (isEmpty()){
-            insertEmpty(data);
-            //System.out.println("---------");
-            }
-        else {
-            if (getData().tSmallerThan(data)){
-                //System.out.println(getData().getUpper_point().getX()+"<"+data.getUpper_point().getX());
+    public void insert2(T_Tree node,Segment data){
 
-                if (getLeft().isEmpty()&& getRight().isEmpty())
-                    getLeft().insert(getData());
-                getRight().insert(data);
-                equilibrate();
-            }
-            else {   //pas trop sûr
-                //System.out.println(getData().getUpper_point().getX()+">"+data.getUpper_point().getX());
+        if (getData()!=data){
+            if (getData()==null){
+                insertEmpty(data);
+                //System.out.println("---------");
+                }
 
-                if (getLeft().isEmpty()&& getRight().isEmpty())
-                    getRight().insert(getData());
-                getLeft().insert(data);
-                equilibrate();
+            else {
+                if (getData().compareTo(data)<0){  //node.data<data
+                    //System.out.println(getData().getUpper_point().getX()+"<"+data.getUpper_point().getX());
 
+                    if (getLeft().isEmpty()&& getRight().isEmpty()) //feuille
+                        {getLeft().insert2(node,getData());
+                        node.setData(data);}
+
+
+                    getRight().insert2(node,data);
+                    equilibrate();
+                }
+                else if (getData().compareTo(data)>0){   //node.data>data
+                    //System.out.println(getData().getUpper_point().getX()+">"+data.getUpper_point().getX());
+                    if (getLeft().isEmpty()&& getRight().isEmpty()){//feuille
+                        getRight().insert2(node,getData());
+                        setData(data);
+
+                        }
+
+                    node=this;
+                    getLeft().insert2(node,data);
+                    equilibrate();  }
+                else {
+                    System.out.println(getData()+";"+data);
+                    System.out.println("aled");
+                }
             }
         }
     }
@@ -168,62 +185,48 @@ public class T_Tree {
         else 	return true;
     }
 
+    public void suppress (Segment data){
+        T_Tree T = new T_Tree();
+        suppress2(data,T);
+    }
 
+    public void suppress2 (Segment data,T_Tree node){
 
-    public void suppress(Segment data) {
+        if (!isEmpty()){
 
-        if (!isEmpty()) {
-            if (getData().compareTo(data)<0)
-                getRight().suppress(data);
-            else if (getData().compareTo(data)>0)
-                getLeft().suppress(data);
-            else if (isLeaf())	{
-                //System.out.println("feuille");
-                suppressRoot(); }
-                else {suppressRoot();
+             if (isLeaf()){
+                setData(null);
+            }
+            else if (getLeft().getData().compareTo(data)==0&&getLeft().isLeaf()) {
+
+                T_Tree t = getRight();
+                setData(t.getData());
+                setLeft(t.getLeft());
+                setRight(t.getRight());
+            }
+            else if (getData().compareTo(data)==0&&!isLeaf()){
+
+                Ltree.suppress2(data,this);
+            }
+            else if (getRight().getData().compareTo(data)==0&&getRight().isLeaf()){
+
+                node.setData(getData());
+                T_Tree t = getLeft();
+                setData(t.getData());
+                setRight(t.getRight());
+                setLeft(t.getLeft());
+            }
+            else if (getData().compareTo(data)>0){
+                Ltree.suppress2(data,node);
                 equilibrate();
-                if (getRight().getData().compareTo(data)==0)
-                    getRight().suppress(data);
-                else if (getLeft().getData().compareTo(data)==0)
-                    getLeft().suppress(data);
-                }
-            equilibrate();
+            }
+            else if (getData().compareTo(data)<0){
+                Rtree.suppress2(data,node);
+                equilibrate();
+            }
         }
-
     }
 
-    public Segment suppressMin() {
-        Segment min;
-        if (getLeft().isEmpty()) {
-            min = getData();
-            T_Tree t = getRight();
-            setData(t.getData());
-            setLeft(t.getLeft());
-            setRight(t.getRight());
-        }
-        else
-            min = getLeft().suppressMin();
-        equilibrate();
-        return min;
-    }
-
-    public void suppressRoot() {
-        if (getLeft().isEmpty()) {
-            T_Tree t = getRight();
-            setData(t.getData());
-            setLeft(t.getLeft());
-            setRight(t.getRight());
-        }
-        else if (getRight().isEmpty()) {
-            T_Tree t = getLeft();
-            setData(t.getData());
-            setRight(t.getRight());
-            setLeft(t.getLeft());
-        }
-        else
-            setData(getRight().suppressMin());
-        equilibrate();
-    }
 
     public void print(int space) {   // a nettoyer quand fini
         if (!isEmpty()) {
@@ -235,13 +238,24 @@ public class T_Tree {
                 System.out.print(" ");
             }
             //System.out.println("remonte");
-            System.out.println(data );
+            System.out.println(data +" => "+space/5);
 
             //System.out.println("right");
             Ltree.print(space);
 
         }
     }
+        public void printleaves(){   // a nettoyer quand fini
+            if (!isEmpty()) {
+                //System.out.println("left");
+                Ltree.printleaves();
+                //System.out.println("remonte");
+                if(isLeaf())
+                    System.out.println(data );
 
+                //System.out.println("right");
+                Rtree.printleaves();
 
-}
+            }
+        }
+    }

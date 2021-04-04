@@ -7,6 +7,7 @@ public class TestLogique {
     public static void main(String[] args) {
 
         Map map =new Map();
+        /*
         Point p1 = new Point(0.5f, 1);
         Point p2 = new Point(1, 0.5f);
         Point p3 = new Point(1, 1.5f);
@@ -44,7 +45,7 @@ public class TestLogique {
         System.out.println("");
         System.out.println("______________________________");
         System.out.println("");
-
+*/
 
         Point a1 = new Point(5, 5);
         Point a2 = new Point(10, 7);
@@ -59,13 +60,14 @@ public class TestLogique {
         Segment s3 = new Segment(a4, a5);
         Segment s4 = new Segment(a6, a5);
         Segment s5 = new Segment(a1, a5);
-        T_Tree T = new T_Tree();
-        T.insert(s1);
-        T.insert(s2);
-        T.insert(s3);
-        T.insert(s4);
-        T.insert(s5);
 
+        T_Tree T = new T_Tree();
+
+        for(Segment segment : Map.getSegmentList())
+        {T.insert(segment);}
+
+        /*
+        System.out.println("*****************");
 
         System.out.println("S1 =" + s1);
         System.out.println("S2 =" + s2);
@@ -73,10 +75,9 @@ public class TestLogique {
         System.out.println("S4 =" + s4);
         System.out.println("S5 =" + s5);
 
+         */
+
         System.out.println("*****************");
-        /*T.suppress(s5);
-        T.suppress(s1);
-        T.suppress(s3);*/
 
         T.print(0);
         System.out.println("**********************************");
