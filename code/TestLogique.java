@@ -74,11 +74,11 @@ public class TestLogique {
         System.out.println("S5 =" + s5);
 
         System.out.println("*****************");
-        T.suppress(s5);
+        /*T.suppress(s5);
         T.suppress(s1);
-        T.suppress(s3);
+        T.suppress(s3);*/
 
-        T.print();
+        T.print(0);
         System.out.println("**********************************");
         //Algo.FindIntersections(Map.getSegmentList());
 

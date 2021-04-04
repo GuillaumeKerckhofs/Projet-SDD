@@ -225,16 +225,20 @@ public class T_Tree {
         equilibrate();
     }
 
-    public void print() {   // a nettoyer quand fini
+    public void print(int space) {   // a nettoyer quand fini
         if (!isEmpty()) {
             //System.out.println("left");
-            Ltree.print();
+            space+=5;
+            Rtree.print(space);
+            System.out.print("\n");
+            for(int i = 1;i<space;i++){
+                System.out.print(" ");
+            }
             //System.out.println("remonte");
-            if(isLeaf())
             System.out.println(data );
 
             //System.out.println("right");
-            Rtree.print();
+            Ltree.print(space);
 
         }
     }

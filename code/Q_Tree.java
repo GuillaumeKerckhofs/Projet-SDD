@@ -123,7 +123,7 @@ public class Q_Tree {
     }
 
     public static void printTree(Q_Node node, int space) {
-        if (node==null){
+        if (node.isEmpty()){
             return;
         }
 
