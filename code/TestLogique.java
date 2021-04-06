@@ -1,6 +1,8 @@
 package code;
 
 
+import java.util.ArrayList;
+
 public class TestLogique {
 
 
@@ -66,9 +68,23 @@ public class TestLogique {
         //for(Segment segment : Map.getSegmentList())
         //{T.insert(segment);}
 
+        T.insert(s1);
+        T.insert(s2);
+        T.insert(s3);
+        T.insert(s4);
+        T.insert(s5);
+
+
 
         System.out.println("*****************");
-        System.out.println("contain :" + s5.contain(new Point(5, 6)));
+
+
+        Point p= new Point(5, 5);
+        ArrayList<Segment> Cp=new ArrayList<Segment>();
+        ArrayList<Segment> Lp=new ArrayList<Segment>();
+        T.SegmentsContainPoint(p,Cp,Lp);
+
+        System.out.println("Cp =" + Cp +"   Lp ="+Lp);
         /*
 
         System.out.println("S1 =" + s1);

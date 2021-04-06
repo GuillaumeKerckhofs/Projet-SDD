@@ -64,20 +64,24 @@ public class Segment{
     public boolean contain (Point p){
         float m1 = (getUpper_point().getY()- getLower_point().getY())/((getUpper_point().getX())- getLower_point().getX());
         float m2 = (getUpper_point().getY()- p.getY())/((getUpper_point().getX())- p.getX());
-        System.out.println(m1);
-        System.out.println(m2);
-        if ((getUpper_point().getX())- p.getX()==0&&(getUpper_point().getY()- p.getY())==0)
-            return true;
-        else if ((getUpper_point().getX())- p.getX()==0&&!((getUpper_point().getY()- p.getY())==0))
-            return false;
-        else if (m1==m2&&!(p.getY()< getLower_point().getY())&&!(p.getY()> getUpper_point().getY()))
-            return true;
-
+        //System.out.println("m1= "+m1);
+        //System.out.println("m2= "+m2);
+        if ((getUpper_point().getX())- p.getX()==0&&(getUpper_point().getY()- p.getY())==0){
+            //System.out.println("true 1");
+            return true;}
+        else if ((getUpper_point().getX())- p.getX()==0&&!((getUpper_point().getY()- p.getY())==0)){
+            //System.out.println("false 1");
+            return false;}
+        else if (m1==m2&&!(p.getY()< getLower_point().getY())&&!(p.getY()> getUpper_point().getY())){
+            //System.out.println("true 2");
+            return true;}
+        //System.out.println("false 2");
         return false;
     }
 
-    public Point getCurrentPoint() {   // à faire
-        return upper_point;
+    public float getCurrentPoint(float y) {   // à faire
+        float x=upper_point.getX()+((y-upper_point.getY())*(lower_point.getX()- upper_point.getX()))/(lower_point.getY()- upper_point.getY());
+        return x;
     }
 
 
