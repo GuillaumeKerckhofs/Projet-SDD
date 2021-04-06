@@ -233,6 +233,7 @@ public class T_Tree {
         if(!isEmpty()){
         if (getData().contain(p)){
 
+
             if (isLeaf()){
 
                 if(getData().getLower_point().isEqualTo(p))

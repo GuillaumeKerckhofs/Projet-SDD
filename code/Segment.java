@@ -67,13 +67,13 @@ public class Segment{
         //System.out.println("m1= "+m1);
         //System.out.println("m2= "+m2);
         if ((getUpper_point().getX())- p.getX()==0&&(getUpper_point().getY()- p.getY())==0){
-            //System.out.println("true 1");
+            //System.out.println("true 1 <-----");
             return true;}
         else if ((getUpper_point().getX())- p.getX()==0&&!((getUpper_point().getY()- p.getY())==0)){
             //System.out.println("false 1");
             return false;}
         else if (m1==m2&&!(p.getY()< getLower_point().getY())&&!(p.getY()> getUpper_point().getY())){
-            //System.out.println("true 2");
+            //System.out.println("true 2 <-----");
             return true;}
         //System.out.println("false 2");
         return false;

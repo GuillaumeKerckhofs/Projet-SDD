@@ -79,7 +79,7 @@ public class TestLogique {
         System.out.println("*****************");
 
 
-        Point p= new Point(5, 5);
+        Point p= new Point(7, 3.5f);
         ArrayList<Segment> Cp=new ArrayList<Segment>();
         ArrayList<Segment> Lp=new ArrayList<Segment>();
         T.SegmentsContainPoint(p,Cp,Lp);
