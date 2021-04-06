@@ -79,13 +79,13 @@ public class TestLogique {
         System.out.println("*****************");
 
 
-        Point p= new Point(7, 3.5f);
+        Point p= new Point(9, 2);
         ArrayList<Segment> Cp=new ArrayList<Segment>();
         ArrayList<Segment> Lp=new ArrayList<Segment>();
         T.SegmentsContainPoint(p,Cp,Lp);
 
         System.out.println("Cp =" + Cp +"   Lp ="+Lp);
-        /*
+
 
         System.out.println("S1 =" + s1);
         System.out.println("S2 =" + s2);
@@ -93,11 +93,11 @@ public class TestLogique {
         System.out.println("S4 =" + s4);
         System.out.println("S5 =" + s5);
 
-         */
+
 
         System.out.println("*****************");
 
-        //T.print(0);
+        T.print(0);
         System.out.println("**********************************");
         //Algo.FindIntersections(Map.getSegmentList());
 

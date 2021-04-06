@@ -231,10 +231,11 @@ public class T_Tree {
 
     public void SegmentsContainPoint(Point p, ArrayList<Segment> Cp, ArrayList<Segment> Lp){
         if(!isEmpty()){
+            System.out.println(getData());
         if (getData().contain(p)){
 
-
             if (isLeaf()){
+
 
                 if(getData().getLower_point().isEqualTo(p))
                     Lp.add(getData());
@@ -242,22 +243,20 @@ public class T_Tree {
                     Cp.add(getData());
             }
             else {
-
                 getRight().SegmentsContainPoint(p,Cp,Lp);
                 getLeft().SegmentsContainPoint(p,Cp,Lp);
             }
         }
-
         else {
 
-            if (getData().getCurrentPoint(p.getY())>p.getX()){
+            if (getData().getCurrentPoint(p.getY())<p.getX()){
                 getRight().SegmentsContainPoint(p,Cp,Lp);
             }
-            else
-                getLeft().SegmentsContainPoint(p,Cp,Lp);
-            }
+            //else {                                            pas de else?
+            getLeft().SegmentsContainPoint(p,Cp,Lp);
+
         }
-    }
+    }}
 
 
 
