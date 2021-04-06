@@ -63,11 +63,13 @@ public class TestLogique {
 
         T_Tree T = new T_Tree();
 
-        for(Segment segment : Map.getSegmentList())
-        {T.insert(segment);}
+        //for(Segment segment : Map.getSegmentList())
+        //{T.insert(segment);}
 
-        /*
+
         System.out.println("*****************");
+        System.out.println("contain :" + s5.contain(new Point(5, 6)));
+        /*
 
         System.out.println("S1 =" + s1);
         System.out.println("S2 =" + s2);
@@ -79,7 +81,7 @@ public class TestLogique {
 
         System.out.println("*****************");
 
-        T.print(0);
+        //T.print(0);
         System.out.println("**********************************");
         //Algo.FindIntersections(Map.getSegmentList());
 

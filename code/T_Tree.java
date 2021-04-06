@@ -1,5 +1,7 @@
 package code;
 
+import java.util.ArrayList;
+
 public class T_Tree {
     private Segment data;
     private T_Tree Ltree;
@@ -227,20 +229,44 @@ public class T_Tree {
         }
     }
 
+    public void SegmentsContainPoint(Point p, ArrayList<Segment> Cp, ArrayList<Segment> Lp){
+        if (getData().contain(p)){
+            if (isLeaf()){
+                if(getData().getLower_point().isEqualTo(p))
+                    Lp.add(getData());
+                else
+                    Cp.add(getData());
+            }
+            else {
+                getRight().SegmentsContainPoint(p,Cp,Lp);
+                getLeft().SegmentsContainPoint(p,Cp,Lp);
+            }
+        }
+
+        else {
+            if (getData().getCurrentPoint().getX()<p.getX()){
+                getRight().SegmentsContainPoint(p,Cp,Lp);
+            }
+            else
+                getLeft().SegmentsContainPoint(p,Cp,Lp);
+            }
+        }
+
+
+
 
     public void print(int space) {   // a nettoyer quand fini
         if (!isEmpty()) {
-            //System.out.println("left");
+
             space+=5;
             Rtree.print(space);
             System.out.print("\n");
             for(int i = 1;i<space;i++){
                 System.out.print(" ");
             }
-            //System.out.println("remonte");
+
             System.out.println(data +" => "+space/5);
 
-            //System.out.println("right");
             Ltree.print(space);
 
         }

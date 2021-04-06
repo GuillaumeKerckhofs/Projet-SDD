@@ -22,9 +22,6 @@ public class Segment{
         }
     }
 
-    public void segmentContain (Point p, ArrayList<Segment> lp,ArrayList<Segment> cp){
-
-    }
 
     public boolean tSmallerThan (Segment segment){                    //à faire
 
@@ -63,6 +60,26 @@ public class Segment{
         }
         return 2;
     }
+
+    public boolean contain (Point p){
+        float m1 = (getUpper_point().getY()- getLower_point().getY())/((getUpper_point().getX())- getLower_point().getX());
+        float m2 = (getUpper_point().getY()- p.getY())/((getUpper_point().getX())- p.getX());
+        System.out.println(m1);
+        System.out.println(m2);
+        if ((getUpper_point().getX())- p.getX()==0&&(getUpper_point().getY()- p.getY())==0)
+            return true;
+        else if ((getUpper_point().getX())- p.getX()==0&&!((getUpper_point().getY()- p.getY())==0))
+            return false;
+        else if (m1==m2&&!(p.getY()< getLower_point().getY())&&!(p.getY()> getUpper_point().getY()))
+            return true;
+
+        return false;
+    }
+
+    public Point getCurrentPoint() {   // à faire
+        return upper_point;
+    }
+
 
 
     public Point getUpper_point(){
