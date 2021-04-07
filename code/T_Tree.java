@@ -185,7 +185,7 @@ public class T_Tree {
             return true;
         return false;
     }
-
+/*
     public boolean search(Segment data) {
         if (isEmpty())
             return false;
@@ -195,31 +195,33 @@ public class T_Tree {
             return getLeft().search(data);
         else 	return true;
     }
-
+*/
     public void suppress (Segment data){
         T_Tree T = new T_Tree();
-        suppress2(data,T);
+        float y=data.getUpper_point().getY();
+        float x=data.getUpper_point().getX();
+        suppress2(data,T,x,y);
     }
 
-    public void suppress2 (Segment data,T_Tree node){
+    public void suppress2 (Segment data,T_Tree node,float x,float y){
 
         if (!isEmpty()){
 
              if (isLeaf()){
                 setData(null);
             }
-            else if (getLeft().getData().compareTo(data)==0&&getLeft().isLeaf()) {
+            else if (getLeft().getData().compareTo(data,x,y)==0&&getLeft().isLeaf()) {              //
 
                 T_Tree t = getRight();
                 setData(t.getData());
                 setLeft(t.getLeft());
                 setRight(t.getRight());
             }
-            else if (getData().compareTo(data)==0&&!isLeaf()){
+           // else if (getData().compareTo(data)==0&&!isLeaf()){
 
-                Ltree.suppress2(data,this);
+                Ltree.suppress2(data,this,x,y);
             }
-            else if (getRight().getData().compareTo(data)==0&&getRight().isLeaf()){
+            else if (getRight().getData().compareTo(data,x,y)==0&&getRight().isLeaf()){             //
 
                 node.setData(getData());
                 T_Tree t = getLeft();
@@ -227,16 +229,16 @@ public class T_Tree {
                 setRight(t.getRight());
                 setLeft(t.getLeft());
             }
-            else if (getData().compareTo(data)>0){
-                Ltree.suppress2(data,node);
+            else if (getData().compareTo(data,x,y)>0){          //
+                Ltree.suppress2(data,node,x,y);
                 equilibrate();
             }
-            else if (getData().compareTo(data)<0){
-                Rtree.suppress2(data,node);
+            else if (getData().compareTo(data,x,y)<0){          //
+                Rtree.suppress2(data,node,x,y);
                 equilibrate();
             }
         }
-    }
+
 
     public void SegmentsContainPoint(Point p, ArrayList<Segment> Cp, ArrayList<Segment> Lp){
         if(!isEmpty()){

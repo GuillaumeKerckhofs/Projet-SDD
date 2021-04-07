@@ -36,32 +36,62 @@ public class Segment{
     }
 
 
-    public int compareTo(Segment segment,float x,float y){
-        if (this.getUpper_point().getX()>segment.getUpper_point().getX()||(this.getUpper_point().getX()==segment.getUpper_point().getX()&&this.getUpper_point().getY()>segment.getUpper_point().getY())){
+    public int compareTo(Segment segment,float xHor,float y){
 
-            /*System.out.println(this.getUpper_point().getX()+this.getUpper_point().getY());
-            System.out.println(segment.getUpper_point().getX()+segment.getUpper_point().getY());
-            System.out.println(1);
+        if (!segment.isHorizontal()&&!this.isHorizontal()){
+            float x1 =this.getCurrentPoint(y);
+            float x2 =segment.getCurrentPoint(y);
 
-             */
-            return 1;
+            if (x1>x2)
+                return 1;
+            else if (x1<x2)
+                return -1;
+            else{
+                if (this.isEquals(segment)){
+                }
+                float ymax = max(this.lower_point.getY(),segment.getLower_point().getY());
+                x1 =this.getCurrentPoint(ymax);
+                x2 =segment.getCurrentPoint(ymax);
+
+                if (x1>x2)
+                    return 1;
+                else if (x1<x2)
+                    return -1;
+
+            }
         }
-        else if (this.getUpper_point().getX()<segment.getUpper_point().getX()||(this.getUpper_point().getX()==segment.getUpper_point().getX()&&this.getUpper_point().getY()<segment.getUpper_point().getY()))
-            return -1;
-        else if((this.getUpper_point().getX()==segment.getUpper_point().getX()&&this.getUpper_point().getY()==segment.getUpper_point().getY())&&(this.getLower_point().getX()==segment.getLower_point().getX()&&this.getLower_point().getY()==segment.getLower_point().getY())) {
-            /*
-            System.out.println(this.getUpper_point().getX()+","+this.getUpper_point().getY());
-            System.out.println(segment.getUpper_point().getX()+","+segment.getUpper_point().getY());
-            System.out.println(this.getLower_point().getX()+","+this.getLower_point().getY());
-            System.out.println(segment.getLower_point().getX()+","+segment.getLower_point().getY());
-            System.out.println("égaux");
+        else {
+            if (this.isEquals(segment)){
+                return 0;
+            }
+            else if(this.isHorizontal()){
+                float x1=segment.getCurrentPoint(y);
+                if(x1<=xHor)
+                    return -1;
+                else
+                    return 1;
+            }
+            else if(segment.isHorizontal()){
+                float x1=this.getCurrentPoint(y);
+                if(xHor<x1)
+                    return -1;
+                else
+                    return 1;
 
-             */
-            //System.out.println(0);
-
-            return 0;
+            }
         }
+
+        //this.compareto(segment) this> 1 =0 <-1
+
         return 2;
+    }
+
+    public boolean isEquals (Segment segment){
+        if (segment.getUpper_point().isEqualTo(this.upper_point) && segment.getLower_point().isEqualTo(this.lower_point)){
+            return true;
+        }
+        else
+            return false;
     }
 
     public boolean contain (Point p){

@@ -63,22 +63,31 @@ public class TestLogique {
         Segment s4 = new Segment(a6, a5);
         Segment s5 = new Segment(a1, a5);
 
+        Segment hori = new Segment(new Point(5, 5),new Point(20, 5));
+        Segment vert = new Segment(new Point(10,10),new Point(10,0));
+        Segment seg = new Segment(new Point(15,10),new Point(15,0));
+
+
         T_Tree T = new T_Tree();
 
         //for(Segment segment : Map.getSegmentList())
         //{T.insert(segment);}
 
+        /*
         T.insert(s1);
         T.insert(s2);
         T.insert(s3);
         T.insert(s4);
         T.insert(s5);
 
-
+        */
+        T.insert(hori);
+        T.insert(vert);
+        T.insert(seg);
 
         System.out.println("*****************");
 
-
+/*
         Point p= new Point(9, 2);
         ArrayList<Segment> Cp=new ArrayList<Segment>();
         ArrayList<Segment> Lp=new ArrayList<Segment>();
@@ -93,7 +102,7 @@ public class TestLogique {
         System.out.println("S4 =" + s4);
         System.out.println("S5 =" + s5);
 
-
+*/
 
         System.out.println("*****************");
 
