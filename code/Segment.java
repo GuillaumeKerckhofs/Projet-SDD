@@ -35,8 +35,8 @@ public class Segment{
         else return false;
     }
 
-    public int tmpComparaTo(Segment data,int y){
-        max(this.lower_point.getY(),data.lower_point.getY());
+    public int tmpCompareTo(Segment data,float y){
+        float max=max(this.lower_point.getY(),data.lower_point.getY());
         Segment tmp=new Segment(getCurrentPoint(y),y,getCurrentPoint(max),max);
         Segment tmp2=new Segment(data.getCurrentPoint(y),y,data.getCurrentPoint(max),max);
         return tmp.compareTo(tmp2);

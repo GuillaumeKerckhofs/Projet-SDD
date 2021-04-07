@@ -80,9 +80,9 @@ public class Algo {
         for (Segment segment : Cp )
             t.suppress(segment);
         for (Segment segment : Up )
-            t.insert(segment);
+            t.reinsert(segment,p.getPoint().getY());
         for (Segment segment : Cp )
-            t.insert(segment);
+            t.reinsert(segment,p.getPoint().getY());
         if(Up.size()+Cp.size()==0) {
             t.Nleft(p.getPoint(),Sl);
             t.Nright(p.getPoint(),Sr);
