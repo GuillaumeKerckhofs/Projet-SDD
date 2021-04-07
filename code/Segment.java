@@ -1,6 +1,8 @@
 package code;
 
 import java.util.ArrayList;
+import static java.lang.Math.max;
+
 
 public class Segment{
     private Point upper_point;
@@ -33,10 +35,10 @@ public class Segment{
         else return false;
     }
 
-    public int tmpComparaTo(Segment,y){
-        max(this.lower_point.getY(),Segment.lower_point.getY());
+    public int tmpComparaTo(Segment data,int y){
+        max(this.lower_point.getY(),data.lower_point.getY());
         Segment tmp=new Segment(getCurrentPoint(y),y,getCurrentPoint(max),max);
-        Segment tmp2=new Segment(getCurrentPoint(y),y,getCurrentPoint(max),max);
+        Segment tmp2=new Segment(data.getCurrentPoint(y),y,data.getCurrentPoint(max),max);
         return tmp.compareTo(tmp2);
     }
 
