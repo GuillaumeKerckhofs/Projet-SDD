@@ -258,6 +258,31 @@ public class T_Tree {
         }
     }}
 
+    public void Nleft(Point p,Segment sl){  //les cas ou ça passe par le point?
+        if (isLeaf())
+            sl=getData();
+        else {
+
+            if (getData().getCurrentPoint(p.getY()) < p.getX() && getRight().getData().getCurrentPoint(p.getY()) > p.getX())
+                sl = getData();
+            else if (getData().getCurrentPoint(p.getY()) > p.getX())
+                Nleft(p, sl);
+        }
+    }
+
+    public void Nright(Point p,Segment sr){  //les cas ou ça passe par le point?
+        if (isLeaf())
+            sr=getData();
+        else {
+
+            if (getData().getCurrentPoint(p.getY()) > p.getX() && getLeft().getData().getCurrentPoint(p.getY()) < p.getX())
+                sr = getData();
+            else if (getData().getCurrentPoint(p.getY()) < p.getX())
+                Nright(p,sr);
+
+        }
+    }
+
 
 
 

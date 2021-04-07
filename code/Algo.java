@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class Algo {
 
+    static T_Tree t;
+    static ArrayList<Q_Node> intersection;
+
     public static void FindIntersections(ArrayList<Segment> segmentList){
 
         /*
@@ -24,7 +27,7 @@ public class Algo {
         }
         //System.out.println("ici");
         //q.print();
-        T_Tree t=new T_Tree();
+        t=new T_Tree();
 
         while (q.getRoot().getPoint()!=null){
             //System.out.println("q=");
@@ -63,7 +66,35 @@ public class Algo {
         16.FINDNEWEVENT(s′′,sr,p)
 
          */
+        Segment Sl = null;
+        Segment Sr= null;
         ArrayList<Segment> Up=p.getSegments();
+        ArrayList<Segment> Cp=new ArrayList<Segment>();
+        ArrayList<Segment> Lp=new ArrayList<Segment>();
+        t.SegmentsContainPoint(p.getPoint(),Cp,Lp);
+        if (Lp.size()+Up.size()+Cp.size()>1)
+            intersection.add(p);
         //System.out.println("handle");
+        for (Segment segment : Lp )
+            t.suppress(segment);
+        for (Segment segment : Cp )
+            t.suppress(segment);
+        for (Segment segment : Up )
+            t.insert(segment);
+        for (Segment segment : Cp )
+            t.insert(segment);
+        if(Up.size()+Cp.size()==0) {
+            t.Nleft(p.getPoint(),Sl);
+            t.Nright(p.getPoint(),Sr);
+            FindNewEvent(Sl,Sr,p);
+
+        }
+        else{
+
+        }
+    }
+
+    public static void FindNewEvent(Segment Sl, Segment Sr,Q_Node p){
+    System.out.println("FindNewEvent");
     }
 }
