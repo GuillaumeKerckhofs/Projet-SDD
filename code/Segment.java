@@ -35,14 +35,8 @@ public class Segment{
         else return false;
     }
 
-    public int tmpCompareTo(Segment data,float y){
-        float max=max(this.lower_point.getY(),data.lower_point.getY());
-        Segment tmp=new Segment(getCurrentPoint(y),y,getCurrentPoint(max),max);
-        Segment tmp2=new Segment(data.getCurrentPoint(y),y,data.getCurrentPoint(max),max);
-        return tmp.compareTo(tmp2);
-    }
 
-    public int compareTo(Segment segment){
+    public int compareTo(Segment segment,float x,float y){
         if (this.getUpper_point().getX()>segment.getUpper_point().getX()||(this.getUpper_point().getX()==segment.getUpper_point().getX()&&this.getUpper_point().getY()>segment.getUpper_point().getY())){
 
             /*System.out.println(this.getUpper_point().getX()+this.getUpper_point().getY());

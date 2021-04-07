@@ -67,35 +67,21 @@ public class T_Tree {
             return getRight().getHeight() - getLeft().getHeight();
     }
 
-    public void insertHorizontal (T_Tree t,Segment data,float x){
-
-    }
-
     public void insert (Segment data){
         T_Tree T = new T_Tree();
         float y=data.getUpper_point().getY();
         float x=data.getUpper_point().getX();
-        if(!data.isHorizontal()) {
-            insert2(T, data, y);
-        }
-        else{
-            insertHorizontal(T,data,x);
-        }
+        insert2(T, data, x, y);
     }
 
-    public void reinsert (Segment data, float y){
+    public void reinsert (Segment data, float x, float y){
         T_Tree T = new T_Tree();
-        if(!data.isHorizontal()) {
-            insert2(T, data, y);
-        }
-        else{
-            insertHorizontal(T,data,y);
-        }
+        insert2(T, data,x, y);
     }
 
 
 
-    public void insert2(T_Tree node,Segment data,float y){
+    public void insert2(T_Tree node,Segment data,float x,float y){
 
         if (getData()!=data){
             if (getData()==null){
@@ -104,27 +90,27 @@ public class T_Tree {
                 }
 
             else {
-                if (getData().tmpCompareTo(data,y)<0){  //node.data<data
+                if (getData().compareTo(data,x,y)<0){  //node.data<data
                     //System.out.println(getData().getUpper_point().getX()+"<"+data.getUpper_point().getX());
 
                     if (getLeft().isEmpty()&& getRight().isEmpty()) //feuille
-                        {getLeft().insert2(node,getData(),y);
+                        {getLeft().insert2(node,getData(),x,y);
                         node.setData(data);}
 
 
-                    getRight().insert2(node,data,y);
+                    getRight().insert2(node,data,x,y);
                     equilibrate();
                 }
-                else if (getData().tmpCompareTo(data,y)>0){   //node.data>data
+                else if (getData().compareTo(data,x,y)>0){   //node.data>data
                     //System.out.println(getData().getUpper_point().getX()+">"+data.getUpper_point().getX());
                     if (getLeft().isEmpty()&& getRight().isEmpty()){//feuille
-                        getRight().insert2(node,getData(),y);
+                        getRight().insert2(node,getData(),x,y);
                         setData(data);
 
                         }
 
                     node=this;
-                    getLeft().insert2(node,data,y);
+                    getLeft().insert2(node,data,x,y);
                     equilibrate();  }
                 else {
                     System.out.println(getData()+";"+data);
