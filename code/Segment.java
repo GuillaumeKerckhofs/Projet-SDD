@@ -91,6 +91,9 @@ public class Segment{
         return x;
     }
 
+    public boolean isHorizontal(){
+        return (getLower_point().getY()==getUpper_point().getY());
+    }
 
 
     public Point getUpper_point(){

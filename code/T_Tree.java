@@ -69,9 +69,27 @@ public class T_Tree {
 
     public void insert (Segment data){
         T_Tree T = new T_Tree();
-        data.getUpper_point().getY();
-        insert2(T,data,y);
+        int y=data.getUpper_point().getY();
+        if(!data.isHorizontal()) {
+            insert2(T, data, y);
+        }
+        int x:data.getUpper_point().getX();
+        else{
+            insertHorizontal(T,data,x);
+        }
     }
+
+    public void reinsert (Segment data, int y){
+        T_Tree T = new T_Tree();
+        if(!data.isHorizontal()) {
+            insert2(T, data, y);
+        }
+        else{
+            insertHorizontal(T,data,x);
+        }
+    }
+
+
 
     public void insert2(T_Tree node,Segment data,int y){
 
