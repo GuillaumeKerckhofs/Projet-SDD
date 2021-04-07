@@ -33,6 +33,13 @@ public class Segment{
         else return false;
     }
 
+    public int tmpComparaTo(Segment,y){
+        max(this.lower_point.getY(),Segment.lower_point.getY());
+        Segment tmp=new Segment(getCurrentPoint(y),y,getCurrentPoint(max),max);
+        Segment tmp2=new Segment(getCurrentPoint(y),y,getCurrentPoint(max),max);
+        return tmp.compareTo(tmp2);
+    }
+
     public int compareTo(Segment segment){
         if (this.getUpper_point().getX()>segment.getUpper_point().getX()||(this.getUpper_point().getX()==segment.getUpper_point().getX()&&this.getUpper_point().getY()>segment.getUpper_point().getY())){
 

@@ -69,10 +69,11 @@ public class T_Tree {
 
     public void insert (Segment data){
         T_Tree T = new T_Tree();
-        insert2(T,data);
+        data.getUpper_point().getY();
+        insert2(T,data,y);
     }
 
-    public void insert2(T_Tree node,Segment data){
+    public void insert2(T_Tree node,Segment data,int y){
 
         if (getData()!=data){
             if (getData()==null){
@@ -81,21 +82,21 @@ public class T_Tree {
                 }
 
             else {
-                if (getData().compareTo(data)<0){  //node.data<data
+                if (getData().tmpCompareTo(data,y)<0){  //node.data<data
                     //System.out.println(getData().getUpper_point().getX()+"<"+data.getUpper_point().getX());
 
                     if (getLeft().isEmpty()&& getRight().isEmpty()) //feuille
-                        {getLeft().insert2(node,getData());
+                        {getLeft().insert2(node,getData(),y);
                         node.setData(data);}
 
 
-                    getRight().insert2(node,data);
+                    getRight().insert2(node,data,y);
                     equilibrate();
                 }
-                else if (getData().compareTo(data)>0){   //node.data>data
+                else if (getData().tmpCompareTo(data,y)>0){   //node.data>data
                     //System.out.println(getData().getUpper_point().getX()+">"+data.getUpper_point().getX());
                     if (getLeft().isEmpty()&& getRight().isEmpty()){//feuille
-                        getRight().insert2(node,getData());
+                        getRight().insert2(node,getData(),y);
                         setData(data);
 
                         }
