@@ -44,9 +44,9 @@ public class Segment{
             float x2 =segment.getCurrentPoint(y);
 
             if (this.isEquals(segment)){
-                return 0
+                return 0;
             }
-            else if(!(math.abs(a-b)<1e-4)) {
+            else if(!(Math.abs(x1-x2)<1e-4)) {
                 if (x1 > x2)
                     return 1;
                 else if (x1 < x2)

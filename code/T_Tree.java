@@ -267,29 +267,21 @@ public class T_Tree {
         }
     }}
 
-    public void Nleft(Point p,Segment sl){  //les cas ou ça passe par le point?
+    public void NleftP(Point p,Segment sl){  //les cas ou ça passe par le point?
         if (isLeaf())
             sl=getData();
         else {
-
 
             //lorsque les segments passent pas par le point
             if (getData().getCurrentPoint(p.getY()) < p.getX() && getRight().getData().getCurrentPoint(p.getY()) > p.getX())
                 sl = getData();
             else if (getData().getCurrentPoint(p.getY()) > p.getX())
-                Nleft(p, sl);
+                NleftP(p, sl);
 
-
-            //lorsque les segments passent par le point
-            else if (getData().getCurrentPoint(p.getY()) == p.getX())
-                if (sl==null)
-                    sl=getData();
-                else if (sl.getUpper_point().getX()<getData().getUpper_point().getX()&&getData().getUpper_point().getX()<p.getX())
-                    sl=getData();
         }
     }
 
-    public void Nright(Point p,Segment sr){  //les cas ou ça passe par le point?
+    public void NrightP(Point p,Segment sr){  //les cas ou ça passe par le point?
         if (isLeaf())
             sr=getData();
         else {
@@ -297,10 +289,92 @@ public class T_Tree {
             if (getData().getCurrentPoint(p.getY()) > p.getX() && getLeft().getData().getCurrentPoint(p.getY()) < p.getX())
                 sr = getData();
             else if (getData().getCurrentPoint(p.getY()) < p.getX())
-                Nright(p,sr);
-
+                NrightP(p,sr);
 
         }
+    }
+
+    public void LeftMostSegment1(Segment sp1,ArrayList<Segment> Up,ArrayList<Segment> Cp,float x,float y){
+        ArrayList<Segment> sum=Up;
+
+        if (!Cp.isEmpty()){
+            for (Segment segment:Cp)
+                sum.add(segment);}
+        Segment max = searchMax();
+        sp1=leftMostSegment2(max,sum,x,y);
+        }
+
+    public Segment leftMostSegment2(Segment max,ArrayList<Segment> sum,float x,float y){  //???
+
+        if (sum.contains(max))
+            return max;
+        else return rightMostSegment2(searchSucc(max,x,y),sum,x,y);
+    }
+
+    public void RightMostSegment1(Segment sp2,ArrayList<Segment> Up,ArrayList<Segment> Cp,float x,float y){
+        ArrayList<Segment> sum=Up;
+
+        if (!Cp.isEmpty())
+            for (Segment segment:Cp)
+                sum.add(segment);
+        Segment min = searchMin();
+        sp2=rightMostSegment2(min,sum,x,y);
+    }
+
+    public Segment rightMostSegment2(Segment min,ArrayList<Segment> sum,float x,float y){
+
+        if (sum.contains(min))
+            return min;
+        else return rightMostSegment2(searchSucc(min,x,y),sum,x,y);
+
+    }
+
+    public Segment searchSucc(Segment d,float x,float y) {
+        return succ(d,null,x,y);
+    }
+
+    private Segment succ(Segment d, Segment segment,float x,float y) {
+        if (isEmpty())
+            return null;
+        else	if (getData().compareTo(d,x,y) < 0)
+            return getRight().succ(d,segment,x,y);
+        else 	if (getData().compareTo(d,x,y) > 0)
+            return getLeft().succ(d,getData(),x,y);
+        else 	if (getRight().isEmpty())
+            return segment;
+        else    return getRight().searchMin();
+    }
+
+    public Segment searchPrev(Segment d,float x,float y) {
+        return prev(d,null,x,y);
+    }
+
+    private Segment prev(Segment d, Segment segment,float x,float y) {
+        if (isEmpty())
+            return null;
+        else	if (getData().compareTo(d,x,y) > 0)
+            return getRight().prev(d,segment,x,y);
+        else 	if (getData().compareTo(d,x,y) < 0)
+            return getLeft().prev(d,getData(),x,y);
+        else 	if (getLeft().isEmpty())
+            return segment;
+        else    return getRight().searchMax();
+    }
+
+    public Segment searchMin() {
+        if (isEmpty())
+            return null;
+        else if (getLeft().isEmpty())
+            return getData();
+        else 	return getLeft().searchMin();
+    }
+
+    public Segment searchMax() {
+        if (isEmpty())
+            return null;
+        else if (getRight().isEmpty())
+            return getData();
+        else 	return getRight().searchMax();
     }
 
 
