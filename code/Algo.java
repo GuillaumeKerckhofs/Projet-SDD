@@ -6,6 +6,7 @@ public class Algo {
 
     static T_Tree t;
     static ArrayList<Q_Node> intersection;
+    static Point lastEvent;
 
     public static void FindIntersections(ArrayList<Segment> segmentList){
 
@@ -28,6 +29,7 @@ public class Algo {
         //System.out.println("ici");
         //q.print();
         t=new T_Tree();
+        lastEvent=new Point();
 
         while (q.getRoot().getPoint()!=null){
             //System.out.println("q=");
@@ -76,13 +78,14 @@ public class Algo {
             intersection.add(p);
         //System.out.println("handle");
         for (Segment segment : Lp )
-            t.suppress(segment);
+            t.suppress(segment,lastEvent.getX(),lastEvent.getY());
         for (Segment segment : Cp )
-            t.suppress(segment);
+            t.suppress(segment,lastEvent.getX(),lastEvent.getY());
         for (Segment segment : Up )
             t.insert(segment);
         for (Segment segment : Cp )
             t.reinsert(segment,p.getPoint().getX(),p.getPoint().getY());
+        this.lastEvent=p.getPoint();
         if(Up.size()+Cp.size()==0) {
             t.Nleft(p.getPoint(),Sl);
             t.Nright(p.getPoint(),Sr);

@@ -196,10 +196,8 @@ public class T_Tree {
         else 	return true;
     }
 */
-    public void suppress (Segment data){
+    public void suppress (Segment data,float x,float y){
         T_Tree T = new T_Tree();
-        float y=data.getUpper_point().getY();
-        float x=data.getUpper_point().getX();
         suppress2(data,T,x,y);
     }
 
