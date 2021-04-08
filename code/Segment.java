@@ -2,6 +2,7 @@ package code;
 
 import java.util.ArrayList;
 import static java.lang.Math.max;
+import static java.lang.Math.abs;
 
 
 public class Segment{
@@ -45,7 +46,7 @@ public class Segment{
             if (this.isEquals(segment)){
                 return 0
             }
-            else if(!((a-b)<1e-4)) {
+            else if(!(math.abs(a-b)<1e-4)) {
                 if (x1 > x2)
                     return 1;
                 else if (x1 < x2)
