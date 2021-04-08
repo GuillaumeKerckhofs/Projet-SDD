@@ -39,14 +39,21 @@ public class Segment{
 
     public int compareTo(Segment segment,float xHor,float y){
 
+        //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+segment);
+        //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+this);
+        //System.out.println("seg ="+segment);
         if (!segment.isHorizontal()&&!this.isHorizontal()){
+            //System.out.println("x= "+this);
             float x1 =this.getCurrentPoint(y);
             float x2 =segment.getCurrentPoint(y);
 
             if (this.isEquals(segment)){
+
                 return 0;
             }
             else if(!(Math.abs(x1-x2)<1e-4)) {
+                //System.out.println("piopioiopi");
+
                 if (x1 > x2)
                     return 1;
                 else if (x1 < x2)
@@ -66,6 +73,7 @@ public class Segment{
         }
         else {
             if (this.isEquals(segment)){
+
                 return 0;
             }
             else if(this.isHorizontal()){
@@ -89,6 +97,7 @@ public class Segment{
 
         return 2;
     }
+
 
     public boolean isEquals (Segment segment){
         if (segment.getUpper_point().isEqualTo(this.upper_point) && segment.getLower_point().isEqualTo(this.lower_point)){

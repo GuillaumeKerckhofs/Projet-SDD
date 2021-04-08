@@ -8,7 +8,7 @@ public class Algo {
     static ArrayList<Q_Node> intersection;
     static Point lastEvent;
 
-    public void FindIntersections(ArrayList<Segment> segmentList){
+    public static void FindIntersections(ArrayList<Segment> segmentList){
 
         /*
         1.Initialize an empty event queue Q. Next, insert the segment endpoints intoQ; when an upper endpoint is inserted, the corresponding segment should be stored with it.
@@ -34,8 +34,14 @@ public class Algo {
         while (q.getRoot().getPoint()!=null){
             //System.out.println("q=");
             //System.out.println(q.getRoot().getPoint());
+
             q.removeNextEvent();
+
+            //q.print();
+            System.out.println(q.getLastRemoved().getPoint());
+
             Q_Node p =q.getLastRemoved();
+            System.out.println("p.seg ="+p.getSegments());
             /*
             System.out.println("-------------------------");
             System.out.println(p.getPoint().getX());
@@ -48,7 +54,8 @@ public class Algo {
         System.out.println("fin");
     }
 
-    public void HandleEventPoint(Q_Node p){
+    public static void HandleEventPoint(Q_Node p){
+
         /*
         1.Let U(p)be the set of segments whose upper endpoint is p; these segments are stored with the event point p.  (For horizontal segments, the upperendpoint is by definition the left endpoint.)
         2.Find all segments stored in T that contain p; they are adjacent in T. Let L(p)denote the subset of segments found whose lower endpoint isp, and let C(p)denote the subset of segments found that contain p in their interior.
@@ -76,36 +83,69 @@ public class Algo {
         ArrayList<Segment> Cp=new ArrayList<Segment>();
         ArrayList<Segment> Lp=new ArrayList<Segment>();
         t.SegmentsContainPoint(p.getPoint(),Cp,Lp);
+
         if (Lp.size()+Up.size()+Cp.size()>1)
+
             intersection.add(p);
-        //System.out.println("handle");
-        for (Segment segment : Lp )
-            t.suppress(segment,lastEvent.getX(),lastEvent.getY());
-        for (Segment segment : Cp )
-            t.suppress(segment,lastEvent.getX(),lastEvent.getY());
+        System.out.println("==========");
+
+        System.out.println(Up.size());
+        System.out.println(Cp.size());
+        System.out.println(Lp);
+
+
+        if(Lp.size()!=0){
+            for (Segment segment : Lp )
+                t.suppress(segment,lastEvent.getX(),lastEvent.getY());}
+        if(Cp.size()!=0){
+            System.out.println("==========+");
+            for (Segment segment : Cp )
+                t.suppress(segment,lastEvent.getX(),lastEvent.getY());}
         for (Segment segment : Up )
             t.insert(segment);
-        for (Segment segment : Cp )
-            t.reinsert(segment,p.getPoint().getX(),p.getPoint().getY());
-        this.lastEvent=p.getPoint();
+        if(Cp.size()!=0){
+            System.out.println("==========+");
+            for (Segment segment : Cp )
+                t.reinsert(segment,p.getPoint().getX(),p.getPoint().getY());}
+        lastEvent=p.getPoint();
+
+
         if(Up.size()+Cp.size()==0) {
+
             t.NleftP(p.getPoint(),Sl);
             t.NrightP(p.getPoint(),Sr);
-            FindNewEvent(Sl,Sr,p);
+            if (Sl!=null&&Sr!=null)
+                FindNewEvent(Sl,Sr,p);}
 
-        }
         else{
-            t.LeftMostSegment1(Sp1,Up,Cp,lastEvent.getX(),lastEvent.getY());
-            t.searchPrev(Sp2,lastEvent.getX(),lastEvent.getY());
-            FindNewEvent(Sp1,Sr,p);
-            t.RightMostSegment1(Sp2,Up,Cp,lastEvent.getX(),lastEvent.getY());
-            t.searchSucc(Sp2,lastEvent.getX(),lastEvent.getY());
-            FindNewEvent(Sp2,Sr,p);
+            t.print(0);
+            System.out.println(p.getPoint());
+
+            Sp1=t.LeftMostSegment1(Up,Cp,lastEvent.getX(),lastEvent.getY());
+            System.out.println("ohohoh"+Sp1);
+            //System.out.println("++++++++++++++++++++++++++++++++++++");
+            Sl=t.searchPrev(Sp1,lastEvent.getX(),lastEvent.getY());
+
+            //System.out.println("Sl="+Sl);
+            if (Sl!=null)
+                FindNewEvent(Sp1,Sl,p);
+
+            System.out.println("++++++++++++++++++++++++++++++++++++----");
+            Sp2=t.RightMostSegment1(Up,Cp,lastEvent.getX(),lastEvent.getY());
+            System.out.println("++++++++++++++++++++++++++++++++++++****");
+
+            Sr=t.searchSucc(Sp2,lastEvent.getX(),lastEvent.getY());
+            //System.out.println("Sr="+Sr);
+            if (Sr!=null)
+                FindNewEvent(Sp2,Sr,p);
+
+
 
         }
     }
 
     public static void FindNewEvent(Segment Sl, Segment Sr,Q_Node p){
-    System.out.println("FindNewEvent");
+
+        System.out.println("**********************************************************");
     }
 }

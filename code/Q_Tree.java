@@ -28,7 +28,7 @@ public class Q_Tree {
         }
         else if (current.isEmpty()) {
             current.setPoint(point);
-            System.out.println("-------------------------");
+            //System.out.println("-------------------------");
             current.addSegment(segment);
             current.setLeft(new Q_Node());
             current.setRight(new Q_Node());
