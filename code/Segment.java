@@ -45,10 +45,12 @@ public class Segment{
             if (this.isEquals(segment)){
                 return 0
             }
-            else if (x1>x2)
-                return 1;
-            else if (x1<x2)
-                return -1;
+            else if(!((a-b)<1e-4)) {
+                if (x1 > x2)
+                    return 1;
+                else if (x1 < x2)
+                    return -1;
+            }
             else{
                 float ymax = max(this.lower_point.getY(),segment.getLower_point().getY());
                 x1 =this.getCurrentPoint(ymax);
