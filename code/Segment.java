@@ -42,13 +42,14 @@ public class Segment{
             float x1 =this.getCurrentPoint(y);
             float x2 =segment.getCurrentPoint(y);
 
-            if (x1>x2)
+            if (this.isEquals(segment)){
+                return 0
+            }
+            else if (x1>x2)
                 return 1;
             else if (x1<x2)
                 return -1;
             else{
-                if (this.isEquals(segment)){
-                }
                 float ymax = max(this.lower_point.getY(),segment.getLower_point().getY());
                 x1 =this.getCurrentPoint(ymax);
                 x2 =segment.getCurrentPoint(ymax);
