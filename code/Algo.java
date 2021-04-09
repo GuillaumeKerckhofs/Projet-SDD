@@ -45,7 +45,9 @@ public class Algo {
 
     public static void HandleEventPoint(Q_Node p){
 
-
+        System.out.println("");
+        System.out.println("======= enter handle ==========");
+        System.out.println("");
         Segment Sl = null;
         Segment Sr= null;
         Segment Sp1= null;
@@ -53,10 +55,10 @@ public class Algo {
         ArrayList<Segment> Up=p.getSegments();
         //System.out.println("ici");
         //System.out.println(p.getPoint());
-        //for (Segment segment : Up )
-            //System.out.println("segment Up= "+segment);
+        for (Segment segment : Up )
+            System.out.println("segment Up= "+segment);
 
-
+        System.out.println("");
 
         ArrayList<Segment> Cp=new ArrayList<Segment>();
         ArrayList<Segment> Lp=new ArrayList<Segment>();
@@ -77,7 +79,7 @@ public class Algo {
 
  */
 
-        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        //System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         //System.out.println("arbre 1");
         //t.print(0);
         //System.out.println("----------------------------------------------------------");
@@ -103,9 +105,10 @@ public class Algo {
                 System.out.println("reinsert"+segment);}}
         lastEvent=p.getPoint();
         //System.out.println("arbre 2");
-        //t.print(0);
+        t.print(0);
+        System.out.println("");
 
-        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        //System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 
         if(Up.size()+Cp.size()==0) {
 
@@ -144,14 +147,17 @@ public class Algo {
     }
 
     public static void FindNewEvent(Segment Sl, Segment Sr,Q_Node p){
-        System.out.println(Sl);
-        System.out.println(Sr);
+        System.out.println("");
+        System.out.println("======= find new event ==========");
+        System.out.println("");
+        System.out.println("Sl= "+Sl);
+        System.out.println("Sr= "+Sr);
         Point intersect=Sl.isIntersectBy(Sr);
-        System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+        System.out.println("intersect"+intersect);
         if (intersect!=null){
             if ((intersect.getY()==p.getPoint().getY()&&intersect.getX()>p.getPoint().getX())||intersect.getY()<p.getPoint().getY()){
                 q.startInsertion(intersect,null);
-                System.out.println("intersect"+intersect);
+
             }
         }
     }

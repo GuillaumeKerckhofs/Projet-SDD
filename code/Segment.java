@@ -165,16 +165,19 @@ public class Segment{
 
     public Point isIntersectBy(Segment Sr){
         float x1=upper_point.getX();
-        float y1=upper_point.getX();
+        float y1=upper_point.getY();
 
         float x2=lower_point.getX();
-        float y2=lower_point.getX();
+        float y2=lower_point.getY();
 
         float x3=Sr.getUpper_point().getX();
-        float y3=Sr.getUpper_point().getX();
+        float y3=Sr.getUpper_point().getY();
 
         float x4=Sr.getLower_point().getX();
-        float y4=Sr.getLower_point().getX();
+        float y4=Sr.getLower_point().getY();
+
+
+        System.out.println("test==>");
 
         float a1;
         float a2;
@@ -183,16 +186,19 @@ public class Segment{
 
         Point p = null;
 
-        if(x1==x2){
+
+        if(x1==x2){    // utile?
             a2 = (y4-y3)/(x4-x3);
             b2 = y3 - a2*x3;
             return null;
         }
-        else if(x3==x4){
+        else if(x3==x4){     // utile?
             a1 = (y2-y1)/(x2-x1);
             b1 = y1 - a1*x1;
             return null;
         }
+
+
         else{
             a1 = (y2-y1)/(x2-x1);
             b1 = y1 - a1*x1;
@@ -202,6 +208,7 @@ public class Segment{
             float y=a1*x+b1;
             p = new Point(x,y);
         }
+
         return (p);
 
 
