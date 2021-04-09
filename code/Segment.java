@@ -39,29 +39,30 @@ public class Segment{
 
     public int compareTo(Segment segment,float xHor,float y){
 
-
+        //System.out.println(!segment.isHorizontal()&&!this.isHorizontal());
         if (!segment.isHorizontal()&&!this.isHorizontal()){
             float x1 =this.getCurrentPoint(y);
             float x2 =segment.getCurrentPoint(y);
 
-            System.out.println("x1= "+x1);
-            System.out.println("x2= "+x2);
+            //System.out.println("x1= "+x1);
+            //System.out.println("x2= "+x2);
 
             if (this.isEquals(segment)){
-                System.out.println(0);
+                //System.out.println(0);
                 return 0;
             }
             else if(!(Math.abs(x1-x2)<1e-4)) {
                 //System.out.println("piopioiopi");
 
                 if (x1 > x2){
-                    System.out.println(1);
+                    //System.out.println(1);
                     return 1;}
                 else if (x1 < x2){
-                    System.out.println(-1);
+                    //System.out.println(-1);
                     return -1;}
             }
             else{
+
                 float ymax = max(this.lower_point.getY(),segment.getLower_point().getY());
                 x1 =this.getCurrentPoint(ymax);
                 x2 =segment.getCurrentPoint(ymax);
@@ -71,8 +72,8 @@ public class Segment{
                 else if (x1<x2)
                     return -1;
                 else if(x1==x2){
-                    x1=this.getLower_point().getX();
-                    x2=segment.getLower_point().getX();
+                    x1=this.getUpper_point().getX();
+                    x2=segment.getUpper_point().getX();
                     if (x1>x2)
                         return 1;
                     else if (x1<x2)
@@ -142,7 +143,7 @@ public class Segment{
 
         float x=x1+((y-y1)*(x2-x1))/(y2-y1);
 
-        /*
+/*
         System.out.println("");
         System.out.println("");
         System.out.println("currentpoint "+x);
@@ -153,13 +154,57 @@ public class Segment{
         System.out.println("current Y "+y);
         System.out.println("");
         System.out.println("");
+*/
 
-         */
         return x;
     }
 
     public boolean isHorizontal(){
         return (getLower_point().getY()==getUpper_point().getY());
+    }
+
+    public Point isIntersectBy(Segment Sr){
+        float x1=upper_point.getX();
+        float y1=upper_point.getX();
+
+        float x2=lower_point.getX();
+        float y2=lower_point.getX();
+
+        float x3=Sr.getUpper_point().getX();
+        float y3=Sr.getUpper_point().getX();
+
+        float x4=Sr.getLower_point().getX();
+        float y4=Sr.getLower_point().getX();
+
+        float a1;
+        float a2;
+        float b1;
+        float b2;
+
+        Point p = null;
+
+        if(x1==x2){
+            a2 = (y4-y3)/(x4-x3);
+            b2 = y3 - a2*x3;
+            return null;
+        }
+        else if(x3==x4){
+            a1 = (y2-y1)/(x2-x1);
+            b1 = y1 - a1*x1;
+            return null;
+        }
+        else{
+            a1 = (y2-y1)/(x2-x1);
+            b1 = y1 - a1*x1;
+            a2 = (y4-y3)/(x4-x3);
+            b2 = y3 - a2*x3;
+            float x=(b1-b2)/(a2-a1);
+            float y=a1*x+b1;
+            p = new Point(x,y);
+        }
+        return (p);
+
+
     }
 
 

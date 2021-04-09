@@ -215,7 +215,7 @@ public class T_Tree {
         System.out.println("node ="+node.getData());
         System.out.println("compare ="+getData().compareTo(data,x,y));
         System.out.println("y ="+y);
-        print(0);
+        //print(0);
 
         if (!isEmpty()){
 
@@ -242,11 +242,20 @@ public class T_Tree {
                 setRight(t.getRight());
                 setLeft(t.getLeft());
             }
-            else if (getData().compareTo(data,x,y)>0){          //
+            else if (getData().compareTo(data,x,y)>0){
+                /*
+                 System.out.println("");
+                 System.out.println("ici =>"+getData().compareTo(data,x,y));
+                 System.out.println(getData());
+                 System.out.println(data);
+                 System.out.println("");
+
+                 */
                 Ltree.suppress2(data,node,x,y);
                 equilibrate();
             }
             else if (getData().compareTo(data,x,y)<0){          //
+                //System.out.println("bah oui");
                 Rtree.suppress2(data,node,x,y);
                 equilibrate();
             }
@@ -256,8 +265,8 @@ public class T_Tree {
 
     public void SegmentsContainPoint(Point p, ArrayList<Segment> Cp, ArrayList<Segment> Lp) {
         if (!isEmpty()) {
-            print(0);
-            System.out.println(isEmpty());
+            //print(0);
+            //System.out.println(isEmpty());
             if (getData().contain(p)) {
 
                 if (isLeaf()) {
@@ -292,8 +301,8 @@ public class T_Tree {
         else {
 
             //lorsque les segments passent pas par le point
-            System.out.println(getData().getCurrentPoint(p.getY()));
-            System.out.println((p.getY()));
+            //System.out.println(getData().getCurrentPoint(p.getY()));
+            //System.out.println((p.getY()));
 
             if(getData().getCurrentPoint(p.getY())>p.getX()){
                 Ltree.NleftP(p,little);
@@ -314,8 +323,8 @@ public class T_Tree {
         else {
 
             //lorsque les segments passent pas par le point
-            System.out.println(getData().getCurrentPoint(p.getY()));
-            System.out.println((p.getY()));
+            //System.out.println(getData().getCurrentPoint(p.getY()));
+            //System.out.println((p.getY()));
 
             if(getData().getCurrentPoint(p.getY())>p.getX()){ //
                 Ltree.NrightP(p,getData());
@@ -334,21 +343,21 @@ public class T_Tree {
             for (Segment segment:Cp)
                 sum.add(segment);}
         Segment min = searchMin();
-        System.out.println("ici min =>"+min);
+        //System.out.println("ici min =>"+min);
 
 
         return leftMostSegment2(min,sum,x,y);
         }
 
     public Segment leftMostSegment2(Segment min,ArrayList<Segment> sum,float x,float y){  //plus a gauche donc
-        System.out.println("ici min 2=>"+min);
+        //System.out.println("ici min 2=>"+min);
         //System.out.println("ici 2 =>"+searchSucc(min,x,y));
         if (sum.contains(min))
             return min;
         if (min==searchPrev(min,x,y)){
             return null;
         }
-        else {System.out.println("searchMin ==> "+searchSucc(min,x,y));
+        else {//System.out.println("searchMin ==> "+searchSucc(min,x,y));
         return leftMostSegment2(searchSucc(min,x,y),sum,x,y);
                 }
     }
@@ -365,12 +374,16 @@ public class T_Tree {
     }
 
     public Segment rightMostSegment2(Segment max,ArrayList<Segment> sum,float x,float y){
+
         System.out.println("");
         System.out.println("////////////////////////////////////");
         System.out.println("");
 
+        //print(0);
         System.out.println("Max ==> "+max);
         System.out.println("sum ==> "+sum);
+
+
 
         Segment maxpot=searchPrev(max,x,y);
         if (sum.contains(max))
@@ -391,7 +404,7 @@ public class T_Tree {
     }
 
     private Segment succ(Segment d,float x,float y) {
-        System.out.println("segment = "+d);
+        //System.out.println("segment = "+d);
         if (isEmpty()) {
             return null;
         } else if (isLeaf()) {
@@ -413,12 +426,12 @@ public class T_Tree {
     }
 
     public Segment searchPrev(Segment d,float x,float y) {
-
+        //System.out.println("data la="+d);
         return prev(d,x,y);
     }
 
     private Segment prev(Segment d,float x,float y) {
-
+        //System.out.println("000000000000000000000000000000000000000000000000000000000000000000");
         //print(0);
         //System.out.println("data ici= "+d);
         //System.out.println("getdata ici= "+getData());
@@ -429,18 +442,21 @@ public class T_Tree {
             return getData();
         }
 
+        else if (getData().compareTo(d,x,y) < 0 && Rtree.getData().compareTo(d,x,y)==0&&!Rtree.getLeft().isEmpty()&&Rtree.getLeft().getData().compareTo(d,x,y)<0){
+
+            return Rtree.getLeft().prev(d,x,y);}
+
          else if (getData().compareTo(d,x,y) < 0 && Rtree.getData().compareTo(d,x,y)==0){
-             if (Rtree.isLeaf())
-                return Ltree.prev(d,x,y);
-            else if(Rtree.getLeft().isLeaf()){
-                return Ltree.prev(d,x,y);
-            }
+
+             return Ltree.prev(d,x,y);
+
+
         }
 
         else if (getData().compareTo(d,x,y) < 0){
             //System.out.println("D ="+getData());
             //System.out.println("Data ="+d);
-            System.out.println("D "+getData().getCurrentPoint(y)+"<"+"d "+d.getCurrentPoint(y));
+            //System.out.println("D "+getData().getCurrentPoint(y)+"<"+"d "+d.getCurrentPoint(y));
             //System.out.println("");
             return getRight().prev(d,x,y);
         }
@@ -450,11 +466,11 @@ public class T_Tree {
             //System.out.println("Data ="+d);
             //System.out.println("D <data");
             //System.out.println("");
-            System.out.println("D "+getData().getCurrentPoint(y)+">"+"d "+d.getCurrentPoint(y));
+            //System.out.println("D "+getData().getCurrentPoint(y)+">"+"d "+d.getCurrentPoint(y));
             return getLeft().prev(d,x,y);
         }
         else if (getData().compareTo(d,x,y)==0){
-            System.out.println("D "+getData().getCurrentPoint(y)+"="+"d "+d.getCurrentPoint(y));
+            //System.out.println("D "+getData().getCurrentPoint(y)+"="+"d "+d.getCurrentPoint(y));
             return getLeft().prev(d,x,y);
         }
         //System.out.println("#################################");

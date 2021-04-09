@@ -83,10 +83,10 @@ public class TestLogique {
         //T.print(0);
 
         ArrayList<Segment> list = new ArrayList<Segment>();
-        list.add(s1);
+        //list.add(s1);
         list.add(s2);
-        list.add(s3);
-        list.add(s4);
+        //list.add(s3);
+        //list.add(s4);
         list.add(s5);
 
 
@@ -94,7 +94,7 @@ public class TestLogique {
         //T.insert(vert);
         //T.insert(seg);
 
-        System.out.println("*****************");
+        //System.out.println("*****************");
 
 /*
         Point p= new Point(9, 2);
@@ -113,10 +113,10 @@ public class TestLogique {
 
 */
 
-        System.out.println("*****************");
+        //System.out.println("*****************");
 
         //T.print(0);
-        System.out.println("**********************************");
+        //System.out.println("**********************************");
         Algo.FindIntersections(list);
 
     }
