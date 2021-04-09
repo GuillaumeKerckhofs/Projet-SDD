@@ -70,7 +70,14 @@ public class Segment{
                     return 1;
                 else if (x1<x2)
                     return -1;
-
+                else if(x1==x2){
+                    x1=this.getLower_point().getX();
+                    x2=segment.getLower_point().getX();
+                    if (x1>x2)
+                        return 1;
+                    else if (x1<x2)
+                        return -1;
+                }
             }
         }
         else {
