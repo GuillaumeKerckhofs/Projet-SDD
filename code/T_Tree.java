@@ -390,12 +390,16 @@ public class T_Tree {
         if (isLeaf()){
             return getData();
         }
+        else if (getData().compareTo(d,x,y) < 0 && Rtree.getData().compareTo(d,x,y)==0 && Rtree.getLeft().isLeaf()){
+            return Ltree.prev(d,x,y);
+        }
         else if (getData().compareTo(d,x,y) < 0){
             System.out.println("D ="+getData());
             System.out.println("Data ="+d);
             System.out.println("D >d");
             System.out.println("");
-            return getRight().prev(d,x,y);}
+            return getRight().prev(d,x,y);
+        }
 
         else if (getData().compareTo(d,x,y) > 0 /*&& Rtree.getData().compareTo(d,x,y)>=0*/){
             System.out.println("D ="+getData());
