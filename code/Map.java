@@ -34,7 +34,7 @@ public class Map {
             ArrayList<Float> seg = new ArrayList<Float>();
             for (int i=0;i<4;i++)
                 seg.add(Float.parseFloat(point[i]));
-            System.out.println(seg);
+            //System.out.println(seg);
             Segment segment=new Segment((Float)seg.get(0),(Float)seg.get(1),(Float)seg.get(2),(Float)seg.get(3));
             segmentList.add(segment);
         }

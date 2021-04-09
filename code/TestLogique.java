@@ -73,17 +73,26 @@ public class TestLogique {
         //for(Segment segment : Map.getSegmentList())
         //{T.insert(segment);}
 
-        /*
+
         T.insert(s1);
         T.insert(s2);
         T.insert(s3);
         T.insert(s4);
         T.insert(s5);
 
-        */
-        T.insert(hori);
-        T.insert(vert);
-        T.insert(seg);
+        //T.print(0);
+
+        ArrayList<Segment> list = new ArrayList<Segment>();
+        list.add(s1);
+        list.add(s2);
+        list.add(s3);
+        list.add(s4);
+        list.add(s5);
+
+
+        //T.insert(hori);
+        //T.insert(vert);
+        //T.insert(seg);
 
         System.out.println("*****************");
 
@@ -106,9 +115,9 @@ public class TestLogique {
 
         System.out.println("*****************");
 
-        T.print(0);
+        //T.print(0);
         System.out.println("**********************************");
-        Algo.FindIntersections(Map.getSegmentList());
+        Algo.FindIntersections(list);
 
     }
 }

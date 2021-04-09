@@ -182,6 +182,10 @@ public class T_Tree {
         T.height();
     }
     public boolean isLeaf (){
+
+
+        //System.out.println("droit ="+getRight());
+        //System.out.println("gauche ="+getLeft());
         if (getRight().isEmpty()&& getLeft().isEmpty())
             return true;
         return false;
@@ -198,11 +202,20 @@ public class T_Tree {
     }
 */
     public void suppress (Segment data,float x,float y){
+        System.out.println("------------------------------------------------------------------------------");
+        System.out.println("à supprimer = "+data);
         T_Tree T = new T_Tree();
         suppress2(data,T,x,y);
     }
 
     public void suppress2 (Segment data,T_Tree node,float x,float y){
+
+        System.out.println("getdata ="+getData());
+        System.out.println("data ="+data);
+        System.out.println("node ="+node.getData());
+        System.out.println("compare ="+getData().compareTo(data,x,y));
+        System.out.println("y ="+y);
+        print(0);
 
         if (!isEmpty()){
 
@@ -270,31 +283,48 @@ public class T_Tree {
         }
     }
 
-    public void NleftP(Point p,Segment sl){  //les cas ou ça passe par le point?
-        if (isLeaf())
-            sl=getData();
+    public Segment NleftP(Point p,Segment little){  //les cas ou ça passe par le point?
+        if (isEmpty())
+                return null;
+        else if(isLeaf())
+            return little;
+
         else {
 
             //lorsque les segments passent pas par le point
-            if (getData().getCurrentPoint(p.getY()) < p.getX() && getRight().getData().getCurrentPoint(p.getY()) > p.getX())
-                sl = getData();
-            else if (getData().getCurrentPoint(p.getY()) > p.getX())
-                NleftP(p, sl);
+            System.out.println(getData().getCurrentPoint(p.getY()));
+            System.out.println((p.getY()));
 
+            if(getData().getCurrentPoint(p.getY())>p.getX()){
+                Ltree.NleftP(p,little);
+            }
+            else if (getData().getCurrentPoint(p.getY())<p.getX()){
+                Rtree.NleftP(p,getData());
+            }
         }
+        return null;
     }
 
-    public void NrightP(Point p,Segment sr){  //les cas ou ça passe par le point?
-        if (isLeaf())
-            sr=getData();
+    public Segment NrightP(Point p,Segment little){  //les cas ou ça passe par le point?
+        if (isEmpty())
+            return null;
+        else if(isLeaf())
+            return little;
+
         else {
 
-            if (getData().getCurrentPoint(p.getY()) > p.getX() && getLeft().getData().getCurrentPoint(p.getY()) < p.getX())
-                sr = getData();
-            else if (getData().getCurrentPoint(p.getY()) < p.getX())
-                NrightP(p,sr);
+            //lorsque les segments passent pas par le point
+            System.out.println(getData().getCurrentPoint(p.getY()));
+            System.out.println((p.getY()));
 
+            if(getData().getCurrentPoint(p.getY())>p.getX()){ //
+                Ltree.NrightP(p,getData());
+            }
+            else if (getData().getCurrentPoint(p.getY())<p.getX()){ //
+                Rtree.NrightP(p,little);
+            }
         }
+        return null;
     }
 
     public Segment LeftMostSegment1(ArrayList<Segment> Up,ArrayList<Segment> Cp,float x,float y){
@@ -315,6 +345,9 @@ public class T_Tree {
         //System.out.println("ici 2 =>"+searchSucc(min,x,y));
         if (sum.contains(min))
             return min;
+        if (min==searchPrev(min,x,y)){
+            return null;
+        }
         else {System.out.println("searchMin ==> "+searchSucc(min,x,y));
         return leftMostSegment2(searchSucc(min,x,y),sum,x,y);
                 }
@@ -339,10 +372,16 @@ public class T_Tree {
         System.out.println("Max ==> "+max);
         System.out.println("sum ==> "+sum);
 
+        Segment maxpot=searchPrev(max,x,y);
         if (sum.contains(max))
             return max;
-        else {System.out.println("searchMax ==> "+searchPrev(max,x,y));
-            return rightMostSegment2(searchPrev(max,x,y),sum,x,y);}
+        if (max==maxpot){
+            return null;
+        }
+        else {
+            max=maxpot;
+            System.out.println("new max ====>"+max);
+            return rightMostSegment2(max,sum,x,y);}
 
     }
 
@@ -352,25 +391,21 @@ public class T_Tree {
     }
 
     private Segment succ(Segment d,float x,float y) {
-        //System.out.println("segment = "+d);
+        System.out.println("segment = "+d);
         if (isEmpty()) {
             return null;
-        }
-        else if (isLeaf()){
+        } else if (isLeaf()) {
             return getData();
+        } else if (getData().compareTo(d, x, y) == 0) {
+            //System.out.println("pouet pouet 2");
+            return getRight().succ(d, x, y);
+        } else if (getData().compareTo(d, x, y) > 0) {
+            //System.out.println("pouet pouet 3");
+            return getLeft().succ(d, x, y);
+        } else if (getData().compareTo(d, x, y) < 0) {
+            return getRight().succ(d, x, y);
         }
-        else if (getData().compareTo(d,x,y) == 0){
-                //System.out.println("pouet pouet 2");
-            return getRight().succ(d,x,y);
-        }
-
-        else if (getData().compareTo(d,x,y) > 0){
-                //System.out.println("pouet pouet 3");
-            return getLeft().succ(d,x,y);
-        }
-        else if (getData().compareTo(d,x,y) <0){
-            return getRigt().suuc(d,x,y);
-        }
+        return null;
             /*else if (getRight().isEmpty()){
                 //System.out.println("pouet pouet 4");
                 return segment;}
@@ -384,34 +419,46 @@ public class T_Tree {
 
     private Segment prev(Segment d,float x,float y) {
 
+        //print(0);
+        //System.out.println("data ici= "+d);
+        //System.out.println("getdata ici= "+getData());
         if (isEmpty()) {
             return null;
         }
         if (isLeaf()){
             return getData();
         }
-        else if (getData().compareTo(d,x,y) < 0 && Rtree.getData().compareTo(d,x,y)==0 && Rtree.getLeft().isLeaf()){
-            return Ltree.prev(d,x,y);
+
+         else if (getData().compareTo(d,x,y) < 0 && Rtree.getData().compareTo(d,x,y)==0){
+             if (Rtree.isLeaf())
+                return Ltree.prev(d,x,y);
+            else if(Rtree.getLeft().isLeaf()){
+                return Ltree.prev(d,x,y);
+            }
         }
+
         else if (getData().compareTo(d,x,y) < 0){
-            System.out.println("D ="+getData());
-            System.out.println("Data ="+d);
-            System.out.println("D >d");
-            System.out.println("");
+            //System.out.println("D ="+getData());
+            //System.out.println("Data ="+d);
+            System.out.println("D "+getData().getCurrentPoint(y)+"<"+"d "+d.getCurrentPoint(y));
+            //System.out.println("");
             return getRight().prev(d,x,y);
         }
 
         else if (getData().compareTo(d,x,y) > 0 /*&& Rtree.getData().compareTo(d,x,y)>=0*/){
-            System.out.println("D ="+getData());
-            System.out.println("Data ="+d);
-            System.out.println("D <data");
-            System.out.println("");
+            //System.out.println("D ="+getData());
+            //System.out.println("Data ="+d);
+            //System.out.println("D <data");
+            //System.out.println("");
+            System.out.println("D "+getData().getCurrentPoint(y)+">"+"d "+d.getCurrentPoint(y));
             return getLeft().prev(d,x,y);
         }
         else if (getData().compareTo(d,x,y)==0){
+            System.out.println("D "+getData().getCurrentPoint(y)+"="+"d "+d.getCurrentPoint(y));
             return getLeft().prev(d,x,y);
         }
-
+        //System.out.println("#################################");
+        return null;
         /*else if (getLeft().isEmpty())
             return segment;
         else return getLeft().searchMax();*/

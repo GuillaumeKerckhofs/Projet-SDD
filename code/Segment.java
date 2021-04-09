@@ -39,25 +39,27 @@ public class Segment{
 
     public int compareTo(Segment segment,float xHor,float y){
 
-        //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+segment);
-        //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+this);
-        //System.out.println("seg ="+segment);
+
         if (!segment.isHorizontal()&&!this.isHorizontal()){
-            //System.out.println("x= "+this);
             float x1 =this.getCurrentPoint(y);
             float x2 =segment.getCurrentPoint(y);
 
-            if (this.isEquals(segment)){
+            System.out.println("x1= "+x1);
+            System.out.println("x2= "+x2);
 
+            if (this.isEquals(segment)){
+                System.out.println(0);
                 return 0;
             }
             else if(!(Math.abs(x1-x2)<1e-4)) {
                 //System.out.println("piopioiopi");
 
-                if (x1 > x2)
-                    return 1;
-                else if (x1 < x2)
-                    return -1;
+                if (x1 > x2){
+                    System.out.println(1);
+                    return 1;}
+                else if (x1 < x2){
+                    System.out.println(-1);
+                    return -1;}
             }
             else{
                 float ymax = max(this.lower_point.getY(),segment.getLower_point().getY());
@@ -126,7 +128,26 @@ public class Segment{
     }
 
     public float getCurrentPoint(float y) {   // à faire
-        float x=upper_point.getX()+((y-upper_point.getY())*(lower_point.getX()- upper_point.getX()))/(lower_point.getY()- upper_point.getY());
+        float x1=upper_point.getX();
+        float x2=lower_point.getX();
+        float y1=upper_point.getY();
+        float y2=lower_point.getY();
+
+        float x=x1+((y-y1)*(x2-x1))/(y2-y1);
+
+        /*
+        System.out.println("");
+        System.out.println("");
+        System.out.println("currentpoint "+x);
+        System.out.println("X1 "+upper_point.getX());
+        System.out.println("Y1 "+upper_point.getY());
+        System.out.println("X2 "+lower_point.getX());
+        System.out.println("Y2 "+lower_point.getY());
+        System.out.println("current Y "+y);
+        System.out.println("");
+        System.out.println("");
+
+         */
         return x;
     }
 
