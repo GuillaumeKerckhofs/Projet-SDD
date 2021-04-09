@@ -185,34 +185,62 @@ public class Segment{
         float b2;
 
         Point p = null;
+        if (x2!=x1&&x4!=x3) {
+            a1 = (y2 - y1) / (x2 - x1);
+            b1 = y1 - a1 * x1;
+            a2 = (y4 - y3) / (x4 - x3);
+            b2 = y3 - a2 * x3;
+
+            float x = (b1 - b2) / (a2 - a1);
+            float y = a1 * x + b1;
+
+            if (x1 > x2) {
+                if (x > x1 || x < x2) {
+                    return p;
+                }
+            } else if (x2 > x1) {
+                if (x < x1 || x > x2) {
+                    return p;
+                }
+
+                if (x3 > x4) {
+                    if (x > x3 || x < x4) {
+                        return p;
+                    }
+                } else if (x4 > x3) {
+                    if (x < x3 || x > x4) {
+                        return p;
+                    }
+                }
+
+                if (y1 > y2) {
+                    if (y > x1 || y < y2) {
+                        return p;
+                    }
+                } else if (y2 > y1) {
+                    if (y < y1 || y > y2) {
+                        return p;
+                    }
+                }
+
+                if (y3 > y4) {
+                    if (y > y3 || y < y4) {
+                        return p;
+                    }
+                } else if (y4 > y3) {
+                    if (y < y3 || y > y4) {
+                        return p;
+                    }
+                }
 
 
-        if(x1==x2){    // utile?
-            a2 = (y4-y3)/(x4-x3);
-            b2 = y3 - a2*x3;
-            return null;
+                p = new Point(x, y);
+            }
         }
-        else if(x3==x4){     // utile?
-            a1 = (y2-y1)/(x2-x1);
-            b1 = y1 - a1*x1;
-            return null;
-        }
-
-
-        else{
-            a1 = (y2-y1)/(x2-x1);
-            b1 = y1 - a1*x1;
-            a2 = (y4-y3)/(x4-x3);
-            b2 = y3 - a2*x3;
-            float x=(b1-b2)/(a2-a1);
-            float y=a1*x+b1;
-            p = new Point(x,y);
-        }
-
         return (p);
 
-
     }
+
 
 
     public Point getUpper_point(){

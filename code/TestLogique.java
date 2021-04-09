@@ -83,10 +83,10 @@ public class TestLogique {
         //T.print(0);
 
         ArrayList<Segment> list = new ArrayList<Segment>();
-        //list.add(s1);
+        list.add(s1);
         list.add(s2);
-        //list.add(s3);
-        //list.add(s4);
+        list.add(s3);
+        list.add(s4);
         list.add(s5);
 
 
