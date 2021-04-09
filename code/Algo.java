@@ -147,5 +147,31 @@ public class Algo {
     public static void FindNewEvent(Segment Sl, Segment Sr,Q_Node p){
 
         System.out.println("**********************************************************");
+
+        float x1=Sl.getUpper_point().getX();
+        float y1=Sl.getUpper_point().getX();
+
+        float x2=Sl.getLower_point().getX();
+        float y2=Sl.getLower_point().getX();
+
+        float x3=Sr.getUpper_point().getX();
+        float y3=Sr.getUpper_point().getX();
+
+        float x4=Sr.getLower_point().getX();
+        float y4=Sr.getLower_point().getX();
+        if(x1=x2){
+            float a2 = (y4-y3)/(x4-x3);
+            float b2 = y3 - a2*x3;
+        }
+        else if(x3=x4){
+            float a1 = (y2-y1)/(x2-x1);
+            float b1 = y1 - a1*x1;
+        }
+        else{
+            float a1 = (y2-y1)/(x2-x1);
+            float b1 = y1 - a1*x1;
+            float a2 = (y4-y3)/(x4-x3);
+            float b2 = y3 - a2*x3;
+        }
     }
 }

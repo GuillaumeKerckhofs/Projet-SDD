@@ -353,21 +353,27 @@ public class T_Tree {
 
     private Segment succ(Segment d, Segment segment,float x,float y) {
         //System.out.println("segment = "+d);
-        if (isEmpty())
+        if (isEmpty()) {
             return null;
-            if (isLeaf()){
-                return segment;
-            }
-            else if (getData().compareTo(d,x,y) == 0){
+        }
+        else if (isLeaf()){
+            return getData();
+        }
+        else if (getData().compareTo(d,x,y) == 0){
                 //System.out.println("pouet pouet 2");
-                return getRight().succ(d,segment,x,y);}
+            return getRight().succ(d,segment,x,y);
+        }
 
-            else if (getData().compareTo(d,x,y) > 0){
+        else if (getData().compareTo(d,x,y) > 0){
                 //System.out.println("pouet pouet 3");
-                return getLeft().succ(d,getData(),x,y);}
-            else if (getRight().isEmpty()){
+            return getLeft().succ(d,getData(),x,y);
+        }
+        else if (getData().compareTo(d,x,y) <0){
+            return getRigt().suuc(d,segment,x,y);
+        }
+            /*else if (getRight().isEmpty()){
                 //System.out.println("pouet pouet 4");
-                return segment;}
+                return segment;}*/
             else    return getRight().searchMin();
     }
 
@@ -378,9 +384,12 @@ public class T_Tree {
 
     private Segment prev(Segment d, Segment segment,float x,float y) {
 
-        if (isEmpty())
+        if (isEmpty()) {
             return null;
-
+        }
+        if (isLeaf()){
+            return getData();
+        }
         else if (getData().compareTo(d,x,y) < 0){
             System.out.println("D ="+getData());
             System.out.println("Data ="+d);
@@ -388,16 +397,19 @@ public class T_Tree {
             System.out.println("");
             return getRight().prev(d,segment,x,y);}
 
-        else if (getData().compareTo(d,x,y) < 0&& Rtree.getData().compareTo(d,x,y)>=0){
+        else if (getData().compareTo(d,x,y) > 0 /*&& Rtree.getData().compareTo(d,x,y)>=0*/){
             System.out.println("D ="+getData());
             System.out.println("Data ="+d);
             System.out.println("D <data");
             System.out.println("");
             return getLeft().prev(d,getData(),x,y);
         }
+        else if (getData().compareTo(d,x,y)==0){
+            return getLeft().prev(d,getData(),x,y);
+        }
 
-        else if (getLeft().isEmpty())
-            return segment;
+        /*else if (getLeft().isEmpty())
+            return segment;*/
         else return getLeft().searchMax();
     }
 
