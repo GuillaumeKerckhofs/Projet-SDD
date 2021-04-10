@@ -83,26 +83,36 @@ public class Algo {
         //System.out.println("arbre 1");
         //t.print(0);
         //System.out.println("----------------------------------------------------------");
-        if(Lp.size()!=0){
-            for (Segment segment : Lp )
-                t.suppress(segment,lastEvent.getX(),lastEvent.getY());}
+        for (Segment segment : Lp )
+            t.suppress(segment,lastEvent.getX(),lastEvent.getY());
 
-        if(Cp.size()!=0){
-            System.out.println("==========+");
-            for (Segment segment : Cp )
-                t.suppress(segment,lastEvent.getX(),lastEvent.getY());
-        }
+        System.out.println("==========+");
+        for (Segment segment : Cp )
+            t.suppress(segment,lastEvent.getX(),lastEvent.getY());
 
-
+        Segment min=null;
+        Segment max=null;
         for (Segment segment : Up ){
+            if(min==null || segment.compareTo(min)<0){
+                min=segment;
+            }
+            if(max==null || segment.compareTo(max)>0){
+                min=segment;
+            }
             t.insert(segment);
             System.out.println("insert"+segment);}
 
-        if(Cp.size()!=0){
-            System.out.println("==========+");
-            for (Segment segment : Cp ){
-                t.reinsert(segment,p.getPoint().getX(),p.getPoint().getY());
-                System.out.println("reinsert"+segment);}}
+        System.out.println("==========+");
+        for (Segment segment : Cp ){
+            if(min==null || segment.compareTo(min)<0){
+                min=segment;
+            }
+            if(max==null || segment.compareTo(max)>0){
+                min=segment;
+            }
+            t.reinsert(segment,p.getPoint().getX(),p.getPoint().getY());
+            System.out.println("reinsert"+segment);
+        }
         lastEvent=p.getPoint();
         //System.out.println("arbre 2");
         t.print(0);
@@ -118,7 +128,7 @@ public class Algo {
                 FindNewEvent(Sl,Sr,p);}
 
         else{
-            //t.print(0);
+            /*t.print(0);
            //System.out.println(p.getPoint());
 
             Sp1=t.LeftMostSegment1(Up,Cp,lastEvent.getX(),lastEvent.getY());
@@ -138,7 +148,13 @@ public class Algo {
             Sr=t.searchSucc(Sp2,lastEvent.getX(),lastEvent.getY());}
             //System.out.println("Sr="+Sr);
             if (Sr!=null)
-                FindNewEvent(Sp2,Sr,p);
+                FindNewEvent(Sp2,Sr,p);*/
+
+            Sl=t.prev(min,lastEvent.getX(),lastEvent.getY());
+            Sr=t.succ(max,lastEvent.getX(),lastEvent.getY());
+            
+            FindNewEvent(Sl,min,p);
+            FindNewEvent(Sr,max,p);
 
 
 
