@@ -90,13 +90,15 @@ public class Algo {
         for (Segment segment : Cp )
             t.suppress(segment,lastEvent.getX(),lastEvent.getY());
 
+        lastEvent=p.getPoint();
+
         Segment min=null;
         Segment max=null;
         for (Segment segment : Up ){
-            if(min==null || segment.compareTo(min,p.getPoint().getX(),p.getPoint().getY())<0){
+            if(min==null || segment.compareTo(min,lastEvent.getX(),lastEvent.getY())<0){
                 min=segment;
             }
-            if(max==null || segment.compareTo(max,p.getPoint().getX(),p.getPoint().getY())>0){
+            if(max==null || segment.compareTo(max,lastEvent.getX(),lastEvent.getY())>0){
                 min=segment;
             }
             t.insert(segment);
@@ -104,16 +106,16 @@ public class Algo {
 
         System.out.println("==========+");
         for (Segment segment : Cp ){
-            if(min==null || segment.compareTo(min,p.getPoint().getX(),p.getPoint().getY())<0){
+            if(min==null || segment.compareTo(min,lastEvent.getX(),lastEvent.getY())<0){
                 min=segment;
             }
-            if(max==null || segment.compareTo(max,p.getPoint().getX(),p.getPoint().getY())>0){
+            if(max==null || segment.compareTo(max,lastEvent.getX(),lastEvent.getY())>0){
                 min=segment;
             }
-            t.reinsert(segment,p.getPoint().getX(),p.getPoint().getY());
+            t.reinsert(segment,lastEvent.getX(),lastEvent.getY());
             System.out.println("reinsert"+segment);
         }
-        lastEvent=p.getPoint();
+
         //System.out.println("arbre 2");
         t.print(0);
         System.out.println("");
