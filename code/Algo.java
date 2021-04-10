@@ -99,7 +99,7 @@ public class Algo {
                 min=segment;
             }
             if(max==null || segment.compareTo(max,lastEvent.getX(),lastEvent.getY())>0){
-                min=segment;
+                max=segment;
             }
             t.insert(segment);
             System.out.println("insert"+segment);}
@@ -110,14 +110,14 @@ public class Algo {
                 min=segment;
             }
             if(max==null || segment.compareTo(max,lastEvent.getX(),lastEvent.getY())>0){
-                min=segment;
+                max=segment;
             }
             t.reinsert(segment,lastEvent.getX(),lastEvent.getY());
             System.out.println("reinsert"+segment);
         }
 
         //System.out.println("arbre 2");
-        t.print(0);
+        //t.print(0);
         System.out.println("");
 
         //System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
@@ -134,7 +134,6 @@ public class Algo {
            //System.out.println(p.getPoint());
 
             Sp1=t.LeftMostSegment1(Up,Cp,lastEvent.getX(),lastEvent.getY());
-            //System.out.println("ohohoh"+Sp1);
             //System.out.println("++++++++++++++++++++++++++++++++++++");
             if (Sp1!=null){
             Sl=t.searchPrev(Sp1,lastEvent.getX(),lastEvent.getY());}
@@ -152,12 +151,17 @@ public class Algo {
             if (Sr!=null)
                 FindNewEvent(Sp2,Sr,p);*/
 
+
+            System.out.println("max = "+max);
+            System.out.println("min = "+min);
+
             Sl=t.prev(min,lastEvent.getX(),lastEvent.getY());
             Sr=t.succ(max,lastEvent.getX(),lastEvent.getY());
-            if( Sl!=null && Sl.isEquals(min)) {
+
+            if( Sl!=null&&min!=null  && Sl.isEquals(min)) {
                 FindNewEvent(Sl, min, p);
             }
-            if( Sr!=null && Sr.isEquals(max)) {
+            if( Sr!=null&&max!=null && Sr.isEquals(max)) {
                 FindNewEvent(Sr, max, p);
             }
 

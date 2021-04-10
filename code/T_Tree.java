@@ -190,19 +190,9 @@ public class T_Tree {
             return true;
         return false;
     }
-/*
-    public boolean search(Segment data) {
-        if (isEmpty())
-            return false;
-        else	if (getData().compareTo(data) < 0)
-            return getRight().search(data);
-        else 	if (getData().compareTo(data) > 0)
-            return getLeft().search(data);
-        else 	return true;
-    }
-*/
+
     public void suppress (Segment data,float x,float y){
-        System.out.println("------------------------------------------------------------------------------");
+        System.out.println("------------------------------------ suppress ---------------------------------------");
         System.out.println("à supprimer = "+data);
         T_Tree T = new T_Tree();
         suppress2(data,T,x,y);
@@ -215,7 +205,9 @@ public class T_Tree {
         System.out.println("node ="+node.getData());
         System.out.println("compare ="+getData().compareTo(data,x,y));
         System.out.println("y ="+y);
-        //print(0);
+        print(0);
+
+        System.out.println("-------------------------------- suppress 2 --------------------------------------");
 
         if (!isEmpty()){
 
@@ -292,7 +284,7 @@ public class T_Tree {
         }
     }
 
-    public Segment NleftP(Point p,Segment little){  //les cas ou ça passe par le point?
+    public Segment NleftP(Point p,Segment little){
         if (isEmpty())
                 return null;
         else if(isLeaf())
@@ -314,7 +306,7 @@ public class T_Tree {
         return null;
     }
 
-    public Segment NrightP(Point p,Segment little){  //les cas ou ça passe par le point?
+    public Segment NrightP(Point p,Segment little){
         if (isEmpty())
             return null;
         else if(isLeaf())
@@ -336,74 +328,7 @@ public class T_Tree {
         return null;
     }
 
-    public Segment LeftMostSegment1(ArrayList<Segment> Up,ArrayList<Segment> Cp,float x,float y){
-        ArrayList<Segment> sum=Up;
-
-        if (!Cp.isEmpty()){
-            for (Segment segment:Cp)
-                sum.add(segment);}
-        Segment min = searchMin();
-        //System.out.println("ici min =>"+min);
-
-
-        return leftMostSegment2(min,sum,x,y);
-        }
-
-    public Segment leftMostSegment2(Segment min,ArrayList<Segment> sum,float x,float y){  //plus a gauche donc
-        //System.out.println("ici min 2=>"+min);
-        //System.out.println("ici 2 =>"+searchSucc(min,x,y));
-        if (sum.contains(min))
-            return min;
-        if (min==searchPrev(min,x,y)){
-            return null;
-        }
-        else {//System.out.println("searchMin ==> "+searchSucc(min,x,y));
-        return leftMostSegment2(searchSucc(min,x,y),sum,x,y);
-                }
-    }
-
-    public Segment RightMostSegment1(ArrayList<Segment> Up,ArrayList<Segment> Cp,float x,float y){
-        ArrayList<Segment> sum=Up;
-
-        if (!Cp.isEmpty())
-            for (Segment segment:Cp)
-                sum.add(segment);
-        Segment max = searchMax();
-
-        return rightMostSegment2(max,sum,x,y);
-    }
-
-    public Segment rightMostSegment2(Segment max,ArrayList<Segment> sum,float x,float y){
-
-        System.out.println("");
-        System.out.println("////////////////////////////////////");
-        System.out.println("");
-
-        //print(0);
-        System.out.println("Max ==> "+max);
-        System.out.println("sum ==> "+sum);
-
-
-
-        Segment maxpot=searchPrev(max,x,y);
-        if (sum.contains(max))
-            return max;
-        if (max==maxpot){
-            return null;
-        }
-        else {
-            max=maxpot;
-            System.out.println("new max ====>"+max);
-            return rightMostSegment2(max,sum,x,y);}
-
-    }
-
-    public Segment searchSucc(Segment d,float x,float y) {
-        //System.out.println("succedefsfsf ="+succ(d,null,x,y));
-        return succ(d,x,y);
-    }
-
-    private Segment succ(Segment d,float x,float y) {
+    public Segment succ(Segment d, float x, float y) {
         //System.out.println("segment = "+d);
         if (isEmpty()) {
             return null;
@@ -425,12 +350,7 @@ public class T_Tree {
             else    return getRight().searchMin();*/
     }
 
-    public Segment searchPrev(Segment d,float x,float y) {
-        //System.out.println("data la="+d);
-        return prev(d,x,y);
-    }
-
-    private Segment prev(Segment d,float x,float y) {
+    public Segment prev(Segment d, float x, float y) {
         //System.out.println("000000000000000000000000000000000000000000000000000000000000000000");
         //print(0);
         //System.out.println("data ici= "+d);
