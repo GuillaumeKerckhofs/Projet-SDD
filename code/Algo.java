@@ -24,7 +24,9 @@ public class Algo {
             q.startInsertion(segment.getLower_point(),null);
 
         }
-
+        System.out.println("=========== Q =========");
+        q.print();
+        System.out.println("");
         t=new T_Tree();
         lastEvent=new Point(0,0);      // (0,0)?
 
@@ -40,7 +42,8 @@ public class Algo {
 
             HandleEventPoint(p);
         }
-        //System.out.println("fin");
+
+        System.out.println("fin");
     }
 
     public static void HandleEventPoint(Q_Node p){
@@ -62,13 +65,16 @@ public class Algo {
 
         ArrayList<Segment> Cp=new ArrayList<Segment>();
         ArrayList<Segment> Lp=new ArrayList<Segment>();
+
+
         t.SegmentsContainPoint(p.getPoint(),Cp,Lp);
+
 
         if (Lp.size()+Up.size()+Cp.size()>1)
 
             intersection.add(p);
 
-/*
+
         System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 
         System.out.println("up= "+Up.size());
@@ -76,8 +82,8 @@ public class Algo {
         System.out.println("Lp= "+Lp);
         System.out.println("lastEventX "+lastEvent.getX());
         System.out.println("lastEventY "+lastEvent.getY());
+        //t.print(0);
 
- */
 
         //System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         //System.out.println("arbre 1");
@@ -86,7 +92,7 @@ public class Algo {
         for (Segment segment : Lp )
             t.suppress(segment,lastEvent.getX(),lastEvent.getY());
 
-        System.out.println("==========+");
+        //System.out.println("==========+");
         for (Segment segment : Cp )
             t.suppress(segment,lastEvent.getX(),lastEvent.getY());
 
@@ -104,7 +110,7 @@ public class Algo {
             t.insert(segment);
             System.out.println("insert"+segment);}
 
-        System.out.println("==========+");
+        //System.out.println("==========+");
         for (Segment segment : Cp ){
             if(min==null || segment.compareTo(min,lastEvent.getX(),lastEvent.getY())<0){
                 min=segment;

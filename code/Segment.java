@@ -118,20 +118,10 @@ public class Segment{
     }
 
     public boolean contain (Point p){
-        float m1 = (getUpper_point().getY()- getLower_point().getY())/((getUpper_point().getX())- getLower_point().getX());
-        float m2 = (getUpper_point().getY()- p.getY())/((getUpper_point().getX())- p.getX());
-        //System.out.println("m1= "+m1);
-        //System.out.println("m2= "+m2);
-        if ((getUpper_point().getX())- p.getX()==0&&(getUpper_point().getY()- p.getY())==0){
-            //System.out.println("true 1 <-----");
-            return true;}
-        else if ((getUpper_point().getX())- p.getX()==0&&!((getUpper_point().getY()- p.getY())==0)){
-            //System.out.println("false 1");
-            return false;}
-        else if (m1==m2&&!(p.getY()< getLower_point().getY())&&!(p.getY()> getUpper_point().getY())){
-            //System.out.println("true 2 <-----");
-            return true;}
-        //System.out.println("false 2");
+        float x=this.getCurrentPoint(p.getY());
+        if ((Math.abs(x-p.getX())<1e-2)){
+            return true;
+        }
         return false;
     }
 
@@ -141,7 +131,9 @@ public class Segment{
         float y1=upper_point.getY();
         float y2=lower_point.getY();
 
-        float x=x1+((y-y1)*(x2-x1))/(y2-y1);
+        double x=x1+((y-y1)*(x2-x1))/(y2-y1);
+        x= Math.round(x*100.0)/100.0;
+        return ((float) x);
 
 /*
         System.out.println("");
@@ -155,8 +147,6 @@ public class Segment{
         System.out.println("");
         System.out.println("");
 */
-
-        return x;
     }
 
     public boolean isHorizontal(){
@@ -184,6 +174,8 @@ public class Segment{
         float b1;
         float b2;
 
+
+
         Point p = null;
         if (x2!=x1&&x4!=x3) {
             a1 = (y2 - y1) / (x2 - x1);
@@ -193,6 +185,19 @@ public class Segment{
 
             float x = (b1 - b2) / (a2 - a1);
             float y = a1 * x + b1;
+/*
+            x= Math.round(x*100.0)/100.0;
+            y= Math.round(y*100.0)/100.0;
+*/
+            System.out.println("========================== test intersect =========================");
+            System.out.println(x);
+            System.out.println(y);
+            System.out.println(x1+" ;"+y1);
+            System.out.println(x2+" ;"+y2);
+            System.out.println(x3+" ;"+y3);
+            System.out.println(x4+" ;"+y4);
+            System.out.println("========================== fin test intersect =========================");
+
 
             if (x1 > x2) {
                 if (x > x1 || x < x2) {
@@ -202,41 +207,50 @@ public class Segment{
                 if (x < x1 || x > x2) {
                     return p;
                 }
-
-                if (x3 > x4) {
-                    if (x > x3 || x < x4) {
-                        return p;
-                    }
-                } else if (x4 > x3) {
-                    if (x < x3 || x > x4) {
-                        return p;
-                    }
-                }
-
-                if (y1 > y2) {
-                    if (y > x1 || y < y2) {
-                        return p;
-                    }
-                } else if (y2 > y1) {
-                    if (y < y1 || y > y2) {
-                        return p;
-                    }
-                }
-
-                if (y3 > y4) {
-                    if (y > y3 || y < y4) {
-                        return p;
-                    }
-                } else if (y4 > y3) {
-                    if (y < y3 || y > y4) {
-                        return p;
-                    }
-                }
-
-
-                p = new Point(x, y);
             }
+
+            if (x3 > x4) {
+                if (x > x3 || x < x4) {
+                    return p;
+                }
+            }
+            else if (x4 > x3) {
+                if (x < x3 || x > x4) {
+                    return p;
+                }
+            }
+
+            if (y1 > y2) {
+                if (y > x1 || y < y2) {
+                    return p;
+                }
+            }
+            else if (y2 > y1) {
+                if (y < y1 || y > y2) {
+                    return p;
+                }
+            }
+
+            if (y3 > y4) {
+                if (y > y3 || y < y4) {
+                    return p;
+                }
+            }
+            else if (y4 > y3) {
+                if (y < y3 || y > y4) {
+                    return p;
+                }
+            }
+
+            System.out.println("je rentre");
+            p = new Point((float) x,(float) y);
+            }
+
+        if (x1==x2 && y1!=y2) {       // verticale
         }
+        if (x1!=x2 && y1==y2) {       //horizontale
+        }
+
         return (p);
 
     }

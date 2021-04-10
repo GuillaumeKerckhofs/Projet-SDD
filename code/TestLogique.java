@@ -56,12 +56,18 @@ public class TestLogique {
         Point a5 = new Point(9, 2);
         Point a6 = new Point(4, 2);
         Point a7 = new Point(2, 2);
+        Point a8 = new Point(5, 9);
+        Point a9 = new Point(6, 10);
+        Point a10 = new Point(8, 8);
 
         Segment s1 = new Segment(a1, a3);
         Segment s2 = new Segment(a2, a3);
         Segment s3 = new Segment(a4, a5);
         Segment s4 = new Segment(a6, a5);
         Segment s5 = new Segment(a1, a5);
+        Segment s6 = new Segment(a7, a9);
+        Segment s7 = new Segment(a8, a10);
+        Segment s8 = new Segment(a9, a5);
 
         Segment hori = new Segment(new Point(5, 5),new Point(20, 5));
         Segment vert = new Segment(new Point(10,10),new Point(10,0));
@@ -74,11 +80,15 @@ public class TestLogique {
         //{T.insert(segment);}
 
 
-        T.insert(s1);
+        //T.insert(s1);
         T.insert(s2);
-        T.insert(s3);
-        T.insert(s4);
+        //T.insert(s3);
+        //T.insert(s4);
         T.insert(s5);
+        //T.insert(s6);
+        //T.insert(s7);
+        //T.insert(s8);
+
 
         //T.print(0);
 
@@ -117,8 +127,8 @@ public class TestLogique {
 
         //T.print(0);
         //System.out.println("**********************************");
-        Algo.FindIntersections(Map.getSegmentList());
-        //Algo.FindIntersections(list);
+        //Algo.FindIntersections(Map.getSegmentList());
+        Algo.FindIntersections(list);
 
     }
 }
