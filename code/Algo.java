@@ -158,10 +158,10 @@ public class Algo {
             Sl=t.prev(min,lastEvent.getX(),lastEvent.getY());
             Sr=t.succ(max,lastEvent.getX(),lastEvent.getY());
 
-            if( Sl!=null&&min!=null  && Sl.isEquals(min)) {
+            if( Sl!=null&&min!=null  && !Sl.isEquals(min)) {
                 FindNewEvent(Sl, min, p);
             }
-            if( Sr!=null&&max!=null && Sr.isEquals(max)) {
+            if( Sr!=null&&max!=null && !Sr.isEquals(max)) {
                 FindNewEvent(Sr, max, p);
             }
 
