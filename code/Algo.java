@@ -93,10 +93,10 @@ public class Algo {
         Segment min=null;
         Segment max=null;
         for (Segment segment : Up ){
-            if(min==null || segment.compareTo(min)<0){
+            if(min==null || segment.compareTo(min,p.getPoint().getX(),p.getPoint().getY())<0){
                 min=segment;
             }
-            if(max==null || segment.compareTo(max)>0){
+            if(max==null || segment.compareTo(max,p.getPoint().getX(),p.getPoint().getY())>0){
                 min=segment;
             }
             t.insert(segment);
@@ -104,10 +104,10 @@ public class Algo {
 
         System.out.println("==========+");
         for (Segment segment : Cp ){
-            if(min==null || segment.compareTo(min)<0){
+            if(min==null || segment.compareTo(min,p.getPoint().getX(),p.getPoint().getY())<0){
                 min=segment;
             }
-            if(max==null || segment.compareTo(max)>0){
+            if(max==null || segment.compareTo(max,p.getPoint().getX(),p.getPoint().getY())>0){
                 min=segment;
             }
             t.reinsert(segment,p.getPoint().getX(),p.getPoint().getY());
@@ -152,10 +152,12 @@ public class Algo {
 
             Sl=t.prev(min,lastEvent.getX(),lastEvent.getY());
             Sr=t.succ(max,lastEvent.getX(),lastEvent.getY());
-            
-            FindNewEvent(Sl,min,p);
-            FindNewEvent(Sr,max,p);
-
+            if( Sl!=null && Sl.isEquals(min)) {
+                FindNewEvent(Sl, min, p);
+            }
+            if( Sr!=null && Sr.isEquals(max)) {
+                FindNewEvent(Sr, max, p);
+            }
 
 
 
