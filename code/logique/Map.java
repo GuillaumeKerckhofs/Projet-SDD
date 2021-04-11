@@ -12,7 +12,9 @@ public class Map {
     private static String savePath;
     private static String openPath;
 
-
+    /**
+    crée une map à partir d'un fichier qui est de base le fichier1
+     */
     public Map(){
         try {
             if (openPath==null){
@@ -23,6 +25,9 @@ public class Map {
         }
     }
 
+    /**
+    supprime un segment de la map
+     */
     public static void supprSegment(Segment segment) {
         ArrayList<Segment> list = getSegmentList();
         System.out.println(list);
@@ -37,6 +42,9 @@ public class Map {
         }
     }
 
+    /**
+    ouvre le fichier et charge les segments avant des les mettre dans la segmentList
+     */
     private void loadPoint(String map) throws IOException{
         BufferedReader lecteurAvecBuffer = null;
         String line;
@@ -64,6 +72,9 @@ public class Map {
 
     public static void addSegment(Segment segment){ segmentList.add(segment);}
 
+    /**
+    sauvegarde de la map actuelle dans le fichier qu'indique le savePath
+     */
     public void Save (){
         File file=new File(savePath);
         FileOutputStream fos;
@@ -88,6 +99,9 @@ public class Map {
         }
     }
 
+    /**
+    ouvre un nouveau fichier et charge
+     */
     public void Open(){
 
         try
@@ -102,6 +116,9 @@ public class Map {
     }
 
 
+    /**
+    permet de choisir où sauvegarder
+     */
     public void chooseSave() {
         final JFrame fenetre = new JFrame();
         final JFileChooser fc = new JFileChooser();
@@ -115,6 +132,9 @@ public class Map {
         }
     }
 
+    /**
+    permet de chosir quel map charger
+     */
     public void chooseOpen() {
         final JFrame fenetre = new JFrame();
         final JFileChooser fc = new JFileChooser();

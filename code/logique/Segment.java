@@ -8,6 +8,11 @@ public class Segment{
     private Point upper_point;
     private Point lower_point;
 
+    /**
+    constructeur d'un segment
+    @param upper_point point du dessus du segment
+    @param lower_point point du dessous du segment
+     */
     public Segment(Point upper_point,Point lower_point){
         this.upper_point=upper_point;
         this.lower_point=lower_point;
@@ -24,7 +29,6 @@ public class Segment{
         }
     }
 
-
     public boolean tSmallerThan (Segment segment){
 
         float p1 = getUpper_point().getX();
@@ -35,7 +39,16 @@ public class Segment{
         else return false;
     }
 
-
+    /**
+    compare 2 segments par rapport à leurs valeurs de x courrant,
+     si il n'y a pas de différence on compare par rapport au Y max des lower_point des deux segments
+     sinon on compare les upper_point
+     si un des deux segments est horizontale, on compare le x passé en paramètre au x courrant de l'autre segment
+     @param segment avec lequel on compare
+     @param xHor valeur du x du segment horizontal
+     @param y qui permet de calculer le x courrant
+     @return 0 en cas d'agalité, -1 si il est plus petit ou 1 si il est plus grand
+     */
     public int compareTo(Segment segment,float xHor,float y){
         if (!segment.isHorizontal()&&!this.isHorizontal()){
             float x1 =this.getCurrentPoint(y);
@@ -96,6 +109,11 @@ public class Segment{
     }
 
 
+    /**
+     * Vérifie si les deux segments sont égaux
+     * @param segment avec qui on compare
+     * @return true si les segments sont égaux, false sinon
+     */
     public boolean isEquals (Segment segment){
         if (segment.getUpper_point().isEqualTo(this.upper_point) && segment.getLower_point().isEqualTo(this.lower_point)){
             return true;
@@ -104,6 +122,12 @@ public class Segment{
             return false;
     }
 
+
+    /**
+     * regarde si le segment passe par p
+     * @param p point par lequel on veut voir si le segment passe
+     * @return true si le segment passe par p, false sinon
+     */
     public boolean contain (Point p){
         if (!isHorizontal()){
             float x=this.getCurrentPoint(p.getY());
@@ -119,6 +143,11 @@ public class Segment{
     return false;
     }
 
+    /**
+     * calcule le point courrant par rapport à un y donné ainsi qu'avec les coordonnées du segment
+     * @param y pour lequel on veut le x associé
+     * @return x courrant
+     */
     public float getCurrentPoint(float y) {   // à faire
         float x1 = upper_point.getX();
         float x2 = lower_point.getX();
@@ -132,10 +161,19 @@ public class Segment{
 
     }
 
+    /**
+     * vérifie si la droite est horizontale
+     * @return true si vrai,false sinon
+     */
     public boolean isHorizontal(){
         return (getLower_point().getY()==getUpper_point().getY());
     }
 
+    /**
+     * calcul l'intersection entre deux segments et vérifie qu'elle est dans les bornes des deux segments
+     * @param Sr deuxième segment avec lequel on veut calculer l'intersection
+     * @return null si pas d'intersection,sinon un point qui correspond à l'intersection
+     */
     public Point isIntersectBy(Segment Sr){
         float x1=upper_point.getX();
         float y1=upper_point.getY();

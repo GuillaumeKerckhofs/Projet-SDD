@@ -6,6 +6,12 @@ public class Point {
 
     private boolean upper_point;
 
+    /**
+    constructeur d'un point
+    @param x du point
+    @param y du point
+    @param upper_point true si upper_point d'un segment,faulse sinon
+     */
     public Point(float x,float y,boolean upper_point){
         this.x=x;
         this.y=y;

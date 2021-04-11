@@ -11,7 +11,7 @@ public class Q_Node{
     private Q_Node Left;
     private int height;
 
-    /*
+    /**
     @param Point data du noeud
     @param Segment segment qui a pour upper point le point passé en paramètre
     @param Left Fils gauche du noeud
@@ -29,7 +29,7 @@ public class Q_Node{
     public Q_Node(){
         this(null,null,null,null);
     }
-    /*
+    /**
     Change la valeur de la hauteur du noeud en prenant la hateur max entre les 2 hauteurs de ces fils
      */
     public void Height(){
@@ -50,7 +50,7 @@ public class Q_Node{
 
     }
 
-    /*
+    /**
     @return retourne la balance du noeud
      */
     public int Bal(){
@@ -70,7 +70,7 @@ public class Q_Node{
         }
     }
 
-    /*
+    /**
     change les variables du noeud par celle du noeud passé en argument
     @param node2 noeud qui deviendra le noeud courrant
      */
@@ -82,7 +82,7 @@ public class Q_Node{
 
     }
 
-    /*
+    /**
     ajoute un segment à la liste des segments s'il n'est pas null
     @param segment a rajouté à la liste
      */
@@ -92,12 +92,12 @@ public class Q_Node{
         }
     }
 
-    /*
+    /**
     return true si le noeud est une feuille, false sinon
      */
     public boolean isLeaf(){ return (this.Right.isEmpty() && this.Left.isEmpty());}
 
-    /*
+    /**
     return true si le noeud est vide, false sinon
      */
     public boolean isEmpty(){ return (this.point==null && this.Right==null && this.Left==null);}
