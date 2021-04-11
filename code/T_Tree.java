@@ -286,8 +286,9 @@ public class T_Tree {
                 if (getData().getCurrentPoint(p.getY()) < p.getX()) {
                     getRight().SegmentsContainPoint(p, Cp, Lp);
                 }
-                //else {                                            pas de else?
-                getLeft().SegmentsContainPoint(p, Cp, Lp);
+                else {
+                    getRight().SegmentsContainPoint(p, Cp, Lp);
+                    getLeft().SegmentsContainPoint(p, Cp, Lp);
 
             }
         }
