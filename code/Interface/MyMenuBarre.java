@@ -1,14 +1,12 @@
-package Interface;
+package code.Interface;
 
-
-import code.Map;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-import static Interface.MyWindow.*;
+import static code.Interface.MyWindow.*;
 
 
 

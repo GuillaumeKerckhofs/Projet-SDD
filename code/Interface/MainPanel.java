@@ -1,8 +1,8 @@
-package Interface;
+package code.Interface;
 
-import code.Algo;
-import code.Map;
-import code.Segment;
+import code.logique.Algo;
+import code.logique.Map;
+import code.logique.Segment;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -40,7 +40,7 @@ import javax.swing.JPanel;
         private int yDiff;
         private int sweeplinecount =0;
         private Point startPoint;
-        ArrayList<code.Point> b = new ArrayList<code.Point>();
+        ArrayList<code.logique.Point> b = new ArrayList<code.logique.Point>();
 
         public MainPanel() {
 
@@ -119,7 +119,7 @@ import javax.swing.JPanel;
                 g2.draw(l);
             }
 
-            for (code.Point inter:b){
+            for (code.logique.Point inter:b){
                 Shape l2 = new Line2D.Float(inter.getX()+100,-inter.getY()+300,inter.getX()+100,-inter.getY()+300);
                 g2.setColor(Color.red);
                 g2.draw(l2);
@@ -234,7 +234,7 @@ import javax.swing.JPanel;
 
         }
 
-        public void setB(ArrayList<code.Point> b) {
+        public void setB(ArrayList<code.logique.Point> b) {
             this.b = b;
         }
     }

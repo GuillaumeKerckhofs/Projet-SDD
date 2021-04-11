@@ -1,9 +1,9 @@
-package Interface;
+package code.Interface;
 
-import code.Algo;
-import code.Map;
-import code.Point;
-import code.Segment;
+import code.logique.Algo;
+import code.logique.Map;
+import code.logique.Point;
+import code.logique.Segment;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;

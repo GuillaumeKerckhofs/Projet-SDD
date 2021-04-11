@@ -1,4 +1,4 @@
-package code;
+package code.logique;
 
 public class Point {
     private float x;

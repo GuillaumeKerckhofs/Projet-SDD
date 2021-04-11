@@ -1,4 +1,4 @@
-package code;
+package code.logique;
 
 public class Q_Tree {
     private Q_Node root;

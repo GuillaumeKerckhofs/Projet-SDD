@@ -1,4 +1,4 @@
-package code;
+package code.logique;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,5 @@
-package code;
+package code.logique;
 
-import java.util.ArrayList;
 import static java.lang.Math.max;
 import static java.lang.Math.abs;
 

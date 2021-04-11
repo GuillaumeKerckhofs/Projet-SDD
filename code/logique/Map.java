@@ -1,6 +1,6 @@
-package code;
+package code.logique;
 
-import Interface.MyWindow;
+import code.Interface.MyWindow;
 
 import javax.swing.*;
 import java.io.*;

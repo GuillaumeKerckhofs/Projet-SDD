@@ -1,4 +1,4 @@
-package code;
+package code.logique;
 
 import java.util.ArrayList;
 
@@ -290,6 +290,7 @@ public class T_Tree {
                     getRight().SegmentsContainPoint(p, Cp, Lp);
                     getLeft().SegmentsContainPoint(p, Cp, Lp);
 
+                }
             }
         }
     }
