@@ -172,6 +172,7 @@ import javax.swing.JPanel;
             g2.setColor(Color.green);
             g2.draw(point);
 
+
         }
 
         @Override
