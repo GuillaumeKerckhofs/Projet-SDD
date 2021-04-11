@@ -124,7 +124,7 @@ public class Segment{
     public boolean contain (Point p){
         if (!isHorizontal()){
             float x=this.getCurrentPoint(p.getY());
-            if ((Math.abs(x-p.getX())<1e-4)){
+            if ((Math.abs(x-p.getX())<1e-2)){
                 return true;
             }
         }
@@ -144,7 +144,7 @@ public class Segment{
 
 
         double x = x1 + ((y - y1) * (x2 - x1)) / (y2 - y1);
-        x = Math.round(x * 10000.0) / 10000.0;
+        x = Math.round(x * 100.0) / 100.0;
         return ( (float) x);
 
     }
