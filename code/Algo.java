@@ -146,8 +146,8 @@ public class Algo {
             System.out.println("max = "+max);
             System.out.println("min = "+min);
 
-            Sl=t.prev(min,lastEvent.getX(),lastEvent.getY());
-            Sr=t.succ(max,lastEvent.getX(),lastEvent.getY());
+            Sl=t.prev(min,null,lastEvent.getX(),lastEvent.getY());
+            Sr=t.succ(max,null,lastEvent.getX(),lastEvent.getY());
 
             if( Sl!=null&&min!=null  && !Sl.isEquals(min)) {
                 FindNewEvent(Sl, min, p);

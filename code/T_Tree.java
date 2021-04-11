@@ -343,59 +343,41 @@ public class T_Tree {
         return null;
     }
 
-    public Segment succ(Segment d, float x, float y) {
+    public Segment succ(Segment d,Segment succ, float x, float y) {
         //System.out.println("segment = "+d);
         if (isEmpty()) {
             return null;
-        } else if (isLeaf()) {
+        } else if (isLeaf() && getData().compareTo(d,x,y)>0) {
             return getData();
-        } else if (getData().compareTo(d, x, y) == 0) {
-            //System.out.println("pouet pouet 2");
-            return getRight().succ(d, x, y);
-        } else if (getData().compareTo(d, x, y) > 0) {
-            //System.out.println("pouet pouet 3");
-            return getLeft().succ(d, x, y);
-        } else if (getData().compareTo(d, x, y) < 0) {
-            return getRight().succ(d, x, y);
         }
-        return null;
-            /*else if (getRight().isEmpty()){
-                //System.out.println("pouet pouet 4");
-                return segment;}
-            else    return getRight().searchMin();*/
+        else if (getData().compareTo(d,x,y)>0){
+            return Ltree.prev(d,getData(),x,y);
+        }
+        else if (getData().compareTo(d,x,y)<=0){
+            return Rtree.prev(d,prev,x,y);
+        }
+
+
+        return prev;
     }
 
-    public Segment prev(Segment d, float x, float y) {
+    public Segment prev(Segment d,Segment prev, float x, float y) {
 
         if (isEmpty()) {
             return null;
         }
-        if (isLeaf()){
+        else if (isLeaf() && getData().compareTo(d,x,y)<0){
             return getData();
         }
-
-        else if (getData().compareTo(d,x,y) < 0 && Rtree.getData().compareTo(d,x,y)==0&&!Rtree.getLeft().isEmpty()&&Rtree.getLeft().getData().compareTo(d,x,y)<0){
-            return Rtree.getLeft().getData();}
-
-         else if (getData().compareTo(d,x,y) < 0 && Rtree.getData().compareTo(d,x,y)==0){
-             return getData();
+        else if (getData().compareTo(d,x,y)<0){
+            return Rtree.prev(d,getData(),x,y);
+        }
+        else if (getData().compareTo(d,x,y)>=0){
+            return Ltree.prev(d,prev,x,y);
         }
 
-        else if (getData().compareTo(d,x,y) < 0){
-            return getRight().prev(d,x,y);
-        }
 
-        else if (getData().compareTo(d,x,y) > 0 /*&& Rtree.getData().compareTo(d,x,y)>=0*/){
-            return getLeft().prev(d,x,y);
-        }
-        else if (getData().compareTo(d,x,y)==0){
-            return getLeft().getData();
-        }
-
-        return null;
-        /*else if (getLeft().isEmpty())
-            return segment;
-        else return getLeft().searchMax();*/
+        return prev;
     }
 
     public Segment searchMin() {
