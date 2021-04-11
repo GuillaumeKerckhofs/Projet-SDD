@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Algo {
 
     static T_Tree t;
-    static ArrayList<Q_Node> intersection=new ArrayList<Q_Node>();
+    static ArrayList<Point> intersection=new ArrayList<Point>();
     static Point lastEvent;
     static Q_Tree q;
 
@@ -33,6 +33,8 @@ public class Algo {
 
         while (q.getRoot().getPoint()!=null){
 
+            System.out.println("================ new point remove from Q ====================");
+
             q.removeNextEvent();
 
             System.out.println("last remove point = "+q.getLastRemoved().getPoint());
@@ -42,8 +44,9 @@ public class Algo {
 
             HandleEventPoint(p);
         }
-
+        System.out.println(intersection);
         System.out.println("fin");
+        t.print(0,lastEvent.getY());
     }
 
     public static void HandleEventPoint(Q_Node p){
@@ -56,8 +59,7 @@ public class Algo {
         Segment Sp1= null;
         Segment Sp2= null;
         ArrayList<Segment> Up=p.getSegments();
-        //System.out.println("ici");
-        //System.out.println(p.getPoint());
+
         for (Segment segment : Up )
             System.out.println("segment Up= "+segment);
 
@@ -72,29 +74,35 @@ public class Algo {
 
         if (Lp.size()+Up.size()+Cp.size()>1)
 
-            intersection.add(p);
+            intersection.add(p.getPoint());
 
 
-        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+
 
         System.out.println("up= "+Up.size());
         System.out.println("Cp= "+Cp.size());
         System.out.println("Lp= "+Lp);
         System.out.println("lastEventX "+lastEvent.getX());
         System.out.println("lastEventY "+lastEvent.getY());
-        //t.print(0);
+        System.out.println("");
 
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 
-        //System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-        //System.out.println("arbre 1");
-        //t.print(0);
-        //System.out.println("----------------------------------------------------------");
-        for (Segment segment : Lp )
+        //t.print(0,lastEvent.getY());
+        System.out.println("");
+
+        for (Segment segment : Lp ){
+            System.out.println("on veut supprimer "+segment);
+            System.out.println("");
             t.suppress(segment,lastEvent.getX(),lastEvent.getY());
+        }
+
 
         //System.out.println("==========+");
-        for (Segment segment : Cp )
-            t.suppress(segment,lastEvent.getX(),lastEvent.getY());
+        for (Segment segment : Cp ){
+            System.out.println("on veut supprimer "+segment);
+            System.out.println("");
+            t.suppress(segment,lastEvent.getX(),lastEvent.getY());}
 
         lastEvent=p.getPoint();
 
@@ -108,9 +116,10 @@ public class Algo {
                 max=segment;
             }
             t.insert(segment);
-            System.out.println("insert"+segment);}
+            System.out.println("insert "+segment);
+            System.out.println("");}
 
-        //System.out.println("==========+");
+
         for (Segment segment : Cp ){
             if(min==null || segment.compareTo(min,lastEvent.getX(),lastEvent.getY())<0){
                 min=segment;
@@ -119,14 +128,11 @@ public class Algo {
                 max=segment;
             }
             t.reinsert(segment,lastEvent.getX(),lastEvent.getY());
-            System.out.println("reinsert"+segment);
+            System.out.println("reinsert "+segment);
         }
-
-        //System.out.println("arbre 2");
-        //t.print(0);
+        t.print(0,lastEvent.getY());
         System.out.println("");
 
-        //System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 
         if(Up.size()+Cp.size()==0) {
 
@@ -136,27 +142,6 @@ public class Algo {
                 FindNewEvent(Sl,Sr,p);}
 
         else{
-            /*t.print(0);
-           //System.out.println(p.getPoint());
-
-            Sp1=t.LeftMostSegment1(Up,Cp,lastEvent.getX(),lastEvent.getY());
-            //System.out.println("++++++++++++++++++++++++++++++++++++");
-            if (Sp1!=null){
-            Sl=t.searchPrev(Sp1,lastEvent.getX(),lastEvent.getY());}
-
-            //System.out.println("Sl="+Sl);
-            if (Sl!=null)
-                FindNewEvent(Sp1,Sl,p);
-
-            //System.out.println("++++++++++++++++++++++++++++++++++++----");
-            Sp2=t.RightMostSegment1(Up,Cp,lastEvent.getX(),lastEvent.getY());
-            //System.out.println("++++++++++++++++++++++++++++++++++++****");
-            if (Sp2!=null){
-            Sr=t.searchSucc(Sp2,lastEvent.getX(),lastEvent.getY());}
-            //System.out.println("Sr="+Sr);
-            if (Sr!=null)
-                FindNewEvent(Sp2,Sr,p);*/
-
 
             System.out.println("max = "+max);
             System.out.println("min = "+min);
@@ -183,12 +168,15 @@ public class Algo {
         System.out.println("Sl= "+Sl);
         System.out.println("Sr= "+Sr);
         Point intersect=Sl.isIntersectBy(Sr);
-        System.out.println("intersect"+intersect);
+        System.out.println("intersect = "+intersect);
         if (intersect!=null){
             if ((intersect.getY()==p.getPoint().getY()&&intersect.getX()>p.getPoint().getX())||intersect.getY()<p.getPoint().getY()){
                 q.startInsertion(intersect,null);
-
             }
         }
+    }
+
+    public static ArrayList<Point> getIntersection() {
+        return intersection;
     }
 }

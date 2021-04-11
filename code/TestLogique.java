@@ -127,8 +127,8 @@ public class TestLogique {
 
         //T.print(0);
         //System.out.println("**********************************");
-        //Algo.FindIntersections(Map.getSegmentList());
-        Algo.FindIntersections(list);
+        Algo.FindIntersections(Map.getSegmentList());
+        //Algo.FindIntersections(list);
 
     }
 }

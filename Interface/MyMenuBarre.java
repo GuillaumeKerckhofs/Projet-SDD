@@ -5,17 +5,18 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static Interface.MyWindow.*;
 
-import static code.TestGraphique.*;
 
 
-public class MyMenuBarre extends MyPanel implements ActionListener {
+public class MyMenuBarre extends JPanel implements ActionListener {
 
     JMenu menu, secondMenu,thirdMenu;
-    JMenuItem open, save,fastSave, i3, zoomIn, zoomOut, exit;
+    JMenuItem open, save,fastSave, i3,exit,addSegment;
 
     public MyMenuBarre(JFrame fenetre){
 
+        final JLabel label = new JLabel();
         JMenuBar mb=new JMenuBar();
         menu=new JMenu("File");
         secondMenu=new JMenu("Zoom");
@@ -25,9 +26,8 @@ public class MyMenuBarre extends MyPanel implements ActionListener {
         fastSave=new JMenuItem("Fast save");
         save=new JMenuItem("Save");
         i3=new JMenuItem("modify");
-        zoomIn=new JMenuItem("zoom in");
-        zoomOut=new JMenuItem("zoom out");
         exit =new JMenuItem("Quit");
+        addSegment =new JMenuItem("Add a segment");
 
         open.addActionListener(this);
         save.addActionListener(this);
@@ -55,28 +55,33 @@ public class MyMenuBarre extends MyPanel implements ActionListener {
         });
         mb.add(save);
 
-        zoomIn.addActionListener(new ActionListener() {
+
+        addSegment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                getMp().setZoom(getMp().getZoomFactor()*1.5);
+                String result = (String)JOptionPane.showInputDialog(
+                        fenetre,
+                        "Type a new segment : x1 y1 x2 y2",
+                        "new segment",
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null,
+                        "0.00 0.00 1.00 1.00"
+                );
+                if(result != null && result.length() > 0){
+                    label.setText("You selected:" + result);
+                }else {
+                    label.setText("None selected");
+                }
             }
         });
-        mb.add(zoomIn);
-
-        zoomOut.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                getMp().setZoom(getMp().getZoomFactor()*0.5);
-            }
-        });
-        mb.add(zoomOut);
+        mb.add(addSegment);
 
 
         menu.add(open);menu.add(fastSave); menu.add(save); menu.add(i3);
 
-        secondMenu.add(zoomIn); secondMenu.add(zoomOut);
+        secondMenu.add(addSegment);
 
         thirdMenu.add(exit);
         mb.add(menu);
@@ -90,8 +95,6 @@ public class MyMenuBarre extends MyPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         Object source = e.getSource();
         if (source== open){System.out.println(1);}
-        else if (source== zoomIn){ this.repaint();}
-        else if (source==zoomOut){System.out.println(2);}
         else if (source == exit){System.exit(0);}
     }
 

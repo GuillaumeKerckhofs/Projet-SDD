@@ -77,6 +77,7 @@ public class T_Tree {
 
     public void reinsert (Segment data, float x, float y){
         T_Tree T = new T_Tree();
+        System.out.println("-------------------------------- reinsert  --------------------------------------");
         insert2(T, data,x, y);
     }
 
@@ -84,6 +85,11 @@ public class T_Tree {
 
     public void insert2(T_Tree node,Segment data,float x,float y){
 
+
+
+        System.out.println("-------------------------------- insert  --------------------------------------");
+        print(0,y);
+        System.out.println("à insert = "+data);
         if (getData()!=data){
             if (getData()==null){
                 insertEmpty(data);
@@ -192,8 +198,7 @@ public class T_Tree {
     }
 
     public void suppress (Segment data,float x,float y){
-        System.out.println("------------------------------------ suppress ---------------------------------------");
-        System.out.println("à supprimer = "+data);
+
         T_Tree T = new T_Tree();
         suppress2(data,T,x,y);
     }
@@ -205,9 +210,10 @@ public class T_Tree {
         System.out.println("node ="+node.getData());
         System.out.println("compare ="+getData().compareTo(data,x,y));
         System.out.println("y ="+y);
-        print(0);
+        print(0,y);
 
-        System.out.println("-------------------------------- suppress 2 --------------------------------------");
+        System.out.println("-------------------------------- suppress  --------------------------------------");
+        System.out.println("à supprimer = "+data);
 
         if (!isEmpty()){
 
@@ -268,11 +274,8 @@ public class T_Tree {
     public void SegmentsContainPoint(Point p, ArrayList<Segment> Cp, ArrayList<Segment> Lp) {
         if (!isEmpty()) {
             //print(0);
-            System.out.println("===>");
-            System.out.println(getData());
-            System.out.println(p);
+
             if (getData().contain(p)) {
-                System.out.println("oui");
                 if (isLeaf()) {
 
 
@@ -285,7 +288,7 @@ public class T_Tree {
                     getLeft().SegmentsContainPoint(p, Cp, Lp);
                 }
             } else {
-                System.out.println("non");
+
                 if (getData().getCurrentPoint(p.getY()) < p.getX()) {
                     getRight().SegmentsContainPoint(p, Cp, Lp);
                 }
@@ -363,10 +366,7 @@ public class T_Tree {
     }
 
     public Segment prev(Segment d, float x, float y) {
-        //System.out.println("000000000000000000000000000000000000000000000000000000000000000000");
-        //print(0);
-        //System.out.println("data ici= "+d);
-        //System.out.println("getdata ici= "+getData());
+
         if (isEmpty()) {
             return null;
         }
@@ -375,37 +375,23 @@ public class T_Tree {
         }
 
         else if (getData().compareTo(d,x,y) < 0 && Rtree.getData().compareTo(d,x,y)==0&&!Rtree.getLeft().isEmpty()&&Rtree.getLeft().getData().compareTo(d,x,y)<0){
-
-            return Rtree.getLeft().prev(d,x,y);}
+            return Rtree.getLeft().getData();}
 
          else if (getData().compareTo(d,x,y) < 0 && Rtree.getData().compareTo(d,x,y)==0){
-
-             return Ltree.prev(d,x,y);
-
-
+             return getData();
         }
 
         else if (getData().compareTo(d,x,y) < 0){
-            //System.out.println("D ="+getData());
-            //System.out.println("Data ="+d);
-            //System.out.println("D "+getData().getCurrentPoint(y)+"<"+"d "+d.getCurrentPoint(y));
-            //System.out.println("");
             return getRight().prev(d,x,y);
         }
 
         else if (getData().compareTo(d,x,y) > 0 /*&& Rtree.getData().compareTo(d,x,y)>=0*/){
-            //System.out.println("D ="+getData());
-            //System.out.println("Data ="+d);
-            //System.out.println("D <data");
-            //System.out.println("");
-            //System.out.println("D "+getData().getCurrentPoint(y)+">"+"d "+d.getCurrentPoint(y));
             return getLeft().prev(d,x,y);
         }
         else if (getData().compareTo(d,x,y)==0){
-            //System.out.println("D "+getData().getCurrentPoint(y)+"="+"d "+d.getCurrentPoint(y));
-            return getLeft().prev(d,x,y);
+            return getLeft().getData();
         }
-        //System.out.println("#################################");
+
         return null;
         /*else if (getLeft().isEmpty())
             return segment;
@@ -430,19 +416,19 @@ public class T_Tree {
 
 
 
-    public void print(int space) {   // a nettoyer quand fini
+    public void print(int space,float y) {   // a nettoyer quand fini
         if (!isEmpty()) {
 
             space+=5;
-            Rtree.print(space);
+            Rtree.print(space,y);
             System.out.print("\n");
             for(int i = 1;i<space;i++){
                 System.out.print(" ");
             }
 
-            System.out.println(data +" => "+space/5);
+            System.out.println(data+" ("+data.getCurrentPoint(y)+""+y+")  => "+space/5);
 
-            Ltree.print(space);
+            Ltree.print(space,y);
 
         }
     }
