@@ -320,7 +320,6 @@ public class T_Tree {
 
         return little;
     }
-    }
 
     public Segment NrightP(Point p,Segment little){
         float y=p.getY();
