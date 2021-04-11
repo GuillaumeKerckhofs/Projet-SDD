@@ -10,6 +10,11 @@ public class Algo {
     static Q_Tree q;
     static ArrayList<Point> printQ=new ArrayList<Point>();
 
+    /**
+     * sur base d'une liste de segment, initialise la queue Q avec les points des segments et ensuite fait appel
+     * à HandleEventPoint
+     * @param segmentList liste des segments
+     */
     public static void FindIntersections(ArrayList<Segment> segmentList) {
         q = new Q_Tree();
         Segment segment;
@@ -28,6 +33,18 @@ public class Algo {
         }
     }
 
+    /**
+     * Récupère l'event point p, initialise U(p) avec les segments du node P
+     * Cherche les segments passant par p dans T est les ajoute dans C(p) ou L(p)
+     * Retire les segments qui sont dans C(p) et L(p) de T via le x et le y du lastEvent
+     * on change le lastEvent par le point de p
+     * On ajoute les segments de C(p) et U(p) dans T avec le x et le y du nouvel lastEvent
+     * On calcule aussi le min et le max
+     * si C(p) U U(p)==0, on cherche les segments les plus proche du point P dans T avec NrightP et NleftP
+     * on fait un appel sur findNewEvent ensuite
+     * sinon on cherche le prédécesseur de min dans T et le successeur de max dans T et on fait un appel sur findNewEvent
+     * @param p node contenant le nouvel eventPoint ainsi que la liste de segment U(p)
+     */
     public static void HandleEventPoint(Q_Node p){
         Segment Sl = null;
         Segment Sr= null;
@@ -87,6 +104,14 @@ public class Algo {
         }
     }
 
+    /**
+     * calcul si il y a une intersection entre Sl et Sr et vérifie que ce point n'as pas de Y plus grand
+     * que le lastEvent,si le Y est égal, vérifie que le x est plus petit
+     * ajoute l'intersection dans Q
+     * @param Sl segment de gauche
+     * @param Sr segment de droite
+     * @param p node contenant le lastEvent point
+     */
     public static void FindNewEvent(Segment Sl, Segment Sr,Q_Node p){
         Point intersect=Sl.isIntersectBy(Sr);
 
