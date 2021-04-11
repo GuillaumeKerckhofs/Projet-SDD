@@ -124,7 +124,7 @@ public class Segment{
     public boolean contain (Point p){
         if (!isHorizontal()){
             float x=this.getCurrentPoint(p.getY());
-            if ((Math.abs(x-p.getX())<1e-2)){
+            if ((Math.abs(x-p.getX())<1e-4)){
                 return true;
             }
         }
@@ -137,28 +137,16 @@ public class Segment{
     }
 
     public float getCurrentPoint(float y) {   // à faire
-        float x1=upper_point.getX();
-        float x2=lower_point.getX();
-        float y1=upper_point.getY();
-        float y2=lower_point.getY();
+        float x1 = upper_point.getX();
+        float x2 = lower_point.getX();
+        float y1 = upper_point.getY();
+        float y2 = lower_point.getY();
 
 
-        double x=x1+((y-y1)*(x2-x1))/(y2-y1);
-        x= Math.round(x*100.0)/100.0;
-        return ((float) x);
+        double x = x1 + ((y - y1) * (x2 - x1)) / (y2 - y1);
+        x = Math.round(x * 10000.0) / 10000.0;
+        return ( (float) x);
 
-/*
-        System.out.println("");
-        System.out.println("");
-        System.out.println("currentpoint "+x);
-        System.out.println("X1 "+upper_point.getX());
-        System.out.println("Y1 "+upper_point.getY());
-        System.out.println("X2 "+lower_point.getX());
-        System.out.println("Y2 "+lower_point.getY());
-        System.out.println("current Y "+y);
-        System.out.println("");
-        System.out.println("");
-*/
     }
 
     public boolean isHorizontal(){
@@ -200,8 +188,8 @@ public class Segment{
 
 
 /*
-            x= Math.round(x*100.0)/100.0;
-            y= Math.round(y*100.0)/100.0;
+            x= Math.round(x*10000.0)/10000.0;
+            y= Math.round(y*10000.0)/10000.0;
 */
             System.out.println("========================== test intersect =========================");
             System.out.println(x);

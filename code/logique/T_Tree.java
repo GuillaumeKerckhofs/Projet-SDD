@@ -286,11 +286,15 @@ public class T_Tree {
                 if (getData().getCurrentPoint(p.getY()) < p.getX()) {
                     getRight().SegmentsContainPoint(p, Cp, Lp);
                 }
-                else {
-                    getRight().SegmentsContainPoint(p, Cp, Lp);
+                else if (getData().getCurrentPoint(p.getY()) > p.getX()) {
+                    getLeft().SegmentsContainPoint(p, Cp, Lp);
+                }
+                else  {
+                    getRight().SegmentsContainPoint(p, Cp, Lp);  // <= utile? &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
                     getLeft().SegmentsContainPoint(p, Cp, Lp);
 
                 }
+
             }
         }
     }

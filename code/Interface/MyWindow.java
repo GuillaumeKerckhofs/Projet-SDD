@@ -21,7 +21,7 @@ public class MyWindow extends JFrame {
 
     public MyWindow(){
 
-        super("Tuturu paradox");
+        super("Intersection finder");
         int width = 860;
         int height = 700;
 
@@ -36,7 +36,7 @@ public class MyWindow extends JFrame {
 
 
 
-        pane1.setPreferredSize(new Dimension(width-110,0));
+        pane1.setPreferredSize(new Dimension(width,0));
 
         contentPane.add(pane1,BorderLayout.WEST);
 
@@ -93,7 +93,7 @@ public class MyWindow extends JFrame {
 
         toolBar.add(suppSegment);
 
-        JButton prevSweepline = new JButton("previous");
+        JButton prevSweepline = new JButton("previous step");
         prevSweepline.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -107,7 +107,7 @@ public class MyWindow extends JFrame {
         toolBar.add(prevSweepline);
 
 
-        JButton nextSweepline = new JButton("next");
+        JButton nextSweepline = new JButton("next step");
         nextSweepline.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
