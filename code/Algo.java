@@ -8,6 +8,7 @@ public class Algo {
     static ArrayList<Point> intersection=new ArrayList<Point>();
     static Point lastEvent;
     static Q_Tree q;
+    static ArrayList<Point> printQ=new ArrayList<Point>();
 
     public static void FindIntersections(ArrayList<Segment> segmentList){
 
@@ -35,13 +36,14 @@ public class Algo {
 
             System.out.println("================ new point remove from Q ====================");
 
-            q.removeNextEvent();
+
 
             System.out.println("last remove point = "+q.getLastRemoved().getPoint());
 
             Q_Node p =q.getLastRemoved();
             System.out.println("p.seg ="+p.getSegments());
-
+            q.removeNextEvent();
+            printQ.add(p.getPoint());
             HandleEventPoint(p);
         }
         System.out.println(intersection);
@@ -135,9 +137,12 @@ public class Algo {
 
 
         if(Up.size()+Cp.size()==0) {
-
+            System.out.println("[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[");
             Sl=t.NleftP(p.getPoint(),null);
             Sr=t.NrightP(p.getPoint(),null);
+            System.out.println("Sl= "+Sl);
+            System.out.println("Sr= "+Sr);
+            System.out.println("[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[");
             if (Sl!=null&&Sr!=null)
                 FindNewEvent(Sl,Sr,p);}
 
@@ -148,6 +153,9 @@ public class Algo {
 
             Sl=t.prev(min,null,lastEvent.getX(),lastEvent.getY());
             Sr=t.succ(max,null,lastEvent.getX(),lastEvent.getY());
+
+            System.out.println("Sl= "+Sl);
+            System.out.println("Sr= "+Sr);
 
             if( Sl!=null&&min!=null  && !Sl.isEquals(min)) {
                 FindNewEvent(Sl, min, p);
@@ -165,8 +173,7 @@ public class Algo {
         System.out.println("");
         System.out.println("======= find new event ==========");
         System.out.println("");
-        System.out.println("Sl= "+Sl);
-        System.out.println("Sr= "+Sr);
+
         Point intersect=Sl.isIntersectBy(Sr);
         System.out.println("intersect = "+intersect);
         if (intersect!=null){
@@ -182,5 +189,9 @@ public class Algo {
 
     public static void setIntersection(ArrayList<Point> intersection) {
         Algo.intersection = intersection;
+    }
+
+    public static ArrayList<Point> getPrintQ() {
+        return printQ;
     }
 }

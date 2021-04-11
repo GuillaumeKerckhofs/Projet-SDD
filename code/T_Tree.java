@@ -306,11 +306,6 @@ public class T_Tree {
             return little;
 
         else {
-
-            //lorsque les segments passent pas par le point
-            //System.out.println(getData().getCurrentPoint(p.getY()));
-            //System.out.println((p.getY()));
-
             if(getData().getCurrentPoint(p.getY())>p.getX()){
                 Ltree.NleftP(p,little);
             }
@@ -329,10 +324,6 @@ public class T_Tree {
 
         else {
 
-            //lorsque les segments passent pas par le point
-            //System.out.println(getData().getCurrentPoint(p.getY()));
-            //System.out.println((p.getY()));
-
             if(getData().getCurrentPoint(p.getY())>p.getX()){ //
                 Ltree.NrightP(p,getData());
             }
@@ -345,19 +336,27 @@ public class T_Tree {
 
     public Segment succ(Segment d,Segment succ, float x, float y) {
         //System.out.println("segment = "+d);
+        this.print(0,y);
         if (isEmpty()) {
             return null;
         } else if (isLeaf() && getData().compareTo(d,x,y)>0) {
+            System.out.println("data >");
+            System.out.println(d);
+            System.out.println(getData());
             return getData();
+
         }
         else if (isLeaf() && getData().compareTo(d,x,y)<=0){
+            System.out.println("data <=");
             return succ;
         }
         else if (getData().compareTo(d,x,y)>0){
-            return Ltree.prev(d,getData(),x,y);
+            System.out.println("allo");
+            return Ltree.succ(d,getData(),x,y);
         }
         else if (getData().compareTo(d,x,y)<=0){
-            return Rtree.prev(d,prev,x,y);
+            System.out.println("alhuile");
+            return Rtree.succ(d,succ,x,y);
         }
 
 

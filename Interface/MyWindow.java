@@ -82,8 +82,24 @@ public class MyWindow extends JFrame {
             }
         });
 
-
         toolBar.add(addSegment);
+
+        JButton prevSweepline = new JButton("previous");
+        prevSweepline.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {}
+        });
+
+        toolBar.add(prevSweepline);
+
+
+        JButton nextSweepline = new JButton("next");
+        nextSweepline.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {}
+        });
+
+        toolBar.add(nextSweepline);
 
         return toolBar;
     }

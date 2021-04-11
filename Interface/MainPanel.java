@@ -38,6 +38,7 @@ import javax.swing.JPanel;
         private double yOffset = 0;
         private int xDiff;
         private int yDiff;
+        private int sweeplinecount =0;
         private Point startPoint;
         ArrayList<code.Point> b = new ArrayList<code.Point>();
 
@@ -48,8 +49,8 @@ import javax.swing.JPanel;
 
         }
 
-        public void setB (ArrayList<code.Point> b) {
-            this.b=b;
+        public void setSweeplinecount(int sweeplinecount) {
+            this.sweeplinecount = sweeplinecount;
         }
 
         private void initComponent() {
@@ -127,6 +128,11 @@ import javax.swing.JPanel;
             Shape axe_y = new Line2D.Float(0+100,-10000+300,0+100,10000+300);
             g2.setColor(Color.lightGray);
             g2.draw(axe_y);
+
+
+            Shape sweepline = new Line2D.Float(0+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300,1000+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300);
+            g2.setColor(Color.blue);
+            g2.draw(sweepline);
 
         }
 
