@@ -358,7 +358,7 @@ public class T_Tree {
         }
 
 
-        return prev;
+        return succ;
     }
 
     public Segment prev(Segment d,Segment prev, float x, float y) {
