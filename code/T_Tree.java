@@ -350,6 +350,9 @@ public class T_Tree {
         } else if (isLeaf() && getData().compareTo(d,x,y)>0) {
             return getData();
         }
+        else if (isLeaf() && getData().compareTo(d,x,y)<=0){
+            return succ;
+        }
         else if (getData().compareTo(d,x,y)>0){
             return Ltree.prev(d,getData(),x,y);
         }
@@ -368,6 +371,9 @@ public class T_Tree {
         }
         else if (isLeaf() && getData().compareTo(d,x,y)<0){
             return getData();
+        }
+        else if (isLeaf() && getData().compareTo(d,x,y)>=0){
+            return prev;
         }
         else if (getData().compareTo(d,x,y)<0){
             return Rtree.prev(d,getData(),x,y);
