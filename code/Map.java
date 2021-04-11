@@ -16,7 +16,7 @@ public class Map {
     public Map(/*String map*/){
         try {
             if (openPath==null){
-            loadPoint("cartes/fichier1.txt");}
+            loadPoint("cartes/fichier0.txt");}
             else{loadPoint(openPath);}
         } catch (IOException e) {
             e.printStackTrace();

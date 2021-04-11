@@ -31,7 +31,7 @@ public class MyWindow extends JFrame {
         MyMenuBarre menu =new MyMenuBarre(this);
 
         JPanel contentPane = (JPanel) this.getContentPane();
-        contentPane.add(createtoolBar(),BorderLayout.EAST);
+        contentPane.add(createtoolBar(),BorderLayout.NORTH);
 
 
 
@@ -87,8 +87,13 @@ public class MyWindow extends JFrame {
         JButton prevSweepline = new JButton("previous");
         prevSweepline.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {}
+            public void actionPerformed(ActionEvent e) {
+                int i=mp.getSweeplinecount()-1;
+                mp.setSweeplinecount(i);
+                mp.repaint();
+            }
         });
+        prevSweepline.setAlignmentY(getWidth()-100);
 
         toolBar.add(prevSweepline);
 
@@ -96,8 +101,14 @@ public class MyWindow extends JFrame {
         JButton nextSweepline = new JButton("next");
         nextSweepline.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {}
+            public void actionPerformed(ActionEvent e) {
+                int i=mp.getSweeplinecount()+1;
+                mp.setSweeplinecount(i);
+                mp.repaint();
+            }
         });
+
+        nextSweepline.setAlignmentY(getWidth()-100);
 
         toolBar.add(nextSweepline);
 

@@ -53,6 +53,10 @@ import javax.swing.JPanel;
             this.sweeplinecount = sweeplinecount;
         }
 
+        public int getSweeplinecount() {
+            return sweeplinecount;
+        }
+
         private void initComponent() {
             addMouseWheelListener(this);
             addMouseMotionListener(this);
@@ -121,6 +125,31 @@ import javax.swing.JPanel;
                 g2.draw(l2);
 
             }
+
+            for (int i=0; i<100;i++){
+                Shape l2 = new Line2D.Float(i*10+100,-0+300,i*10+100,-1+300);
+                g2.setColor(Color.lightGray);
+                g2.draw(l2);
+
+                Font myFont = new Font ("Courier New", 1, 3);
+                g.setFont (myFont);
+                g.setColor(Color.black);
+                g.drawString(String.valueOf(i*10), (i*10)+98,0+300+5);
+            }
+
+            for (int i=0; i<100;i++){
+                Shape l2 = new Line2D.Float(-0+100,i*10-300,-1+100,i*10-300);
+                g2.setColor(Color.lightGray);
+                g2.draw(l2);
+
+                Font myFont = new Font ("Courier New", 1, 3);
+                g.setFont (myFont);
+                g.setColor(Color.black);
+                g.drawString(String.valueOf(i*10), -7+100,-(i*10)+300);
+
+            }
+
+
             Shape axe_x = new Line2D.Float(-10000+100,0+300,100000+100,0+300);
             g2.setColor(Color.lightGray);
             g2.draw(axe_x);
@@ -129,10 +158,19 @@ import javax.swing.JPanel;
             g2.setColor(Color.lightGray);
             g2.draw(axe_y);
 
+            if (sweeplinecount<0){
+                sweeplinecount=0;
+            }
+            else if (sweeplinecount>=Algo.getPrintQ().size()){
+                sweeplinecount=Algo.getPrintQ().size()-1;
+            }
 
             Shape sweepline = new Line2D.Float(0+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300,1000+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300);
             g2.setColor(Color.blue);
             g2.draw(sweepline);
+            Shape point = new Line2D.Float(Algo.getPrintQ().get(sweeplinecount).getX()+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300,Algo.getPrintQ().get(sweeplinecount).getX()+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300);
+            g2.setColor(Color.green);
+            g2.draw(point);
 
         }
 

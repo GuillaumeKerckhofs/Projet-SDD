@@ -205,25 +205,19 @@ public class T_Tree {
 
     public void suppress2 (Segment data,T_Tree node,float x,float y){
 
-        System.out.println("getdata ="+getData());
-        System.out.println("data ="+data);
-        System.out.println("node ="+node.getData());
-        System.out.println("compare ="+getData().compareTo(data,x,y));
-        System.out.println("y ="+y);
+        /*
         print(0,y);
 
         System.out.println("-------------------------------- suppress  --------------------------------------");
-        System.out.println("à supprimer = "+data);
+        System.out.println("à supprimer = "+data);*/
 
         if (!isEmpty()){
 
              if (isLeaf()){
 
-                 System.out.println("-------------------------------- feuille --------------------------------------");
-                 System.out.println("getdata ="+getData());
-                 System.out.println("data ="+data);
+
                 setData(null);
-                 System.out.println("-------------------------------- feuille --------------------------------------");
+
 
 
             }
@@ -300,6 +294,7 @@ public class T_Tree {
     }
 
     public Segment NleftP(Point p,Segment little){
+
         float y=p.getY();
         if (isEmpty()) {
             return null;
@@ -311,18 +306,19 @@ public class T_Tree {
             return little;
         }
         else if (getData().getCurrentPoint(y)<p.getX()){
-            return Rtree.NrightP(p,getData());
+            return Rtree.NleftP(p,getData());
         }
         else if (getData().getCurrentPoint(y)>p.getX()){
-            return Ltree.NrightP(p,little);
+            return Ltree.NleftP(p,little);
         }
 
 
         return little;
     }
-    }
+
 
     public Segment NrightP(Point p,Segment little){
+
         float y=p.getY();
         if (isEmpty()) {
             return null;
@@ -345,27 +341,24 @@ public class T_Tree {
     }
 
     public Segment succ(Segment d,Segment succ, float x, float y) {
-        //System.out.println("segment = "+d);
-        this.print(0,y);
+
         if (isEmpty()) {
             return null;
         } else if (isLeaf() && getData().compareTo(d,x,y)>0) {
-            System.out.println("data >");
-            System.out.println(d);
-            System.out.println(getData());
+
             return getData();
 
         }
         else if (isLeaf() && getData().compareTo(d,x,y)<=0){
-            System.out.println("data <=");
+
             return succ;
         }
         else if (getData().compareTo(d,x,y)>0){
-            System.out.println("allo");
+
             return Ltree.succ(d,getData(),x,y);
         }
         else if (getData().compareTo(d,x,y)<=0){
-            System.out.println("alhuile");
+
             return Rtree.succ(d,succ,x,y);
         }
 
@@ -423,7 +416,7 @@ public class T_Tree {
                 System.out.print(" ");
             }
 
-            System.out.println(data+" ("+data.getCurrentPoint(y)+""+y+")  => "+space/5);
+            System.out.println(data+" ("+data.getCurrentPoint(y)+";"+y+")  => "+space/5);
 
             Ltree.print(space,y);
 
