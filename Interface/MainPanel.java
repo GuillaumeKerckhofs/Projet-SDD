@@ -234,6 +234,8 @@ import javax.swing.JPanel;
 
         }
 
-
+        public void setB(ArrayList<code.Point> b) {
+            this.b = b;
+        }
     }
 

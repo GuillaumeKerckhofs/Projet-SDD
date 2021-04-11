@@ -23,6 +23,21 @@ public class Map {
         }
         //showMap();
     }
+
+    public static void supprSegment(Segment segment) {
+        ArrayList<Segment> list = getSegmentList();
+        System.out.println(list);
+        if (!list.isEmpty()){
+            for (Segment i:list){
+                if (i.isEquals(segment)){
+                    list.remove(i);
+                    break;
+                }
+            }
+            System.out.println(list);
+        }
+    }
+
     private void loadPoint(String map) throws IOException{
         BufferedReader lecteurAvecBuffer = null;
         String line;
@@ -123,8 +138,15 @@ public class Map {
         return savePath;
     }
 
+    public static void setSavePath(String savePath) {
+        Map.savePath = savePath;
+    }
+
     public static ArrayList<Segment> getSegmentList() {
         return segmentList;
     }
 
+    public static void setSegmentList(ArrayList<Segment> segmentList) {
+        Map.segmentList = segmentList;
+    }
 }

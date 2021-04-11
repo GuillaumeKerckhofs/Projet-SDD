@@ -2,6 +2,7 @@ package Interface;
 
 import code.Algo;
 import code.Map;
+import code.Point;
 import code.Segment;
 
 import javax.swing.*;
@@ -46,43 +47,51 @@ public class MyWindow extends JFrame {
     private JToolBar createtoolBar(){
         JToolBar toolBar = new JToolBar();
 
+        JButton newMap = new JButton("new map");
+
+        newMap.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                map.setSavePath(null);
+                map.setSegmentList(new ArrayList<Segment>());
+                Algo.setPrintQ(new ArrayList<Point>());
+                Algo.setIntersection(new ArrayList<Point>());
+                newSegment(toolBar);
+                Algo.FindIntersections(Map.getSegmentList());
+                mp.repaint();
+            }
+        });
+
+        toolBar.add(newMap);
+
+
         JButton addSegment = new JButton("add segment");
 
         addSegment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                newSegment(toolBar);
+                Algo.FindIntersections(Map.getSegmentList());
+                mp.repaint();
 
-                String result = (String)JOptionPane.showInputDialog(
-                        toolBar,
-                        "Type a new segment : x1 y1 x2 y2",
-                        "new segment",
-                        JOptionPane.PLAIN_MESSAGE,
-                        null,
-                        null,
-                        "0.00 0.00 1.00 1.00"
-                );
-                if(result != null && result.length() > 0){
-                    try {
-                        String point[] = result.split(" ");
-                        ArrayList<Float> seg = new ArrayList<Float>();
-                        for (int i = 0; i < 4; i++)
-                            seg.add(Float.parseFloat(point[i]));
-                        //System.out.println(seg);
-                        Segment segment = new Segment((Float) seg.get(0), (Float) seg.get(1), (Float) seg.get(2), (Float) seg.get(3));
-                        Map.addSegment(segment);
-                        Algo.FindIntersections(Map.getSegmentList());
-                        mp.repaint();
-                    } catch (NumberFormatException numberFormatException) {
-                        numberFormatException.printStackTrace();
-                    }
-
-                }else {
-
-                }
             }
         });
 
         toolBar.add(addSegment);
+
+        JButton suppSegment = new JButton("remove segment");
+
+        suppSegment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                supprSegment(toolBar);
+                //Algo.FindIntersections(Map.getSegmentList());
+                mp.repaint();
+
+            }
+        });
+
+        toolBar.add(suppSegment);
 
         JButton prevSweepline = new JButton("previous");
         prevSweepline.addActionListener(new ActionListener() {
@@ -125,6 +134,67 @@ public class MyWindow extends JFrame {
 
     }
 
+
+    public void supprSegment(JToolBar toolBar){
+        String result = (String)JOptionPane.showInputDialog(
+                toolBar,
+                "Type a segment : x1 y1 x2 y2",
+                "remove segment",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "0.00 0.00 1.00 1.00"
+        );
+        if(result != null && result.length() > 0) {
+            try {
+                String point[] = result.split(" ");
+                ArrayList<Float> seg = new ArrayList<Float>();
+                for (int i = 0; i < 4; i++)
+                    try {
+                        seg.add(Float.parseFloat(point[i]));
+                    } catch (NumberFormatException numberFormatException) {
+                        numberFormatException.printStackTrace();
+                    }
+                //System.out.println(seg);
+                Segment segment = new Segment((float) seg.get(0), (float) seg.get(1), (float) seg.get(2), (float) seg.get(3));
+                Map.supprSegment(segment);
+
+            } catch (NumberFormatException numberFormatException) {
+                numberFormatException.printStackTrace();
+            }
+        }
+    }
+
+    public void newSegment(JToolBar toolBar){
+        String result = (String)JOptionPane.showInputDialog(
+                toolBar,
+                "Type a new segment : x1 y1 x2 y2",
+                "new segment",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "0.00 0.00 1.00 1.00"
+        );
+        if(result != null && result.length() > 0) {
+            try {
+                String point[] = result.split(" ");
+                ArrayList<Float> seg = new ArrayList<Float>();
+                for (int i = 0; i < 4; i++)
+                    try {
+                        seg.add(Float.parseFloat(point[i]));
+                    } catch (NumberFormatException numberFormatException) {
+                        numberFormatException.printStackTrace();
+                    }
+                //System.out.println(seg);
+                Segment segment = new Segment((float) seg.get(0), (float) seg.get(1), (float) seg.get(2), (float) seg.get(3));
+                Map.addSegment(segment);
+
+            } catch (NumberFormatException numberFormatException) {
+                numberFormatException.printStackTrace();
+            }
+        }
+
+    }
 
 
     public static MainPanel getMp() {

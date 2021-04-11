@@ -191,6 +191,10 @@ public class Algo {
         Algo.intersection = intersection;
     }
 
+    public static void setPrintQ(ArrayList<Point> printQ) {
+        Algo.printQ = printQ;
+    }
+
     public static ArrayList<Point> getPrintQ() {
         return printQ;
     }
