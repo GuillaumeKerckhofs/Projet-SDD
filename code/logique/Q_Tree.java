@@ -4,6 +4,10 @@ public class Q_Tree {
     private Q_Node root;
     private Q_Node lastRemoved;
 
+    /*
+    Constructeur d'un arbre Q
+    @param root racine de l'arbre
+     */
     public Q_Tree(Q_Node root) {
         this.root = root;
         this.lastRemoved=new Q_Node();
@@ -18,10 +22,24 @@ public class Q_Tree {
     }
 
 
+    /*
+    fait appel à la méthode insertion
+    @param point a rajouté dans Q
+    @param segment a rajouté à la liste s'il existe
+     */
     public void startInsertion(Point point, Segment segment) {
         insertion(this.root, point, segment);
     }
 
+    /*
+    Ajoute un point et son segment dans Q, On regarde si son x est plus elevé que le point du noeud courrant,
+    si c'est égal on regarde si le y est plus élevé, si une des deux conditions est repescté on va à gauche, sinon à droite
+    sauf si égalité on rajoute juste le segment dans segments
+    quand on est dans un noeud vide, on insert en changeant les variables
+    @param current noeud courrant
+    @param point point à insert
+    @param segment segment lié au point
+     */
     public void insertion(Q_Node current, Point point, Segment segment) {
         if (this.root==null){
             this.root=new Q_Node(point,segment,new Q_Node(),new Q_Node());
@@ -44,6 +62,10 @@ public class Q_Tree {
         }
     }
 
+    /*
+    la fonction fait un équilibrage comme vue au cours
+    @param node noeud courrant
+     */
     public void Equilibrate(Q_Node node) {
         if (node.Bal() == 2) {
             if (node.getRight().Bal() >= 0) {
@@ -64,6 +86,11 @@ public class Q_Tree {
         }
     }
 
+    /*
+    effectue une rotation gauche
+    vérifie si le noeud courrant est la racine et le change
+    @param node
+     */
     public void RotateL(Q_Node node) {
         Q_Node tmp =new Q_Node();
         tmp.changeNode(node);
@@ -77,6 +104,11 @@ public class Q_Tree {
         node.Height();
     }
 
+    /*
+    effectue une rotation droite
+    vérifie si le noeud courrant est la racine et le change
+    @param node
+     */
     public void RotateR(Q_Node node) {
         Q_Node tmp =new Q_Node();
         tmp.changeNode(node);
@@ -90,10 +122,18 @@ public class Q_Tree {
         node.Height();
     }
 
+    /*
+    fait appel à remove avec le noeud root
+     */
     public void removeNextEvent() {
        remove(this.root);
     }
 
+    /*
+    cherche le noeud le plus à gauche car c'est le noeud le plus petit dans Q par définition
+    on applique removeNode quand on arrive dans une feuille
+    @param noeud courrant
+     */
     public void remove(Q_Node node) {
         if (!node.getLeft().isEmpty()) {
             remove(node.getLeft());
@@ -104,6 +144,12 @@ public class Q_Tree {
         }
     }
 
+    /*
+    change la variable lastRemoved par le noeud passé en paramètre
+    vérifie si le noeud courrant est la racine et le change
+    le noeud prend les valeurs de son fils droit
+    @param noeud courrant
+     */
     public void removeNode(Q_Node node) {
         lastRemoved.changeNode(node);
         Q_Node nodeR=node.getRight();
@@ -113,6 +159,9 @@ public class Q_Tree {
         node.changeNode(nodeR);
     }
 
+    /*
+    print l'arbre et l'affiche sur le terminal
+     */
     public void print() {
         printTree(root, 0);
     }
