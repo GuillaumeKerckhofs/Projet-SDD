@@ -77,51 +77,34 @@ public class T_Tree {
 
     public void reinsert (Segment data, float x, float y){
         T_Tree T = new T_Tree();
-        System.out.println("-------------------------------- reinsert  --------------------------------------");
         insert2(T, data,x, y);
     }
 
 
 
     public void insert2(T_Tree node,Segment data,float x,float y){
-
-
-
-        System.out.println("-------------------------------- insert  --------------------------------------");
-        print(0,y);
-        System.out.println("à insert = "+data);
         if (getData()!=data){
             if (getData()==null){
                 insertEmpty(data);
-                //System.out.println("---------");
                 }
 
             else {
-                if (getData().compareTo(data,x,y)<0){  //node.data<data
-                    //System.out.println(getData().getUpper_point().getX()+"<"+data.getUpper_point().getX());
-
-                    if (getLeft().isEmpty()&& getRight().isEmpty()) //feuille
+                if (getData().compareTo(data,x,y)<0){
+                    if (getLeft().isEmpty()&& getRight().isEmpty())
                         {getLeft().insert2(node,getData(),x,y);
                         node.setData(data);}
-
-
                     getRight().insert2(node,data,x,y);
                     equilibrate();
                 }
-                else if (getData().compareTo(data,x,y)>0){   //node.data>data
-                    //System.out.println(getData().getUpper_point().getX()+">"+data.getUpper_point().getX());
-                    if (getLeft().isEmpty()&& getRight().isEmpty()){//feuille
+                else if (getData().compareTo(data,x,y)>0){
+                    if (getLeft().isEmpty()&& getRight().isEmpty()){
                         getRight().insert2(node,getData(),x,y);
                         setData(data);
-
                         }
 
                     node=this;
                     getLeft().insert2(node,data,x,y);
-                    equilibrate();  }
-                else {
-                    //System.out.println(getData()+";"+data);
-                    //System.out.println("aled");
+                    equilibrate();
                 }
             }
         }
@@ -188,10 +171,6 @@ public class T_Tree {
         T.height();
     }
     public boolean isLeaf (){
-
-
-        //System.out.println("droit ="+getRight());
-        //System.out.println("gauche ="+getLeft());
         if (getRight().isEmpty()&& getLeft().isEmpty())
             return true;
         return false;
@@ -204,22 +183,10 @@ public class T_Tree {
     }
 
     public void suppress2 (Segment data,T_Tree node,float x,float y){
-
-        /*
-        print(0,y);
-
-        System.out.println("-------------------------------- suppress  --------------------------------------");
-        System.out.println("à supprimer = "+data);*/
-
         if (!isEmpty()){
 
              if (isLeaf()){
-
-
                 setData(null);
-
-
-
             }
             else if (getLeft().getData().compareTo(data,x,y)==0&&getLeft().isLeaf()) {              //
 
@@ -243,20 +210,10 @@ public class T_Tree {
 
             }
             else if (getData().compareTo(data,x,y)>0 ){
-/*
-                 System.out.println("");
-                 System.out.println("On va à gauche");
-                 System.out.println("ici =>"+getData().compareTo(data,x,y));
-                 System.out.println(getData());
-                 System.out.println(data);
-                 System.out.println("");*/
-
-
                 Ltree.suppress2(data,node,x,y);
 
             }
-            else if (getData().compareTo(data,x,y)<0){          //
-                //System.out.println("bah oui");
+            else if (getData().compareTo(data,x,y)<0){
                 Rtree.suppress2(data,node,x,y);
 
             }
@@ -267,12 +224,8 @@ public class T_Tree {
 
     public void SegmentsContainPoint(Point p, ArrayList<Segment> Cp, ArrayList<Segment> Lp) {
         if (!isEmpty()) {
-            //print(0);
-
             if (getData().contain(p)) {
                 if (isLeaf()) {
-
-
                     if (getData().getLower_point().isEqualTo(p))
                         Lp.add(getData());
                     else
@@ -281,20 +234,14 @@ public class T_Tree {
                     getRight().SegmentsContainPoint(p, Cp, Lp);
                     getLeft().SegmentsContainPoint(p, Cp, Lp);
                 }
-            } else {
-
+            }
+            else {
                 if (getData().getCurrentPoint(p.getY()) < p.getX()) {
                     getRight().SegmentsContainPoint(p, Cp, Lp);
                 }
                 else if (getData().getCurrentPoint(p.getY()) > p.getX()) {
                     getLeft().SegmentsContainPoint(p, Cp, Lp);
                 }
-                else  {
-                    getRight().SegmentsContainPoint(p, Cp, Lp);  // <= utile? &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-                    getLeft().SegmentsContainPoint(p, Cp, Lp);
-
-                }
-
             }
         }
     }

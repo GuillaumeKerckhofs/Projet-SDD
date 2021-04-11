@@ -6,7 +6,7 @@ public class Point {
 
     private boolean upper_point;
 
-    public Point(float x,float y,boolean upper_point){   //j'ai enlevé le =false car ça mettait une erreur
+    public Point(float x,float y,boolean upper_point){
         this.x=x;
         this.y=y;
         this.upper_point=upper_point;

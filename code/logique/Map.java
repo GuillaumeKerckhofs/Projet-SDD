@@ -13,15 +13,14 @@ public class Map {
     private static String openPath;
 
 
-    public Map(/*String map*/){
+    public Map(){
         try {
             if (openPath==null){
-            loadPoint("cartes/fichier3.txt");}
+            loadPoint("cartes/fichier1.txt");}
             else{loadPoint(openPath);}
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //showMap();
     }
 
     public static void supprSegment(Segment segment) {
@@ -56,7 +55,6 @@ public class Map {
             ArrayList<Float> seg = new ArrayList<Float>();
             for (int i=0;i<4;i++)
                 seg.add(Float.parseFloat(point[i]));
-            //System.out.println(seg);
             Segment segment=new Segment((Float)seg.get(0),(Float)seg.get(1),(Float)seg.get(2),(Float)seg.get(3));
             segmentList.add(segment);
         }
@@ -111,11 +109,9 @@ public class Map {
 
         if (val_retour == JFileChooser.APPROVE_OPTION) {
             File fichier = fc.getSelectedFile();
-            //System.out.println("Chemin absolu : " + fichier.getAbsolutePath() + "\n");
             savePath=fichier.getAbsolutePath();
             Save();
         } else {
-            //System.out.println("L'enregistrement est annulée\n");
         }
     }
 
@@ -126,11 +122,9 @@ public class Map {
 
         if (val_retour == JFileChooser.APPROVE_OPTION) {
             File fichier = fc.getSelectedFile();
-            //System.out.println("Chemin absolu : " + fichier.getAbsolutePath() + "\n");
             openPath=fichier.getAbsolutePath();
             Open();
         } else {
-            //System.out.println("L'enregistrement est annulée\n");
         }
     }
 

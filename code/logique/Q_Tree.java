@@ -28,7 +28,6 @@ public class Q_Tree {
         }
         else if (current.isEmpty()) {
             current.setPoint(point);
-            //System.out.println("-------------------------");
             current.addSegment(segment);
             current.setLeft(new Q_Node());
             current.setRight(new Q_Node());
@@ -106,11 +105,7 @@ public class Q_Tree {
     }
 
     public void removeNode(Q_Node node) {
-
-        // Save the removed Node
         lastRemoved.changeNode(node);
-
-        //replace the node by is right son, and change the root if the removed node is the root
         Q_Node nodeR=node.getRight();
         if(node==this.root){
             this.root.changeNode(nodeR);
