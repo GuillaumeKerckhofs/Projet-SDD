@@ -300,38 +300,48 @@ public class T_Tree {
     }
 
     public Segment NleftP(Point p,Segment little){
-        if (isEmpty())
-                return null;
-        else if(isLeaf())
-            return little;
+        float y=p.getY();
+        if (isEmpty()) {
+            return null;
+        } else if (isLeaf() && getData().getCurrentPoint(y)<p.getX()) {
+            return getData();
 
-        else {
-            if(getData().getCurrentPoint(p.getY())>p.getX()){
-                Ltree.NleftP(p,little);
-            }
-            else if (getData().getCurrentPoint(p.getY())<p.getX()){
-                Rtree.NleftP(p,getData());
-            }
         }
-        return null;
+        else if (isLeaf() && getData().getCurrentPoint(y)>p.getX()){
+            return little;
+        }
+        else if (getData().getCurrentPoint(y)<p.getX()){
+            return Rtree.NrightP(p,getData());
+        }
+        else if (getData().getCurrentPoint(y)>p.getX()){
+            return Ltree.NrightP(p,little);
+        }
+
+
+        return little;
+    }
     }
 
     public Segment NrightP(Point p,Segment little){
-        if (isEmpty())
+        float y=p.getY();
+        if (isEmpty()) {
             return null;
-        else if(isLeaf())
-            return little;
+        } else if (isLeaf() && getData().getCurrentPoint(y)>p.getX()) {
+            return getData();
 
-        else {
-
-            if(getData().getCurrentPoint(p.getY())>p.getX()){ //
-                Ltree.NrightP(p,getData());
-            }
-            else if (getData().getCurrentPoint(p.getY())<p.getX()){ //
-                Rtree.NrightP(p,little);
-            }
         }
-        return null;
+        else if (isLeaf() && getData().getCurrentPoint(y)<p.getX()){
+            return little;
+        }
+        else if (getData().getCurrentPoint(y)<p.getX()){
+            return Rtree.NrightP(p,little);
+        }
+        else if (getData().getCurrentPoint(y)>p.getX()){
+            return Ltree.NrightP(p,getData());
+        }
+
+
+        return little;
     }
 
     public Segment succ(Segment d,Segment succ, float x, float y) {
