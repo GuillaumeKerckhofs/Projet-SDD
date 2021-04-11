@@ -112,7 +112,7 @@ public class Map {
         if (val_retour == JFileChooser.APPROVE_OPTION) {
             File fichier = fc.getSelectedFile();
             //System.out.println("Chemin absolu : " + fichier.getAbsolutePath() + "\n");
-            openPath=fichier.getAbsolutePath();
+            savePath=fichier.getAbsolutePath();
             Save();
         } else {
             //System.out.println("L'enregistrement est annulée\n");
