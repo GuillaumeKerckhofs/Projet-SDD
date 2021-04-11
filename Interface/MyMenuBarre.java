@@ -1,9 +1,13 @@
 package Interface;
 
 
+import code.Map;
+import code.Segment;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import static Interface.MyWindow.*;
 
@@ -19,7 +23,7 @@ public class MyMenuBarre extends JPanel implements ActionListener {
         final JLabel label = new JLabel();
         JMenuBar mb=new JMenuBar();
         menu=new JMenu("File");
-        secondMenu=new JMenu("Zoom");
+        secondMenu=new JMenu("modif");
         thirdMenu=new JMenu("help");
 
         open =new JMenuItem("Open");
@@ -70,7 +74,13 @@ public class MyMenuBarre extends JPanel implements ActionListener {
                         "0.00 0.00 1.00 1.00"
                 );
                 if(result != null && result.length() > 0){
-                    label.setText("You selected:" + result);
+                    String point[]=result.split(" ");
+                    ArrayList<Float> seg = new ArrayList<Float>();
+                    for (int i=0;i<4;i++)
+                        seg.add(Float.parseFloat(point[i]));
+                    //System.out.println(seg);
+                    Segment segment=new Segment((Float)seg.get(0),(Float)seg.get(1),(Float)seg.get(2),(Float)seg.get(3));
+                    Map.addSegment(segment);
                 }else {
                     label.setText("None selected");
                 }

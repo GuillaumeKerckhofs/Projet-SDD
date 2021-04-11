@@ -42,7 +42,7 @@ public class Map {
         lecteurAvecBuffer.close();
     }
 
-    public void addSegment (Segment segment){ segmentList.add(segment);}
+    public static void addSegment(Segment segment){ segmentList.add(segment);}
 
     public void Save (){
         File file=new File(savePath);

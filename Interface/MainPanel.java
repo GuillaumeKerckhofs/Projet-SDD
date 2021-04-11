@@ -19,6 +19,12 @@ import javax.swing.JPanel;
      *
      * @author Thanasis1101
      * @version 1.0
+     *
+     * https://stackoverflow.com/users/7053344/thanasis1101
+     * https://stackoverflow.com/questions/6543453/zooming-in-and-zooming-out-within-a-panel
+     *
+     * Overwrite par Brenart Thomas et Kerckhofs Guillame dans le cadre d'un projet d'étude
+     *
      */
     public class MainPanel extends JPanel implements MouseWheelListener, MouseListener, MouseMotionListener {
 
@@ -33,12 +39,17 @@ import javax.swing.JPanel;
         private int xDiff;
         private int yDiff;
         private Point startPoint;
+        ArrayList<code.Point> b = new ArrayList<code.Point>();
 
         public MainPanel() {
 
 
             initComponent();
 
+        }
+
+        public void setB (ArrayList<code.Point> b) {
+            this.b=b;
         }
 
         private void initComponent() {
@@ -93,7 +104,7 @@ import javax.swing.JPanel;
 
 
             ArrayList a = Map.getSegmentList();
-            ArrayList<code.Point> b = Algo.getIntersection();
+            b = Algo.getIntersection();
 
             for (int i = 0; i < a.size(); i++) {     // pas oublier de suppri si inutile apres
 
@@ -169,6 +180,7 @@ import javax.swing.JPanel;
         public void mouseExited(MouseEvent e) {
 
         }
+
 
     }
 

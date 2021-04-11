@@ -2,11 +2,14 @@ package Interface;
 
 import code.Algo;
 import code.Map;
+import code.Segment;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class MyWindow extends JFrame {
@@ -14,6 +17,7 @@ public class MyWindow extends JFrame {
     static MainPanel mp=new MainPanel();
     static Map map =new Map();
     static JScrollPane pane1 = new JScrollPane(mp);
+    final JLabel label = new JLabel();
 
     public MyWindow(){
 
@@ -44,6 +48,36 @@ public class MyWindow extends JFrame {
         JToolBar toolBar = new JToolBar();
 
         JButton addSegment = new JButton("add segment");
+
+        addSegment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String result = (String)JOptionPane.showInputDialog(
+                        toolBar,
+                        "Type a new segment : x1 y1 x2 y2",
+                        "new segment",
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null,
+                        "0.00 0.00 1.00 1.00"
+                );
+                if(result != null && result.length() > 0){
+                    String point[]=result.split(" ");
+                    ArrayList<Float> seg = new ArrayList<Float>();
+                    for (int i=0;i<4;i++)
+                        seg.add(Float.parseFloat(point[i]));
+                    //System.out.println(seg);
+                    Segment segment=new Segment((Float)seg.get(0),(Float)seg.get(1),(Float)seg.get(2),(Float)seg.get(3));
+                    Map.addSegment(segment);
+                    Algo.FindIntersections(Map.getSegmentList());
+                    mp.repaint();
+
+                }else {
+                    label.setText("None selected");
+                }
+            }
+        });
 
 
         toolBar.add(addSegment);
