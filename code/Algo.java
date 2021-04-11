@@ -179,4 +179,8 @@ public class Algo {
     public static ArrayList<Point> getIntersection() {
         return intersection;
     }
+
+    public static void setIntersection(ArrayList<Point> intersection) {
+        Algo.intersection = intersection;
+    }
 }

@@ -99,6 +99,7 @@ import javax.swing.JPanel;
             // All drawings go here
 
 
+
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -109,16 +110,23 @@ import javax.swing.JPanel;
             for (int i = 0; i < a.size(); i++) {     // pas oublier de suppri si inutile apres
 
                 Segment segment = (Segment) a.get(i);
-                Shape l = new Line2D.Double((segment.getUpper_point().getX()), -(segment.getUpper_point().getY())+300, (segment.getLower_point().getX()), -(segment.getLower_point().getY())+300);
+                Shape l = new Line2D.Double((segment.getUpper_point().getX())+100, -(segment.getUpper_point().getY())+300, (segment.getLower_point().getX())+100, -(segment.getLower_point().getY())+300);
                 g2.draw(l);
             }
 
             for (code.Point inter:b){
-                Shape l2 = new Line2D.Float(inter.getX(),-inter.getY()+300,inter.getX(),-inter.getY()+300);
+                Shape l2 = new Line2D.Float(inter.getX()+100,-inter.getY()+300,inter.getX()+100,-inter.getY()+300);
                 g2.setColor(Color.red);
                 g2.draw(l2);
 
             }
+            Shape axe_x = new Line2D.Float(-10000+100,0+300,100000+100,0+300);
+            g2.setColor(Color.lightGray);
+            g2.draw(axe_x);
+
+            Shape axe_y = new Line2D.Float(0+100,-10000+300,0+100,10000+300);
+            g2.setColor(Color.lightGray);
+            g2.draw(axe_y);
 
         }
 

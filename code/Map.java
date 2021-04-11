@@ -1,5 +1,7 @@
 package code;
 
+import Interface.MyWindow;
+
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -8,10 +10,14 @@ import java.util.ArrayList;
 public class Map {
     private static ArrayList<Segment> segmentList = new ArrayList<Segment>();
     private static String savePath;
+    private static String openPath;
+
 
     public Map(/*String map*/){
         try {
-            loadPoint("cartes/fichier0.txt");
+            if (openPath==null){
+            loadPoint("cartes/fichier1.txt");}
+            else{loadPoint(openPath);}
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,7 +34,8 @@ public class Map {
         catch(FileNotFoundException exc){
 	        System.out.println("Erreur d'ouverture");
         }
-        
+        segmentList = new ArrayList<Segment>();
+        Algo.setIntersection(new ArrayList<Point>());
         while ((line = lecteurAvecBuffer.readLine()) != null){
             String point[]=line.split(" ");
             ArrayList<Float> seg = new ArrayList<Float>();
@@ -53,9 +60,6 @@ public class Map {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
             String line="";
 
-            System.out.println("");
-            System.out.println("save?");
-            System.out.println("");
             for (int i=0;i<this.segmentList.size();i++){
                 Segment tmp = segmentList.get(i);
                 line = tmp.stringSegment();
@@ -65,14 +69,25 @@ public class Map {
                 line = "";
             }
             bw.close();
-            System.out.println("");
-            System.out.println("save!");
-            System.out.println("");
 
         } catch (IOException e) {
             System.out.println("Erreur de sauvegarde");
         }
     }
+
+    public void Open(){
+
+        try
+        {
+            loadPoint(openPath);
+            Algo.FindIntersections(Map.getSegmentList());
+            MyWindow.getMp().repaint();
+
+        } catch (IOException e) {
+            System.out.println("Erreur d'ouverture'");
+        }
+    }
+
 
     public void chooseSave() {
         final JFrame fenetre = new JFrame();
@@ -82,8 +97,23 @@ public class Map {
         if (val_retour == JFileChooser.APPROVE_OPTION) {
             File fichier = fc.getSelectedFile();
             //System.out.println("Chemin absolu : " + fichier.getAbsolutePath() + "\n");
-            savePath=fichier.getAbsolutePath();
+            openPath=fichier.getAbsolutePath();
             Save();
+        } else {
+            //System.out.println("L'enregistrement est annulée\n");
+        }
+    }
+
+    public void chooseOpen() {
+        final JFrame fenetre = new JFrame();
+        final JFileChooser fc = new JFileChooser();
+        int val_retour = fc.showSaveDialog(fenetre);
+
+        if (val_retour == JFileChooser.APPROVE_OPTION) {
+            File fichier = fc.getSelectedFile();
+            //System.out.println("Chemin absolu : " + fichier.getAbsolutePath() + "\n");
+            openPath=fichier.getAbsolutePath();
+            Open();
         } else {
             //System.out.println("L'enregistrement est annulée\n");
         }

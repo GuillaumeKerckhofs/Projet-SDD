@@ -17,7 +17,6 @@ public class MyWindow extends JFrame {
     static MainPanel mp=new MainPanel();
     static Map map =new Map();
     static JScrollPane pane1 = new JScrollPane(mp);
-    final JLabel label = new JLabel();
 
     public MyWindow(){
 
@@ -63,18 +62,22 @@ public class MyWindow extends JFrame {
                         "0.00 0.00 1.00 1.00"
                 );
                 if(result != null && result.length() > 0){
-                    String point[]=result.split(" ");
-                    ArrayList<Float> seg = new ArrayList<Float>();
-                    for (int i=0;i<4;i++)
-                        seg.add(Float.parseFloat(point[i]));
-                    //System.out.println(seg);
-                    Segment segment=new Segment((Float)seg.get(0),(Float)seg.get(1),(Float)seg.get(2),(Float)seg.get(3));
-                    Map.addSegment(segment);
-                    Algo.FindIntersections(Map.getSegmentList());
-                    mp.repaint();
+                    try {
+                        String point[] = result.split(" ");
+                        ArrayList<Float> seg = new ArrayList<Float>();
+                        for (int i = 0; i < 4; i++)
+                            seg.add(Float.parseFloat(point[i]));
+                        //System.out.println(seg);
+                        Segment segment = new Segment((Float) seg.get(0), (Float) seg.get(1), (Float) seg.get(2), (Float) seg.get(3));
+                        Map.addSegment(segment);
+                        Algo.FindIntersections(Map.getSegmentList());
+                        mp.repaint();
+                    } catch (NumberFormatException numberFormatException) {
+                        numberFormatException.printStackTrace();
+                    }
 
                 }else {
-                    label.setText("None selected");
+
                 }
             }
         });
@@ -103,6 +106,10 @@ public class MyWindow extends JFrame {
 
     public static Map getMap() {
         return map;
+    }
+
+    public static void setMap(Map map) {
+        MyWindow.map = map;
     }
 
     public static JScrollPane getPane1() {
