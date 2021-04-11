@@ -8,12 +8,21 @@ public class T_Tree {
     private T_Tree Rtree;
     private int height;
 
+    /**
+    Constructeur d'un arbre T
+    @param data valeur de la racine
+    @param Ltree arbre gauche de l'arbre
+    @param Rtree arbre droit de l'arbre
+     */
+
     public T_Tree(Segment data, T_Tree Ltree, T_Tree Rtree){
         data = data;
         Ltree = Ltree;
         Rtree = Rtree;
         height = 0;
     }
+
+
 
     public T_Tree() {
         this(null,null,null);
@@ -44,6 +53,12 @@ public class T_Tree {
         return height;
     }
 
+
+    /**
+
+    @return boolean qui indique si la valeur de la racine est null
+     */
+
     public boolean isEmpty() {
         if (data == null)
             return true;
@@ -51,6 +66,9 @@ public class T_Tree {
             return false;
     }
 
+    /**
+    calcule la hauteur de l'arbre
+     */
 
     public void height() {
         if (isEmpty())
@@ -60,6 +78,9 @@ public class T_Tree {
                     getRight().getHeight());
     }
 
+    /**
+    calcule la balance de l'arbre
+     */
 
     public int balance() {
         if (isEmpty())
@@ -68,19 +89,34 @@ public class T_Tree {
             return getRight().getHeight() - getLeft().getHeight();
     }
 
+    /**
+    initialise les objets utile à l'insertion
+    @param data le segment à inserer
+     */
     public void insert (Segment data){
         T_Tree T = new T_Tree();
         float y=data.getUpper_point().getY();
         float x=data.getUpper_point().getX();
         insert2(T, data, x, y);
     }
-
+    /**
+        initialise les objets utile lors de la réinsertion
+        @param data le segment à inserer
+        @param x valeur x du Point p
+        @param y valeur y du Point p
+         */
     public void reinsert (Segment data, float x, float y){
         T_Tree T = new T_Tree();
         insert2(T, data,x, y);
     }
 
-
+    /**
+    insert un segment dans l'arbre
+    @param node arbre vide
+    @param data le segment à inserer
+    @param x valeur x du Point p
+    @param y valeur y du Point p
+         */
 
     public void insert2(T_Tree node,Segment data,float x,float y){
         if (getData()!=data){
@@ -109,6 +145,10 @@ public class T_Tree {
             }
         }
     }
+/**
+    insert dans un arbre vide
+    @param data le segment à inserer
+         */
 
     public void insertEmpty(Segment data) {
 
@@ -117,6 +157,9 @@ public class T_Tree {
         this.setRight (new T_Tree());
         this.height = 1;
     }
+/**
+ * equilibre l'arbre
+ */
 
     public void equilibrate(){
         if(balance()==2){
@@ -142,6 +185,11 @@ public class T_Tree {
         }
     }
 
+    /**
+     * effectue une rotation gauche lors de l'équilibrage
+     * @param T
+     */
+
     public void rotateLeft(T_Tree T){
 
 
@@ -157,6 +205,11 @@ public class T_Tree {
         T.height();
     }
 
+    /**
+     * effectue une rotation gauche lors de l'équilibrage
+     * @param T
+     */
+
     public void rotateRight(T_Tree T){
 
         Segment d = T.getData();
@@ -170,17 +223,36 @@ public class T_Tree {
         t.height();
         T.height();
     }
+
+    /**
+     *
+     * @return boolean si l'arbre est une feuille
+     */
     public boolean isLeaf (){
         if (getRight().isEmpty()&& getLeft().isEmpty())
             return true;
         return false;
     }
 
+    /**
+     initialise les objets utile lors de la suppression
+     @param data le segment à supprimer
+     @param x valeur x du Point p
+     @param y valeur y du Point p
+     */
     public void suppress (Segment data,float x,float y){
 
         T_Tree T = new T_Tree();
         suppress2(data,T,x,y);
     }
+
+    /**
+     supprime un segment de l'arbre
+     @param node arbre vide
+     @param data le segment à supprimer
+     @param x valeur x du Point p
+     @param y valeur y du Point p
+     */
 
     public void suppress2 (Segment data,T_Tree node,float x,float y){
         if (!isEmpty()){
@@ -221,6 +293,12 @@ public class T_Tree {
         }
     }
 
+    /**
+     regarde les segments qui contiennent le point P , Lp sera les segments dont P est le lower point, Cp le segment qui contiennent P (pas upper point ni lower point)
+     @param p le point que dont on verifie l'appartenance à la droite
+     @param Lp arraylist de segment vide
+     @param Cp arraylist de segment vide
+     */
 
     public void SegmentsContainPoint(Point p, ArrayList<Segment> Cp, ArrayList<Segment> Lp) {
         if (!isEmpty()) {
@@ -246,6 +324,13 @@ public class T_Tree {
         }
     }
 
+    /**
+     * cherche le voisin gauche d'un point p
+     * @param p le point
+     * @param little un segment null
+     * @return le segment trouvé
+     */
+
     public Segment NleftP(Point p,Segment little){
 
         float y=p.getY();
@@ -269,6 +354,12 @@ public class T_Tree {
         return little;
     }
 
+    /**
+     * cherche le voisin droit d'un point p
+     * @param p le point
+     * @param little un segment null
+     * @return le segment trouvé
+     */
 
     public Segment NrightP(Point p,Segment little){
 
@@ -292,6 +383,15 @@ public class T_Tree {
 
         return little;
     }
+
+    /**
+     * recherche le segment qui suit un segment donné dans l'arbre T
+     * @param d le segment donné
+     * @param succ segment null
+     * @param x parametre x du point P
+     * @param y parametre y du point P
+     * @return le segment trouvé
+     */
 
     public Segment succ(Segment d,Segment succ, float x, float y) {
 
@@ -319,6 +419,14 @@ public class T_Tree {
         return succ;
     }
 
+    /**
+     * recherche le segment qui précède un segment donné dans l'arbre T
+     * @param d le segment donné
+     * @param prev segment null
+     * @param x parametre x du point P
+     * @param y parametre y du point P
+     * @return le segment trouvé
+     */
     public Segment prev(Segment d,Segment prev, float x, float y) {
 
         if (isEmpty()) {
@@ -341,25 +449,13 @@ public class T_Tree {
         return prev;
     }
 
-    public Segment searchMin() {
-        if (isEmpty())
-            return null;
-        else if (getLeft().isEmpty())
-            return getData();
-        else 	return getLeft().searchMin();
-    }
+    /**
+     * affiche l'arbre
+     * @param space
+     * @param y
+     */
 
-    public Segment searchMax() {
-        if (isEmpty())
-            return null;
-        else if (getRight().isEmpty())
-            return getData();
-        else 	return getRight().searchMax();
-    }
-
-
-
-    public void print(int space,float y) {   // a nettoyer quand fini
+    public void print(int space,float y) {
         if (!isEmpty()) {
 
             space+=5;
@@ -375,15 +471,16 @@ public class T_Tree {
 
         }
     }
-        public void printleaves(){   // a nettoyer quand fini
+    /**
+     * affiche les feuilles de l'arbre
+     */
+        public void printleaves(){
             if (!isEmpty()) {
-                //System.out.println("left");
+
                 Ltree.printleaves();
-                //System.out.println("remonte");
                 if(isLeaf())
                     System.out.println(data );
 
-                //System.out.println("right");
                 Rtree.printleaves();
 
             }

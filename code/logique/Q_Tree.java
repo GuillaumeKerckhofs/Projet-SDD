@@ -4,7 +4,7 @@ public class Q_Tree {
     private Q_Node root;
     private Q_Node lastRemoved;
 
-    /*
+    /**
     Constructeur d'un arbre Q
     @param root racine de l'arbre
      */
@@ -22,7 +22,7 @@ public class Q_Tree {
     }
 
 
-    /*
+    /**
     fait appel à la méthode insertion
     @param point a rajouté dans Q
     @param segment a rajouté à la liste s'il existe
@@ -31,7 +31,7 @@ public class Q_Tree {
         insertion(this.root, point, segment);
     }
 
-    /*
+    /**
     Ajoute un point et son segment dans Q, On regarde si son x est plus elevé que le point du noeud courrant,
     si c'est égal on regarde si le y est plus élevé, si une des deux conditions est repescté on va à gauche, sinon à droite
     sauf si égalité on rajoute juste le segment dans segments
@@ -62,7 +62,7 @@ public class Q_Tree {
         }
     }
 
-    /*
+    /**
     la fonction fait un équilibrage comme vue au cours
     @param node noeud courrant
      */
@@ -86,7 +86,7 @@ public class Q_Tree {
         }
     }
 
-    /*
+    /**
     effectue une rotation gauche
     vérifie si le noeud courrant est la racine et le change
     @param node
@@ -104,7 +104,7 @@ public class Q_Tree {
         node.Height();
     }
 
-    /*
+    /**
     effectue une rotation droite
     vérifie si le noeud courrant est la racine et le change
     @param node
@@ -122,17 +122,17 @@ public class Q_Tree {
         node.Height();
     }
 
-    /*
+    /**
     fait appel à remove avec le noeud root
      */
     public void removeNextEvent() {
        remove(this.root);
     }
 
-    /*
+    /**
     cherche le noeud le plus à gauche car c'est le noeud le plus petit dans Q par définition
     on applique removeNode quand on arrive dans une feuille
-    @param noeud courrant
+    @param node noeud courant
      */
     public void remove(Q_Node node) {
         if (!node.getLeft().isEmpty()) {
@@ -144,11 +144,11 @@ public class Q_Tree {
         }
     }
 
-    /*
+    /**
     change la variable lastRemoved par le noeud passé en paramètre
     vérifie si le noeud courrant est la racine et le change
     le noeud prend les valeurs de son fils droit
-    @param noeud courrant
+    @param node noeud courrant
      */
     public void removeNode(Q_Node node) {
         lastRemoved.changeNode(node);
@@ -159,7 +159,7 @@ public class Q_Tree {
         node.changeNode(nodeR);
     }
 
-    /*
+    /**
     print l'arbre et l'affiche sur le terminal
      */
     public void print() {
