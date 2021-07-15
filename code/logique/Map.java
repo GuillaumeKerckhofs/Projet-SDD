@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
+import static code.Interface.MyWindow.getMap;
+
 
 public class Map {
     private static ArrayList<Segment> segmentList = new ArrayList<Segment>();
@@ -18,7 +20,7 @@ public class Map {
     public Map(){
         try {
             if (openPath==null){
-            loadPoint("cartes/fichier1.txt");}
+                chooseOpen();}
             else{loadPoint(openPath);}
         } catch (IOException e) {
             e.printStackTrace();
