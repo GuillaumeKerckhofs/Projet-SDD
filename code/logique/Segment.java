@@ -18,7 +18,7 @@ public class Segment{
         this.lower_point=lower_point;
     }
 
-    public Segment(float x1,float y1,float x2,float y2){
+    public Segment(double x1,double y1,double x2,double y2){
         if(y1>y2 || (y1==y2 && x1<x2)){
             this.upper_point=new Point(x1,y1,true);
             this.lower_point=new Point (x2,y2,false);  // j'ai rajouté ",false" car erreur avant
@@ -31,8 +31,8 @@ public class Segment{
 
     public boolean tSmallerThan (Segment segment){
 
-        float p1 = getUpper_point().getX();
-        float p2 = segment.getUpper_point().getX();
+        double p1 = getUpper_point().getX();
+        double p2 = segment.getUpper_point().getX();
         if(p1<p2){
             return true;
         }
@@ -49,14 +49,14 @@ public class Segment{
      @param y qui permet de calculer le x courrant
      @return 0 en cas d'agalité, -1 si il est plus petit ou 1 si il est plus grand
      */
-    public int compareTo(Segment segment,float xHor,float y){
+    public int compareTo(Segment segment,double xHor,double y){
         if (!segment.isHorizontal()&&!this.isHorizontal()){
-            float x1 =this.getCurrentPoint(y);
-            float x2 =segment.getCurrentPoint(y);
+            double x1 =this.getCurrentPoint(y);
+            double x2 =segment.getCurrentPoint(y);
             if (this.isEquals(segment)){
                 return 0;
             }
-            else if(!(Math.abs(x1-x2)<1e-4)) {
+            else if(!(Math.abs(x1-x2)<1e-8)) {
 
                 if (x1 > x2){
                     return 1;
@@ -67,7 +67,7 @@ public class Segment{
             }
             else{
 
-                float ymax = max(this.lower_point.getY(),segment.getLower_point().getY());
+                double ymax = max(this.lower_point.getY(),segment.getLower_point().getY());
                 x1 =this.getCurrentPoint(ymax);
                 x2 =segment.getCurrentPoint(ymax);
                 if (x1>x2)
@@ -90,14 +90,14 @@ public class Segment{
                 return 0;
             }
             else if(this.isHorizontal()){
-                float x1=segment.getCurrentPoint(y);
+                double x1=segment.getCurrentPoint(y);
                 if(x1<=xHor)
                     return 1;
                 else
                     return -1;
             }
             else if(segment.isHorizontal()){
-                float x1=this.getCurrentPoint(y);
+                double x1=this.getCurrentPoint(y);
                 if(xHor<x1)
                     return 1;
                 else
@@ -130,8 +130,8 @@ public class Segment{
      */
     public boolean contain (Point p){
         if (!isHorizontal()){
-            float x=this.getCurrentPoint(p.getY());
-            if ((Math.abs(x-p.getX())<1e-2)){
+            double x=this.getCurrentPoint(p.getY());
+            if ((Math.abs(x-p.getX())<1e-8)){
                 return true;
             }
         }
@@ -148,16 +148,16 @@ public class Segment{
      * @param y pour lequel on veut le x associé
      * @return x courrant
      */
-    public float getCurrentPoint(float y) {   // à faire
-        float x1 = upper_point.getX();
-        float x2 = lower_point.getX();
-        float y1 = upper_point.getY();
-        float y2 = lower_point.getY();
+    public double getCurrentPoint(double y) {   // à faire
+        double x1 = upper_point.getX();
+        double x2 = lower_point.getX();
+        double y1 = upper_point.getY();
+        double y2 = lower_point.getY();
 
 
         double x = x1 + ((y - y1) * (x2 - x1)) / (y2 - y1);
-        x = Math.round(x * 100.0) / 100.0;
-        return ( (float) x);
+        //x = Math.round(x * 100.0) / 100.0;
+        return ( (double) x);
 
     }
 
@@ -175,22 +175,22 @@ public class Segment{
      * @return null si pas d'intersection,sinon un point qui correspond à l'intersection
      */
     public Point isIntersectBy(Segment Sr){
-        float x1=upper_point.getX();
-        float y1=upper_point.getY();
+        double x1=upper_point.getX();
+        double y1=upper_point.getY();
 
-        float x2=lower_point.getX();
-        float y2=lower_point.getY();
+        double x2=lower_point.getX();
+        double y2=lower_point.getY();
 
-        float x3=Sr.getUpper_point().getX();
-        float y3=Sr.getUpper_point().getY();
+        double x3=Sr.getUpper_point().getX();
+        double y3=Sr.getUpper_point().getY();
 
-        float x4=Sr.getLower_point().getX();
-        float y4=Sr.getLower_point().getY();
+        double x4=Sr.getLower_point().getX();
+        double y4=Sr.getLower_point().getY();
 
-        float a1;
-        float a2;
-        float b1;
-        float b2;
+        double a1;
+        double a2;
+        double b1;
+        double b2;
 
 
 
@@ -201,8 +201,8 @@ public class Segment{
             a2 = (y4 - y3) / (x4 - x3);
             b2 = y3 - a2 * x3;
 
-            float x = (b1 - b2) / (a2 - a1);
-            float y = a1 * x + b1;
+            double x = (b1 - b2) / (a2 - a1);
+            double y = a1 * x + b1;
 
             if (x1 > x2) {
                 if (x > x1 || x < x2) {
@@ -247,14 +247,14 @@ public class Segment{
                     return p;
                 }
             }
-            p = new Point((float) x,(float) y);
+            p = new Point((double) x,(double) y);
             }
 
         if (x1==x2 && y1!=y2) {
             a2 = (y4 - y3) / (x4 - x3);
             b2 = y3 - a2 * x3;
 
-            float y=a2*x1+b2;
+            double y=a2*x1+b2;
             if(y<y1 && y>y2) {
                 p= new Point(x1,y);
                 return p;
@@ -265,14 +265,14 @@ public class Segment{
             a1 = (y2 - y1) / (x2 - x1);
             b1 = y2 - a1 * x1;
 
-            float y=a1*x3+b1;
+            double y=a1*x3+b1;
             if(y<y3 && y>y4) {
                 p= new Point(x3,y);
                 return p;
             }
         }
         if (x1!=x2 && y1==y2) {
-            float x = Sr.getCurrentPoint(y1);
+            double x = Sr.getCurrentPoint(y1);
             if (x>x1 && x<x2){
                 p= new Point(x,y1);
                 return p;
@@ -280,7 +280,7 @@ public class Segment{
         }
 
         if (x3!=x4 && y3==y4) {
-            float x = this.getCurrentPoint(y3);
+            double x = this.getCurrentPoint(y3);
             if (x>x3 && x<x4){
                 p= new Point(x,y3);
                 return p;

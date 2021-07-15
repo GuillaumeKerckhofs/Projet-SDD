@@ -70,19 +70,19 @@ public class T_Tree {
 
     public void insert (Segment data){
         T_Tree T = new T_Tree();
-        float y=data.getUpper_point().getY();
-        float x=data.getUpper_point().getX();
+        double y=data.getUpper_point().getY();
+        double x=data.getUpper_point().getX();
         insert2(T, data, x, y);
     }
 
-    public void reinsert (Segment data, float x, float y){
+    public void reinsert (Segment data, double x, double y){
         T_Tree T = new T_Tree();
         insert2(T, data,x, y);
     }
 
 
 
-    public void insert2(T_Tree node,Segment data,float x,float y){
+    public void insert2(T_Tree node,Segment data,double x,double y){
         if (getData()!=data){
             if (getData()==null){
                 insertEmpty(data);
@@ -176,13 +176,13 @@ public class T_Tree {
         return false;
     }
 
-    public void suppress (Segment data,float x,float y){
+    public void suppress (Segment data,double x,double y){
 
         T_Tree T = new T_Tree();
         suppress2(data,T,x,y);
     }
 
-    public void suppress2 (Segment data,T_Tree node,float x,float y){
+    public void suppress2 (Segment data,T_Tree node,double x,double y){
         if (!isEmpty()){
 
              if (isLeaf()){
@@ -248,7 +248,7 @@ public class T_Tree {
 
     public Segment NleftP(Point p,Segment little){
 
-        float y=p.getY();
+        double y=p.getY();
         if (isEmpty()) {
             return null;
         } else if (isLeaf() && getData().getCurrentPoint(y)<p.getX()) {
@@ -272,7 +272,7 @@ public class T_Tree {
 
     public Segment NrightP(Point p,Segment little){
 
-        float y=p.getY();
+        double y=p.getY();
         if (isEmpty()) {
             return null;
         } else if (isLeaf() && getData().getCurrentPoint(y)>p.getX()) {
@@ -293,7 +293,7 @@ public class T_Tree {
         return little;
     }
 
-    public Segment succ(Segment d,Segment succ, float x, float y) {
+    public Segment succ(Segment d,Segment succ, double x, double y) {
 
         if (isEmpty()) {
             return null;
@@ -319,7 +319,7 @@ public class T_Tree {
         return succ;
     }
 
-    public Segment prev(Segment d,Segment prev, float x, float y) {
+    public Segment prev(Segment d,Segment prev, double x, double y) {
 
         if (isEmpty()) {
             return null;
@@ -359,7 +359,7 @@ public class T_Tree {
 
 
 
-    public void print(int space,float y) {   // a nettoyer quand fini
+    public void print(int space,double y) {   // a nettoyer quand fini
         if (!isEmpty()) {
 
             space+=5;

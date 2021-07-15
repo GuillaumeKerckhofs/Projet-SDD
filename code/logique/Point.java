@@ -1,8 +1,8 @@
 package code.logique;
 
 public class Point {
-    private float x;
-    private float y;
+    private double x;
+    private double y;
 
     private boolean upper_point;
 
@@ -12,19 +12,19 @@ public class Point {
     @param y du point
     @param upper_point true si upper_point d'un segment,faulse sinon
      */
-    public Point(float x,float y,boolean upper_point){
+    public Point(double x,double y,boolean upper_point){
         this.x=x;
         this.y=y;
         this.upper_point=upper_point;
     }
 
-    public Point(float x,float y){
+    public Point(double x,double y){
         this(x,y,false);
     }
 
     public boolean smallerThan(Point point2){
-        float x2=point2.getX();
-        float y2=point2.getY();
+        double x2=point2.getX();
+        double y2=point2.getY();
         if(this.y>y2 || (this.y==y2 && this.x<x2)){
             return true;
         }
@@ -44,19 +44,19 @@ public class Point {
         return upper_point;
     }
 
-    public float getX() {
+    public double getX() {
         return x;
     }
 
-    public float getY() {
+    public double getY() {
         return y;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 

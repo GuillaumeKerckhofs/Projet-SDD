@@ -24,7 +24,7 @@ public class Algo {
             q.startInsertion(segment.getLower_point(), null);
         }
         t = new T_Tree();
-        lastEvent = new Point(0, 0);
+        lastEvent = new Point(0.0, 0.0);
         while (q.getRoot().getPoint() != null) {
             Q_Node p = q.getLastRemoved();
             q.removeNextEvent();

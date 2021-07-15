@@ -60,10 +60,10 @@ public class Map {
         Algo.setIntersection(new ArrayList<Point>());
         while ((line = lecteurAvecBuffer.readLine()) != null){
             String point[]=line.split(" ");
-            ArrayList<Float> seg = new ArrayList<Float>();
+            ArrayList<Double> seg = new ArrayList<Double>();
             for (int i=0;i<4;i++)
-                seg.add(Float.parseFloat(point[i]));
-            Segment segment=new Segment((Float)seg.get(0),(Float)seg.get(1),(Float)seg.get(2),(Float)seg.get(3));
+                seg.add(Double.parseDouble(point[i]));
+            Segment segment=new Segment((Double)seg.get(0),(Double)seg.get(1),(Double)seg.get(2),(Double)seg.get(3));
             segmentList.add(segment);
         }
         
