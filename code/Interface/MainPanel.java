@@ -120,7 +120,7 @@ import javax.swing.JPanel;
             }
 
             for (code.logique.Point inter:b){
-                Shape l2 = new Line2D.Float(inter.getX()+100,-inter.getY()+300,inter.getX()+100,-inter.getY()+300);
+                Shape l2 = new Line2D.Double(inter.getX()+100,-inter.getY()+300,inter.getX()+100,-inter.getY()+300);
                 g2.setColor(Color.red);
                 g2.draw(l2);
 
@@ -165,10 +165,10 @@ import javax.swing.JPanel;
                 sweeplinecount=Algo.getPrintQ().size()-1;
             }
 
-            Shape sweepline = new Line2D.Float(0+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300,1000+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300);
+            Shape sweepline = new Line2D.Double(0+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300,1000+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300);
             g2.setColor(Color.blue);
             g2.draw(sweepline);
-            Shape point = new Line2D.Float(Algo.getPrintQ().get(sweeplinecount).getX()+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300,Algo.getPrintQ().get(sweeplinecount).getX()+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300);
+            Shape point = new Line2D.Double(Algo.getPrintQ().get(sweeplinecount).getX()+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300,Algo.getPrintQ().get(sweeplinecount).getX()+100,-Algo.getPrintQ().get(sweeplinecount).getY()+300);
             g2.setColor(Color.green);
             g2.draw(point);
 
