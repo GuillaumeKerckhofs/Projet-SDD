@@ -257,7 +257,7 @@ public class T_Tree {
      @param y valeur y du Point p
      */
 
-    public void suppress2 (Segment data,T_Tree node,float x,float y){
+    public void suppress2 (Segment data,T_Tree node,double x,double y){
         if (!isEmpty()){
 
              if (isLeaf()){
