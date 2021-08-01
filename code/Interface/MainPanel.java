@@ -111,53 +111,53 @@ import javax.swing.JPanel;
 
             ArrayList a = Map.getSegmentList();
             b = Algo.getIntersection();
-            int constant_y=300;
-            int constant_x=100;
+            int graph_constant_x=100;
+            int graph_constant_y=300;
+            int graph_gap=10;
 
             for (int i = 0; i < a.size(); i++) {     // pas oublier de suppri si inutile apres
 
                 Segment segment = (Segment) a.get(i);
-                Shape l = new Line2D.Double((segment.getUpper_point().getX())+constant_x, -(segment.getUpper_point().getY())+constant_y, (segment.getLower_point().getX())+100, -(segment.getLower_point().getY())+constant_y);
+                Shape l = new Line2D.Double((segment.getUpper_point().getX())+graph_constant_x, -(segment.getUpper_point().getY())+graph_constant_y, (segment.getLower_point().getX())+100, -(segment.getLower_point().getY())+graph_constant_y);
                 g2.draw(l);
             }
 
             for (code.logique.Point inter:b){
-                Shape l2 = new Line2D.Double(inter.getX()+constant_x,-inter.getY()+constant_y,inter.getX()+constant_x,-inter.getY()+constant_y);
+                Shape l2 = new Line2D.Double(inter.getX()+graph_constant_x,-inter.getY()+graph_constant_y,inter.getX()+graph_constant_x,-inter.getY()+graph_constant_y);
                 g2.setColor(Color.red);
                 g2.draw(l2);
 
             }
 
             for (int i=0; i<100;i++){
-                Shape l2 = new Line2D.Float(i*10+constant_x,-0+constant_y,i*10+constant_x,-1+constant_y);
+                Shape l2 = new Line2D.Double(i*graph_gap+graph_constant_x,-0+graph_constant_y,i*graph_gap+graph_constant_x,-1+graph_constant_y);
                 g2.setColor(Color.lightGray);
                 g2.draw(l2);
 
                 Font myFont = new Font ("Courier New", 1, 3);
                 g.setFont (myFont);
                 g.setColor(Color.black);
-                g.drawString(String.valueOf(i*10), (i*10)+98,0+constant_y+5);
+                g.drawString(String.valueOf(i*graph_gap), (i*graph_gap)+graph_constant_x-2,0+graph_constant_y+5);
             }
 
             for (int i=0; i<100;i++){
-                constant_x=10;
-                Shape l2 = new Line2D.Float(-0+100,i*10-constant_y,-1+constant_x,i*10-constant_y);
+                Shape l2 = new Line2D.Double(-0+graph_constant_x,i*graph_gap-graph_constant_y,-1+graph_constant_x,i*graph_gap-graph_constant_y);
                 g2.setColor(Color.lightGray);
                 g2.draw(l2);
 
                 Font myFont = new Font ("Courier New", 1, 3);
                 g.setFont (myFont);
                 g.setColor(Color.black);
-                g.drawString(String.valueOf(i*10), -7+constant_x,-(i*10)+constant_y);
+                g.drawString(String.valueOf(i*graph_gap), -7+graph_constant_x,-(i*graph_gap)+graph_constant_y);
 
             }
 
 
-            Shape axe_x = new Line2D.Float(-10000+constant_x,0+constant_y,100000+constant_x,0+constant_y);
+            Shape axe_x = new Line2D.Double(-10000+graph_constant_x,0+graph_constant_y,10000+graph_constant_x,0+graph_constant_y);
             g2.setColor(Color.lightGray);
             g2.draw(axe_x);
 
-            Shape axe_y = new Line2D.Float(0+100,-10000+constant_y,0+constant_x,10000+constant_y);
+            Shape axe_y = new Line2D.Double(0+graph_constant_x,-10000+graph_constant_y,0+graph_constant_x,10000+graph_constant_y);
             g2.setColor(Color.lightGray);
             g2.draw(axe_y);
 
@@ -168,10 +168,10 @@ import javax.swing.JPanel;
                 sweeplinecount=Algo.getPrintQ().size()-1;
             }
 
-            Shape sweepline = new Line2D.Double(0+constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+constant_y,1000+constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+constant_y);
+            Shape sweepline = new Line2D.Double(0+graph_constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+graph_constant_y,1000+graph_constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+graph_constant_y);
             g2.setColor(Color.blue);
             g2.draw(sweepline);
-            Shape point = new Line2D.Double(Algo.getPrintQ().get(sweeplinecount).getX()+constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+constant_y,Algo.getPrintQ().get(sweeplinecount).getX()+constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+constant_y);
+            Shape point = new Line2D.Double(Algo.getPrintQ().get(sweeplinecount).getX()+graph_constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+graph_constant_y,Algo.getPrintQ().get(sweeplinecount).getX()+graph_constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+graph_constant_y);
             g2.setColor(Color.green);
             g2.draw(point);
 
