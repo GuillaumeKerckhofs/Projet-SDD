@@ -10,7 +10,7 @@ public class Point {
     constructeur d'un point
     @param x du point
     @param y du point
-    @param upper_point true si upper_point d'un segment,faulse sinon
+    @param upper_point true si upper_point d'un segment,false sinon
      */
     public Point(double x,double y,boolean upper_point){
         this.x=x;

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name = "IntersectionFinder">
+    <target name = "build">
+        <mkdir dir="out"/>
+        <javac  includeantruntime = "false" srcdir = "./code" destdir = "./out" classpath="./lib/junit-4.12.jar"/>
+    </target>
+    <target name = "run" depends ="build">
+        <java classname = "code.Interface.MyWindow" classpath = "./out : ./lib/jfxrt_linux.jar" fork="true"/>
+
+    </target>
+    <target name="clean">
+        <delete dir="out"/>
+    </target>
+</project>

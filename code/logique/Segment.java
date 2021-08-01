@@ -40,10 +40,10 @@ public class Segment{
     }
 
     /**
-    compare 2 segments par rapport à leurs valeurs de x courrant,
+    compare 2 segments par rapport à leurs valeurs de x courant,
      si il n'y a pas de différence on compare par rapport au Y max des lower_point des deux segments
      sinon on compare les upper_point
-     si un des deux segments est horizontale, on compare le x passé en paramètre au x courrant de l'autre segment
+     si un des deux segments est horizontal, on compare le x passé en paramètre au x courant de l'autre segment
      @param segment avec lequel on compare
      @param xHor valeur du x du segment horizontal
      @param y qui permet de calculer le x courrant
@@ -91,7 +91,8 @@ public class Segment{
             }
             else if(this.isHorizontal()){
                 double x1=segment.getCurrentPoint(y);
-                if(x1<=xHor)
+                if(x1<=
+                        xHor)
                     return 1;
                 else
                     return -1;
@@ -157,7 +158,7 @@ public class Segment{
 
         double x = x1 + ((y - y1) * (x2 - x1)) / (y2 - y1);
         //x = Math.round(x * 100.0) / 100.0;
-        return ( (double) x);
+        return  x;
 
     }
 
@@ -187,11 +188,31 @@ public class Segment{
         double x4=Sr.getLower_point().getX();
         double y4=Sr.getLower_point().getY();
 
+        /////////////// ça fait des trucs
+
+        // a*x+b*y+c=0
+        // d*x_+e*y_+f=0
+
+
+        double b= -(x2-x1);
+        double a= y2-y1;
+
+        double d= -(x4-x3);
+        double e= y4-y3;
+
+        // a*x   + b*y   = c   c?
+        // d*x_  + e*y_  = f   f?
+
+        double c= a*x1  + b*y1;
+        double f= d*x3  + e*y3;
+
+
+        /////////////// ça fait plus des trucs
+
         double a1;
         double a2;
         double b1;
         double b2;
-
 
 
         Point p = null;

@@ -48,7 +48,7 @@ public class Algo {
     public static void HandleEventPoint(Q_Node p){
         Segment Sl = null;
         Segment Sr= null;
-        Segment Sp1= null;
+        Segment Sp1= null; //doit etre min et max peut etre
         Segment Sp2= null;
         ArrayList<Segment> Up=p.getSegments();
         ArrayList<Segment> Cp=new ArrayList<Segment>();

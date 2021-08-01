@@ -297,7 +297,7 @@ public class T_Tree {
     }
 
     /**
-     regarde les segments qui contiennent le point P , Lp sera les segments dont P est le lower point, Cp le segment qui contiennent P (pas upper point ni lower point)
+     regarde les segments qui contiennent le point P , Lp sera les segments dont P est le lower point, Cp le segment qui contient P (pas upper point ni lower point)
      @param p le point que dont on verifie l'appartenance à la droite
      @param Lp arraylist de segment vide
      @param Cp arraylist de segment vide
@@ -453,8 +453,6 @@ public class T_Tree {
 
     /**
      * affiche l'arbre
-     * @param space
-     * @param y
      */
 
 
