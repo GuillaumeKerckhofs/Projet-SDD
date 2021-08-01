@@ -6,8 +6,6 @@ import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
-import static code.Interface.MyWindow.getMap;
-
 
 public class Map {
     private static ArrayList<Segment> segmentList = new ArrayList<Segment>();
@@ -77,7 +75,7 @@ public class Map {
     /**
     sauvegarde de la map actuelle dans le fichier qu'indique le savePath
      */
-    public void Save (){
+    public void save(){
         File file=new File(savePath);
         FileOutputStream fos;
         try
@@ -104,12 +102,12 @@ public class Map {
     /**
     ouvre un nouveau fichier et charge
      */
-    public void Open(){
+    public void open(){
 
         try
         {
             loadPoint(openPath);
-            Algo.FindIntersections(Map.getSegmentList());
+            Algo.findIntersections(Map.getSegmentList());
             MyWindow.getMp().repaint();
 
         } catch (IOException e) {
@@ -129,7 +127,7 @@ public class Map {
         if (val_retour == JFileChooser.APPROVE_OPTION) {
             File fichier = fc.getSelectedFile();
             savePath=fichier.getAbsolutePath();
-            Save();
+            save();
         } else {
         }
     }
@@ -145,7 +143,7 @@ public class Map {
         if (val_retour == JFileChooser.APPROVE_OPTION) {
             File fichier = fc.getSelectedFile();
             openPath=fichier.getAbsolutePath();
-            Open();
+            open();
         } else {
         }
     }

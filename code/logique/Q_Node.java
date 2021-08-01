@@ -7,22 +7,22 @@ import static java.lang.Integer.max;
 public class Q_Node{
     private Point point;
     private ArrayList<Segment> segments;
-    private Q_Node Right;
-    private Q_Node Left;
+    private Q_Node right;
+    private Q_Node left;
     private int height;
 
     /**
-    @param Point data du noeud
-    @param Segment segment qui a pour upper point le point passé en paramètre
-    @param Left Fils gauche du noeud
-    @param Right Fils droit du noeud
+    @param point data du noeud
+    @param segment segment qui a pour upper point le point passé en paramètre
+    @param left Fils gauche du noeud
+    @param right Fils droit du noeud
      */
-    public Q_Node(Point point, Segment segment, Q_Node Left, Q_Node Right){
+    public Q_Node(Point point, Segment segment, Q_Node left, Q_Node right){
         this.point=point;
         this.segments=new ArrayList<Segment>();
         this.addSegment(segment);
-        this.Right=Right;
-        this.Left=Left;
+        this.right =right;
+        this.left =left;
         this.height=1;
     }
 
@@ -32,19 +32,19 @@ public class Q_Node{
     /**
     Change la valeur de la hauteur du noeud en prenant la hateur max entre les 2 hauteurs de ces fils
      */
-    public void Height(){
+    public void height(){
         if(this.isLeaf()){
             this.height=1;
         }
         else{
-            if(Left.isEmpty()){
-                this.height=Right.getHeight()+1;
+            if(left.isEmpty()){
+                this.height= right.getHeight()+1;
             }
-            else if(Right.isEmpty()){
-                this.height=Left.getHeight()+1;
+            else if(right.isEmpty()){
+                this.height= left.getHeight()+1;
             }
             else{
-                this.height=1+max(Left.getHeight(),Right.getHeight());
+                this.height=1+max(left.getHeight(), right.getHeight());
             }
         }
 
@@ -53,19 +53,19 @@ public class Q_Node{
     /**
     @return retourne la balance du noeud
      */
-    public int Bal(){
+    public int bal(){
         if(this.isLeaf()){
             return 0;
         }
         else{
-            if(this.Left.isEmpty()){
-                return(Right.getHeight());
+            if(this.left.isEmpty()){
+                return(right.getHeight());
             }
-            else if(this.Right.isEmpty()){
-                return(-(Left.getHeight()));
+            else if(this.right.isEmpty()){
+                return(-(left.getHeight()));
             }
             else{
-                return(Right.getHeight()-Left.getHeight());
+                return(right.getHeight()- left.getHeight());
             }
         }
     }
@@ -77,8 +77,8 @@ public class Q_Node{
     public void changeNode(Q_Node node2){
         this.point=node2.getPoint();
         this.segments=node2.getSegments();
-        this.Left=node2.getLeft();
-        this.Right=node2.getRight();
+        this.left =node2.getLeft();
+        this.right =node2.getRight();
 
     }
 
@@ -95,19 +95,19 @@ public class Q_Node{
     /**
     return true si le noeud est une feuille, false sinon
      */
-    public boolean isLeaf(){ return (this.Right.isEmpty() && this.Left.isEmpty());}
+    public boolean isLeaf(){ return (this.right.isEmpty() && this.left.isEmpty());}
 
     /**
     return true si le noeud est vide, false sinon
      */
-    public boolean isEmpty(){ return (this.point==null && this.Right==null && this.Left==null);}
+    public boolean isEmpty(){ return (this.point==null && this.right ==null && this.left ==null);}
 
     public void setRight(Q_Node right) {
-        this.Right = right;
+        this.right = right;
     }
 
     public void setLeft(Q_Node left) {
-        this.Left = left;
+        this.left = left;
     }
 
     public void setHeight(int height) {
@@ -123,11 +123,11 @@ public class Q_Node{
     }
 
     public Q_Node getRight() {
-        return Right;
+        return right;
     }
 
     public Q_Node getLeft() {
-        return Left;
+        return left;
     }
 
     public int getHeight() {

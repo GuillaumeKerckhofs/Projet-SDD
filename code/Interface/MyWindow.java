@@ -57,7 +57,7 @@ public class MyWindow extends JFrame {
                 Algo.setPrintQ(new ArrayList<Point>());
                 Algo.setIntersection(new ArrayList<Point>());
                 newSegment(toolBar);
-                Algo.FindIntersections(Map.getSegmentList());
+                Algo.findIntersections(Map.getSegmentList());
                 mp.repaint();
             }
         });
@@ -71,7 +71,7 @@ public class MyWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newSegment(toolBar);
-                Algo.FindIntersections(Map.getSegmentList());
+                Algo.findIntersections(Map.getSegmentList());
                 mp.repaint();
 
             }
@@ -127,7 +127,7 @@ public class MyWindow extends JFrame {
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
 
 
-        Algo.FindIntersections(Map.getSegmentList());
+        Algo.findIntersections(Map.getSegmentList());
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
         MyWindow myWindow = new MyWindow();
 

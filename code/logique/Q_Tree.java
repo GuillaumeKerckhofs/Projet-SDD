@@ -54,10 +54,10 @@ public class Q_Tree {
                 current.addSegment(segment);
             } else if (point.smallerThan(current.getPoint())) {
                 insertion(current.getLeft(), point, segment);
-                Equilibrate(current);
+                equilibrate(current);
             } else {
                 insertion(current.getRight(), point, segment);
-                Equilibrate(current);
+                equilibrate(current);
             }
         }
     }
@@ -66,23 +66,23 @@ public class Q_Tree {
     la fonction fait un équilibrage comme vue au cours
     @param node noeud courrant
      */
-    public void Equilibrate(Q_Node node) {
-        if (node.Bal() == 2) {
-            if (node.getRight().Bal() >= 0) {
-                RotateL(node);
+    public void equilibrate(Q_Node node) {
+        if (node.bal() == 2) {
+            if (node.getRight().bal() >= 0) {
+                rotateL(node);
             } else {
-                RotateR(node.getRight());
-                RotateL(node);
+                rotateR(node.getRight());
+                rotateL(node);
             }
-        } else if (node.Bal() == -2) {
-            if (node.getLeft().Bal() <= 0) {
-                RotateR(node);
+        } else if (node.bal() == -2) {
+            if (node.getLeft().bal() <= 0) {
+                rotateR(node);
             } else {
-                RotateL(node.getLeft());
-                RotateR(node);
+                rotateL(node.getLeft());
+                rotateR(node);
             }
         } else {
-            node.Height();
+            node.height();
         }
     }
 
@@ -91,7 +91,7 @@ public class Q_Tree {
     vérifie si le noeud courrant est la racine et le change
     @param node
      */
-    public void RotateL(Q_Node node) {
+    public void rotateL(Q_Node node) {
         Q_Node tmp =new Q_Node();
         tmp.changeNode(node);
         node.changeNode(node.getRight());
@@ -100,8 +100,8 @@ public class Q_Tree {
         }
         tmp.setRight(node.getLeft());
         node.setLeft(tmp);
-        tmp.Height();
-        node.Height();
+        tmp.height();
+        node.height();
     }
 
     /**
@@ -109,7 +109,7 @@ public class Q_Tree {
     vérifie si le noeud courrant est la racine et le change
     @param node
      */
-    public void RotateR(Q_Node node) {
+    public void rotateR(Q_Node node) {
         Q_Node tmp =new Q_Node();
         tmp.changeNode(node);
         node.changeNode(node.getLeft());
@@ -118,8 +118,8 @@ public class Q_Tree {
         }
         tmp.setLeft(node.getRight());
         node.setRight(tmp);
-        tmp.Height();
-        node.Height();
+        tmp.height();
+        node.height();
     }
 
     /**
@@ -137,7 +137,7 @@ public class Q_Tree {
     public void remove(Q_Node node) {
         if (!node.getLeft().isEmpty()) {
             remove(node.getLeft());
-            Equilibrate(node);
+            equilibrate(node);
         }
         else{
             removeNode(node);

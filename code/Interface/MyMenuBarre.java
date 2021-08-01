@@ -56,7 +56,7 @@ public class MyMenuBarre extends JPanel implements ActionListener {
                 if (getMap().getSavePath()==null){
                     getMap().chooseSave();
                 }
-                else{getMap().Save();}
+                else{getMap().save();}
 
             }
         });

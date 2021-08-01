@@ -7,6 +7,7 @@ import static java.lang.Math.abs;
 public class Segment{
     private Point upper_point;
     private Point lower_point;
+    private double precision =1e-8;
 
     /**
     constructeur d'un segment
@@ -56,7 +57,7 @@ public class Segment{
             if (this.isEquals(segment)){
                 return 0;
             }
-            else if(!(Math.abs(x1-x2)<1e-8)) {
+            else if(!(Math.abs(x1-x2)<precision)) {
 
                 if (x1 > x2){
                     return 1;
@@ -132,7 +133,7 @@ public class Segment{
     public boolean contain (Point p){
         if (!isHorizontal()){
             double x=this.getCurrentPoint(p.getY());
-            if ((Math.abs(x-p.getX())<1e-8)){
+            if ((Math.abs(x-p.getX())<precision)){
                 return true;
             }
         }

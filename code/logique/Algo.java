@@ -15,7 +15,7 @@ public class Algo {
      * à HandleEventPoint
      * @param segmentList liste des segments
      */
-    public static void FindIntersections(ArrayList<Segment> segmentList) {
+    public static void findIntersections(ArrayList<Segment> segmentList) {
         q = new Q_Tree();
         Segment segment;
         for (int i = 0; i < segmentList.size(); i++) {
@@ -29,7 +29,7 @@ public class Algo {
             Q_Node p = q.getLastRemoved();
             q.removeNextEvent();
             printQ.add(p.getPoint());
-            HandleEventPoint(p);
+            handleEventPoint(p);
         }
     }
 
@@ -45,38 +45,38 @@ public class Algo {
      * sinon on cherche le prédécesseur de min dans T et le successeur de max dans T et on fait un appel sur findNewEvent
      * @param p node contenant le nouvel eventPoint ainsi que la liste de segment U(p)
      */
-    public static void HandleEventPoint(Q_Node p){
-        Segment Sl = null;
-        Segment Sr= null;
-        Segment Sp1= null; //doit etre min et max peut etre
-        Segment Sp2= null;
-        ArrayList<Segment> Up=p.getSegments();
-        ArrayList<Segment> Cp=new ArrayList<Segment>();
-        ArrayList<Segment> Lp=new ArrayList<Segment>();
-        t.SegmentsContainPoint(p.getPoint(),Cp,Lp);
-        if (Lp.size()+Up.size()+Cp.size()>1)
+    private static void handleEventPoint(Q_Node p){
+        Segment sl = null;
+        Segment sr= null;
+        Segment sp1= null; //doit etre min et max peut etre
+        Segment sp2= null;
+        ArrayList<Segment> up=p.getSegments();
+        ArrayList<Segment> cp=new ArrayList<Segment>();
+        ArrayList<Segment> lp=new ArrayList<Segment>();
+        t.SegmentsContainPoint(p.getPoint(),cp,lp);
+        if (lp.size()+up.size()+cp.size()>1)
             intersection.add(p.getPoint());
-        for (Segment segment : Lp ){
-            t.suppress(segment,lastEvent.getX(),lastEvent.getY());
+        for (Segment segment : lp ){
+            t.suppress_init(segment,lastEvent.getX(),lastEvent.getY());
         }
-        for (Segment segment : Cp ){
-            t.suppress(segment,lastEvent.getX(),lastEvent.getY());
+        for (Segment segment : cp ){
+            t.suppress_init(segment,lastEvent.getX(),lastEvent.getY());
         }
 
         lastEvent=p.getPoint();
 
         Segment min=null;
         Segment max=null;
-        for (Segment segment : Up ) {
+        for (Segment segment : up ) {
             if (min == null || segment.compareTo(min, lastEvent.getX(), lastEvent.getY()) < 0) {
                 min = segment;
             }
             if (max == null || segment.compareTo(max, lastEvent.getX(), lastEvent.getY()) > 0) {
                 max = segment;
             }
-            t.insert(segment);
+            t.insert_init(segment);
         }
-        for (Segment segment : Cp ){
+        for (Segment segment : cp ){
             if(min==null || segment.compareTo(min,lastEvent.getX(),lastEvent.getY())<0){
                 min=segment;
             }
@@ -85,21 +85,21 @@ public class Algo {
             }
             t.reinsert(segment,lastEvent.getX(),lastEvent.getY());
         }
-        if(Up.size()+Cp.size()==0) {
-            Sl=t.NleftP(p.getPoint(),null);
-            Sr=t.NrightP(p.getPoint(),null);
-            if (Sl!=null&&Sr!=null)
-                FindNewEvent(Sl,Sr,p);}
+        if(up.size()+cp.size()==0) {
+            sl=t.nleftP(p.getPoint(),null);
+            sr=t.nrightP(p.getPoint(),null);
+            if (sl!=null&&sr!=null)
+                findNewEvent(sl,sr,p);}
 
         else{
-            Sl=t.prev(min,null,lastEvent.getX(),lastEvent.getY());
-            Sr=t.succ(max,null,lastEvent.getX(),lastEvent.getY());
+            sl=t.prev(min,null,lastEvent.getX(),lastEvent.getY());
+            sr=t.succ(max,null,lastEvent.getX(),lastEvent.getY());
 
-            if( Sl!=null&&min!=null  && !Sl.isEquals(min)) {
-                FindNewEvent(Sl, min, p);
+            if( sl!=null&&min!=null  && !sl.isEquals(min)) {
+                findNewEvent(sl, min, p);
             }
-            if( Sr!=null&&max!=null && !Sr.isEquals(max)) {
-                FindNewEvent(Sr, max, p);
+            if( sr!=null&&max!=null && !sr.isEquals(max)) {
+                findNewEvent(sr, max, p);
             }
         }
     }
@@ -112,7 +112,7 @@ public class Algo {
      * @param Sr segment de droite
      * @param p node contenant le lastEvent point
      */
-    public static void FindNewEvent(Segment Sl, Segment Sr,Q_Node p){
+    private static void findNewEvent(Segment Sl, Segment Sr, Q_Node p){
         Point intersect=Sl.isIntersectBy(Sr);
 
         if (intersect!=null){
