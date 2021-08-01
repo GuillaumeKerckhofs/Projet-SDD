@@ -153,11 +153,13 @@ import javax.swing.JPanel;
             }
 
 
-            Shape axe_x = new Line2D.Double(-10000+graph_constant_x,0+graph_constant_y,10000+graph_constant_x,0+graph_constant_y);
+            int graph_line_constant=10000;
+
+            Shape axe_x = new Line2D.Double(-graph_line_constant+graph_constant_x,0+graph_constant_y,graph_line_constant+graph_constant_x,0+graph_constant_y);
             g2.setColor(Color.lightGray);
             g2.draw(axe_x);
 
-            Shape axe_y = new Line2D.Double(0+graph_constant_x,-10000+graph_constant_y,0+graph_constant_x,10000+graph_constant_y);
+            Shape axe_y = new Line2D.Double(0+graph_constant_x,-graph_line_constant+graph_constant_y,0+graph_constant_x,graph_line_constant+graph_constant_y);
             g2.setColor(Color.lightGray);
             g2.draw(axe_y);
 
@@ -168,7 +170,9 @@ import javax.swing.JPanel;
                 sweeplinecount=Algo.getPrintQ().size()-1;
             }
 
-            Shape sweepline = new Line2D.Double(0+graph_constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+graph_constant_y,1000+graph_constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+graph_constant_y);
+            int sweepline_length=1000;
+
+            Shape sweepline = new Line2D.Double(0+graph_constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+graph_constant_y,sweepline_length+graph_constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+graph_constant_y);
             g2.setColor(Color.blue);
             g2.draw(sweepline);
             Shape point = new Line2D.Double(Algo.getPrintQ().get(sweeplinecount).getX()+graph_constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+graph_constant_y,Algo.getPrintQ().get(sweeplinecount).getX()+graph_constant_x,-Algo.getPrintQ().get(sweeplinecount).getY()+graph_constant_y);
