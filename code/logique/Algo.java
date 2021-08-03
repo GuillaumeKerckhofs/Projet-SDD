@@ -74,7 +74,7 @@ public class Algo {
             if (max == null || segment.compareTo(max, lastEvent.getX(), lastEvent.getY()) > 0) {
                 max = segment;
             }
-            t.insert_init(segment);
+            t.insert_init(segment,lastEvent);
         }
         for (Segment segment : cp ){
             if(min==null || segment.compareTo(min,lastEvent.getX(),lastEvent.getY())<0){
@@ -83,7 +83,7 @@ public class Algo {
             if(max==null || segment.compareTo(max,lastEvent.getX(),lastEvent.getY())>0){
                 max=segment;
             }
-            t.reinsert(segment,lastEvent.getX(),lastEvent.getY());
+            t.insert_init(segment,lastEvent);
         }
         if(up.size()+cp.size()==0) {
             sl=t.nleftP(p.getPoint(),null);

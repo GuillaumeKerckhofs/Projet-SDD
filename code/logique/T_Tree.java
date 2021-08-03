@@ -93,14 +93,14 @@ public class T_Tree {
     initialise les objets utile à l'insertion
     @param data le segment à inserer
      */
-    public void insert_init(Segment data){
+    /*public void insert_init(Segment data){
         T_Tree T = new T_Tree();
         double y=data.getUpper_point().getY();
         double x=data.getUpper_point().getX();
         insert(T, data, x, y);
-    }
+    }*/
 
-    public void reinsert (Segment data, double x, double y){
+    public void insert_init (Segment data, Point point){
     /**
         initialise les objets utile lors de la réinsertion
         @param data le segment à inserer
@@ -108,6 +108,8 @@ public class T_Tree {
         @param y valeur y du Point p
          */
         T_Tree T = new T_Tree();
+        double x=point.getX();
+        double y=point.getY();
         insert(T, data,x, y);
     }
 
