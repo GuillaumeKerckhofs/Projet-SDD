@@ -90,23 +90,12 @@ public class T_Tree {
     }
 
     /**
-    initialise les objets utile à l'insertion
-    @param data le segment à inserer
+     initialise les objets utile à l'insertion
+     @param data le segment à inserer
+     @point point sur lequel se base l'insertion (représente l'upper_point si première insertion, l'event point sinon
      */
-    /*public void insert_init(Segment data){
-        T_Tree T = new T_Tree();
-        double y=data.getUpper_point().getY();
-        double x=data.getUpper_point().getX();
-        insert(T, data, x, y);
-    }*/
 
     public void insert_init (Segment data, Point point){
-    /**
-        initialise les objets utile lors de la réinsertion
-        @param data le segment à inserer
-        @param x valeur x du Point p
-        @param y valeur y du Point p
-         */
         T_Tree T = new T_Tree();
         double x=point.getX();
         double y=point.getY();

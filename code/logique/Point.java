@@ -33,7 +33,7 @@ public class Point {
     }
 
     public boolean isEqualTo(Point point2){
-        return (this.x==point2.getX() && this.y==point2.getY());
+        return (   (Math.abs(this.x-point2.getX())<1e-8) && (Math.abs(this.y-point2.getY())<1e-8)  );
     }
 
     public void setUpper_point(boolean upper_point) {

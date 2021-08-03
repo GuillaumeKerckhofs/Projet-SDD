@@ -116,7 +116,17 @@ public class Algo {
         Point intersect=Sl.isIntersectBy(Sr);
 
         if (intersect!=null){
-            if ((intersect.getY()==p.getPoint().getY()&&intersect.getX()>p.getPoint().getX())||intersect.getY()<p.getPoint().getY()){
+
+            double x1=intersect.getX();
+            double y1=intersect.getY();
+
+            double x2=p.getPoint().getX();
+            double y2=p.getPoint().getY();
+
+            boolean equalX=Math.abs(x1-x2)<1e-8;
+            boolean equalY=Math.abs(y1-y2)<1e-8;
+
+            if ((equalY  && !equalX && x1>x2)||(y1<y2 && !equalY)){
                 q.startInsertion(intersect,null);
             }
         }
