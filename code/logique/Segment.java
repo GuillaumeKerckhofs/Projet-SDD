@@ -51,10 +51,20 @@ public class Segment{
      @return 0 en cas d'agalité, -1 si il est plus petit ou 1 si il est plus grand
      */
     public int compareTo(Segment segment,double xHor,double y){
-        if (!segment.isHorizontal()&&!this.isHorizontal()){
-            double x1 =this.getCurrentPoint(y);
-            double x2 =segment.getCurrentPoint(y);
-            if (this.isEquals(segment)){
+        if (!segment.isHorizontal()&&!this.isHorizontal()) {
+            double x1 = this.getCurrentPoint(y);
+            double x2 = segment.getCurrentPoint(y);
+            int x = Comparaison.cp(x1, x2);
+            if (x != 0) {
+                return x;
+            } else {
+                double ymax = max(this.lower_point.getY(),segment.getLower_point().getY());
+                x1 =this.getCurrentPoint(ymax);
+                x2 =segment.getCurrentPoint(ymax);
+                return Comparaison.cp(x1, x2);
+            }
+        }
+            /*if (this.isEquals(segment)){
                 return 0;
             }
             else if(!(Math.abs(x1-x2)<precision)) {
@@ -84,7 +94,7 @@ public class Segment{
                         return -1;
                 }
             }
-        }
+        }*/
         else {
             if (this.isEquals(segment)){
 
@@ -92,8 +102,7 @@ public class Segment{
             }
             else if(this.isHorizontal()){
                 double x1=segment.getCurrentPoint(y);
-                if(x1<=
-                        xHor)
+                if(x1<= xHor)
                     return 1;
                 else
                     return -1;
