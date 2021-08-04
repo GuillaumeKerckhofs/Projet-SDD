@@ -102,14 +102,16 @@ public class Segment{
             }
             else if(this.isHorizontal()){
                 double x1=segment.getCurrentPoint(y);
-                if(x1<= xHor)
+                int res=Comparaison.cp(x1, xHor);
+                if(res<=0)
                     return 1;
                 else
                     return -1;
             }
             else if(segment.isHorizontal()){
                 double x1=this.getCurrentPoint(y);
-                if(xHor<x1)
+                int res=Comparaison.cp(xHor, x1);
+                if(res==-1)
                     return 1;
                 else
                     return -1;
