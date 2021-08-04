@@ -1,15 +1,16 @@
-public class Comparaison {
-    private double precision = 1e-8;
+package code.logique;
 
-    public boolean equality(double x, double y) {
-        if (Math.abs(x - y) < precision) {
+public class Comparaison {
+
+    public static boolean equal(double x, double y) {
+        if (Math.abs(x - y) < 1e-8) {
             return true;
         }
         return false;
     }
 
-    public boolean smaller(double x, double y) {
-        if (!equality(x, y)) {
+    public static boolean st(double x, double y) {
+        if (!equal(x, y)) {
             if (x < y) {
                 return true;
             }
@@ -17,19 +18,19 @@ public class Comparaison {
         return false;
     }
 
-    public boolean bigger(double x, double y) {
-        if (!equality(x, y)) {
+    public static boolean bt(double x, double y) {
+        if (!equal(x, y)) {
             if (x > y) {
                 return true;
             }
         }
         return false;
     }
-    public int comparaison(double x,double y){
-        if(equality(x,y)){
+    public static int cp(double x,double y){
+        if(equal(x,y)){
             return 0;
         }
-        else if(smaller(x,y)){
+        else if(st(x,y)){
             return -1;    //pas sur si 1 ou -1
         }
         else{

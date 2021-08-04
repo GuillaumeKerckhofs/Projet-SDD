@@ -25,7 +25,7 @@ public class Point {
     public boolean smallerThan(Point point2){
         double x2=point2.getX();
         double y2=point2.getY();
-        if(this.y>y2 || (this.y==y2 && this.x<x2)){
+        if(Comparaison.bt(this.y,y2) || (Comparaison.equal(this.y,y2) && Comparaison.st(this.x,x2))){
             return true;
         }
         else
