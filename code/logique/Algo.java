@@ -46,10 +46,6 @@ public class Algo {
      * @param p node contenant le nouvel eventPoint ainsi que la liste de segment U(p)
      */
     private static void handleEventPoint(Q_Node p){
-        System.out.println("===========");
-        System.out.println("");
-        t.print(5,lastEvent.getY());
-        System.out.println("");
 
         Segment sl = null;
         Segment sr= null;
