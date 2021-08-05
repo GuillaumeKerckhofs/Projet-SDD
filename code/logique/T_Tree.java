@@ -309,10 +309,10 @@ public class T_Tree {
                 }
             }
             else {
-                if (getData().getCurrentPoint(p.getY()) < p.getX()) {
+                if (Comparaison.st(getData().getCurrentPoint(p.getY()) , p.getX())) {
                     getRight().SegmentsContainPoint(p, cp, lp);
                 }
-                else if (getData().getCurrentPoint(p.getY()) > p.getX()) {
+                else if (Comparaison.bt(getData().getCurrentPoint(p.getY()) , p.getX())) {
                     getLeft().SegmentsContainPoint(p, cp, lp);
                 }
             }
@@ -331,17 +331,17 @@ public class T_Tree {
         double y=p.getY();
         if (isEmpty()) {
             return null;
-        } else if (isLeaf() && getData().getCurrentPoint(y)<p.getX()) {
+        } else if (isLeaf() && Comparaison.st(getData().getCurrentPoint(y),p.getX())) {
             return getData();
 
         }
-        else if (isLeaf() && getData().getCurrentPoint(y)>p.getX()){
+        else if (isLeaf() && Comparaison.bt(getData().getCurrentPoint(y),p.getX())){
             return little;
         }
-        else if (getData().getCurrentPoint(y)<p.getX()){
+        else if (Comparaison.st(getData().getCurrentPoint(y),p.getX())){
             return rtree.nleftP(p,getData());
         }
-        else if (getData().getCurrentPoint(y)>p.getX()){
+        else if (Comparaison.bt(getData().getCurrentPoint(y),p.getX())){
             return ltree.nleftP(p,little);
         }
 
