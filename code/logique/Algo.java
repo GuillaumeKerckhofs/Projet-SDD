@@ -46,7 +46,6 @@ public class Algo {
      * @param p node contenant le nouvel eventPoint ainsi que la liste de segment U(p)
      */
     private static void handleEventPoint(Q_Node p){
-
         Segment sl = null;
         Segment sr= null;
         Segment sp1= null; //doit etre min et max peut etre
