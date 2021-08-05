@@ -123,8 +123,8 @@ public class Algo {
             double x2=p.getPoint().getX();
             double y2=p.getPoint().getY();
 
-            boolean equalX=Comparaison.equal(x1,x2);
-            boolean equalY=Comparaison.equal(y1,y2);
+            boolean equalX=Math.abs(x1-x2)<1e-8;
+            boolean equalY=Math.abs(y1-y2)<1e-8;
 
             if ((equalY  && !equalX && x1>x2)||(y1<y2 && !equalY)){
                 q.startInsertion(intersect,null);
