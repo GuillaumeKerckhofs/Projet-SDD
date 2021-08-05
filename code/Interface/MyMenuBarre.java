@@ -20,7 +20,7 @@ public class MyMenuBarre extends JPanel implements ActionListener {
         final JLabel label = new JLabel();
         JMenuBar mb=new JMenuBar();
         menu=new JMenu("File");
-        secondMenu=new JMenu("exit");
+        secondMenu=new JMenu("Exit");
 
         open =new JMenuItem("Open");
         fastSave=new JMenuItem("Fast save");

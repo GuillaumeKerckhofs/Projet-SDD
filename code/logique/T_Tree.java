@@ -237,6 +237,7 @@ public class T_Tree {
 
         T_Tree T = new T_Tree();
         suppress(data,T,x,y);
+
     }
 
 
@@ -444,6 +445,7 @@ public class T_Tree {
 
     /**
      * affiche l'arbre
+     *
      */
 
 
@@ -457,6 +459,11 @@ public class T_Tree {
 
 
 
+    /**
+     * affiche les segments stockés  dans  T sous forme d'arbre et affiche pour chaque noeud le point (x,y) pour un y donné en paramètre
+     * @param space nombre d'espace pour l'affichage de l'arbre
+     * @param y valeur pour laquel sera calculé le point de chaque segment
+     */
     public void print(int space,double y) {
         if (!isEmpty()) {
 

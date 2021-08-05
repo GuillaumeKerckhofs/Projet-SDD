@@ -46,6 +46,7 @@ public class Algo {
      * @param p node contenant le nouvel eventPoint ainsi que la liste de segment U(p)
      */
     private static void handleEventPoint(Q_Node p){
+
         Segment sl = null;
         Segment sr= null;
         Segment sp1= null; //doit etre min et max peut etre
@@ -123,8 +124,8 @@ public class Algo {
             double x2=p.getPoint().getX();
             double y2=p.getPoint().getY();
 
-            boolean equalX=Math.abs(x1-x2)<1e-8;
-            boolean equalY=Math.abs(y1-y2)<1e-8;
+            boolean equalX=Comparaison.equal(x1,x2);
+            boolean equalY=Comparaison.equal(y1,y2);
 
             if ((equalY  && !equalX && x1>x2)||(y1<y2 && !equalY)){
                 q.startInsertion(intersect,null);
