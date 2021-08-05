@@ -237,84 +237,84 @@ public class Segment{
             double x = (b1 - b2) / (a2 - a1);
             double y = a1 * x + b1;
 
-            if (x1 > x2) {
-                if (x > x1 || x < x2) {
+            if (Comparaison.bt(x1 , x2)) {
+                if (Comparaison.bt(x , x1) || Comparaison.st(x , x2)) {
                     return p;
                 }
-            } else if (x2 > x1) {
-                if (x < x1 || x > x2) {
+            } else if (Comparaison.bt(x2 , x1)) {
+                if (Comparaison.st(x , x1) || Comparaison.bt(x , x2)) {
                     return p;
 
                 }
             }
 
-            if (x3 > x4) {
-                if (x > x3 || x < x4) {
+            if (Comparaison.bt(x3 , x4)) {
+                if (Comparaison.bt(x , x3) || Comparaison.st(x , x4)) {
                     return p;
                 }
             }
-            else if (x4 > x3) {
-                if (x < x3 || x > x4) {
-                    return p;
-                }
-            }
-
-            if (y1 > y2) {
-                if (y > y1 || y < y2) {
-                    return p;
-                }
-            }
-            else if (y2 > y1) {
-                if (y < y1 || y > y2) {
+            else if (Comparaison.bt(x4 , x3)) {
+                if (Comparaison.st(x , x3) || Comparaison.bt(x , x4)) {
                     return p;
                 }
             }
 
-            if (y3 > y4) {
-                if (y > y3 || y < y4) {
+            if (Comparaison.bt(y1 , y2)) {
+                if (Comparaison.bt(y , y1) || Comparaison.st(y , y2)) {
                     return p;
                 }
             }
-            else if (y4 > y3) {
-                if (y < y3 || y > y4) {
+            else if (Comparaison.st(y2 , y1)) {
+                if (Comparaison.st(y , y1) || Comparaison.bt(y , y2)) {
+                    return p;
+                }
+            }
+
+            if (Comparaison.bt(y3 , y4)) {
+                if (Comparaison.bt(y , y3) || Comparaison.st(y , y4)) {
+                    return p;
+                }
+            }
+            else if (Comparaison.bt(y4 , y3)) {
+                if (Comparaison.st(y , y3) || Comparaison.bt(y , y4)) {
                     return p;
                 }
             }
             p = new Point((double) x,(double) y);
             }
 
-        if (x1==x2 && y1!=y2) {
+        if (Comparaison.equal(x1,x2) && !Comparaison.equal(y1,y2)) {
             a2 = (y4 - y3) / (x4 - x3);
             b2 = y3 - a2 * x3;
 
             double y=a2*x1+b2;
-            if(y<y1 && y>y2) {
+            if(Comparaison.st(y,y1) && Comparaison.bt(y,y2)) {
                 p= new Point(x1,y);
                 return p;
             }
 
         }
-        if (x3==x4 && y3!=y4) {
+        if (Comparaison.equal(x3,x4) && !Comparaison.equal(y3,y4)) {
             a1 = (y2 - y1) / (x2 - x1);
             b1 = y2 - a1 * x1;
 
             double y=a1*x3+b1;
-            if(y<y3 && y>y4) {
+            if(Comparaison.st(y,y3) && Comparaison.bt(y,y4)) {
                 p= new Point(x3,y);
                 return p;
             }
         }
-        if (x1!=x2 && y1==y2) {
+        if (!Comparaison.equal(x1,x2) && Comparaison.equal(y1,y2)) {
             double x = Sr.getCurrentPoint(y1);
-            if (x>x1 && x<x2){
+            if (Comparaison.bt(x,x1) && Comparaison.st(x,x2)){
                 p= new Point(x,y1);
                 return p;
             }
         }
 
-        if (x3!=x4 && y3==y4) {
+        if (!Comparaison.equal(x3,x4) && Comparaison.equal(y3,y4)) {
             double x = this.getCurrentPoint(y3);
-            if (x>x3 && x<x4){
+            if (Comparaison.bt(x,x3) && Comparaison.st(x,x4)){
                 p= new Point(x,y3);
                 return p;
             }
