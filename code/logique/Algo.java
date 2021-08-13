@@ -133,6 +133,9 @@ public class Algo {
         }
     }
 
+
+
+
     public static ArrayList<Point> getIntersection() {
         return intersection;
     }

@@ -209,8 +209,8 @@ public class Segment{
         double b= -(x2-x1);
         double a= y2-y1;
 
-        double d= -(x4-x3);
-        double e= y4-y3;
+        double e= -(x4-x3);
+        double d= y4-y3;
 
         // a*x   + b*y   = c   c?
         // d*x_  + e*y_  = f   f?
@@ -218,16 +218,59 @@ public class Segment{
         double c= a*x1  + b*y1;
         double f= d*x3  + e*y3;
 
+        //System.out.println("******");
+
+        //System.out.println("1) y="+(-a/b)+"x+"+(c/b));
+        //System.out.println("2) y="+(-d/e)+"x+"+(f/e));
+        //System.out.println("--------");
+
+        Point p = null;
+        double y_ = 0;
+        double x_ = 0;
+
+        /*
+        System.out.println("a="+a);
+        System.out.println("b="+b);
+        System.out.println("d="+d);
+        System.out.println("e="+e);
+
+
+        System.out.println("******");
+        System.out.println("");
+        System.out.println("suivant");
+        System.out.println("");*/
+
+        if(d==0){
+            y_= f/e;
+            x_=(c-b*y_)/a;
+            p= new Point(x_,y_);
+            return p;
+        }
+
+        if (-d *b +e * a !=0) {  //cas de base
+            y_= (f*a-(d*c))/(-d*b+e*a);
+            x_= (c-b*y_)/a;
+            p= new Point(x_,y_);
+            return p;
+        }
+
+
+        if (-d *b +e * a ==0){ return p;} // droites //
+
+
+        return p;
+
+
 
         /////////////// ça fait plus des trucs
-
+/*
         double a1;
         double a2;
         double b1;
         double b2;
 
 
-        Point p = null;
+        //Point p = null;
         if (x2!=x1&&x4!=x3) {
             a1 = (y2 - y1) / (x2 - x1);
             b1 = y1 - a1 * x1;
@@ -237,6 +280,14 @@ public class Segment{
             double x = (b1 - b2) / (a2 - a1);
             double y = a1 * x + b1;
 
+            System.out.println("1) y="+(a1)+"x+"+(b1));
+            System.out.println("2) y="+(a2)+"x+"+(b2));
+            System.out.println("+++++++++++");
+
+            System.out.println("x_ = "+x_);
+            System.out.println("y_ = "+y_);
+
+            
             if (Comparaison.bt(x1 , x2)) {
                 if (Comparaison.bt(x , x1) || Comparaison.st(x , x2)) {
                     return p;
@@ -281,7 +332,7 @@ public class Segment{
                 }
             }
             p = new Point((double) x,(double) y);
-            }
+        }
 
         if (Comparaison.equal(x1,x2) && !Comparaison.equal(y1,y2)) {
             a2 = (y4 - y3) / (x4 - x3);
@@ -290,6 +341,8 @@ public class Segment{
             double y=a2*x1+b2;
             if(Comparaison.st(y,y1) && Comparaison.bt(y,y2)) {
                 p= new Point(x1,y);
+                System.out.println("y = "+y);
+                System.out.println("x = "+x1);
                 return p;
             }
 
@@ -301,6 +354,8 @@ public class Segment{
             double y=a1*x3+b1;
             if(Comparaison.st(y,y3) && Comparaison.bt(y,y4)) {
                 p= new Point(x3,y);
+                System.out.println("y = "+y);
+                System.out.println("x = "+x3);
                 return p;
             }
         }
@@ -308,6 +363,8 @@ public class Segment{
             double x = Sr.getCurrentPoint(y1);
             if (Comparaison.bt(x,x1) && Comparaison.st(x,x2)){
                 p= new Point(x,y1);
+                System.out.println("y1 = "+y1);
+                System.out.println("x = "+x);
                 return p;
             }
         }
@@ -316,12 +373,18 @@ public class Segment{
             double x = this.getCurrentPoint(y3);
             if (Comparaison.bt(x,x3) && Comparaison.st(x,x4)){
                 p= new Point(x,y3);
+                System.out.println("y3 = "+y3);
+                System.out.println("x = "+x);
                 return p;
             }
         }
-
+        System.out.println("p2 = "+p);
+        System.out.println("******");
+        System.out.println("");
+        System.out.println("suivant");
+        System.out.println("");
         return (p);
-
+*/
     }
 
 
