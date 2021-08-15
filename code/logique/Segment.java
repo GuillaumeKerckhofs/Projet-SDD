@@ -64,37 +64,6 @@ public class Segment{
                 return Comparaison.cp(x1, x2);
             }
         }
-            /*if (this.isEquals(segment)){
-                return 0;
-            }
-            else if(!(Math.abs(x1-x2)<precision)) {
-
-                if (x1 > x2){
-                    return 1;
-                }
-                else if (x1 < x2){
-                    return -1;
-                }
-            }
-            else{
-
-                double ymax = max(this.lower_point.getY(),segment.getLower_point().getY());
-                x1 =this.getCurrentPoint(ymax);
-                x2 =segment.getCurrentPoint(ymax);
-                if (x1>x2)
-                    return 1;
-                else if (x1<x2)
-                    return -1;
-                else if(x1==x2){
-                    x1=this.getUpper_point().getX();
-                    x2=segment.getUpper_point().getX();
-                    if (x1>x2)
-                        return 1;
-                    else if (x1<x2)
-                        return -1;
-                }
-            }
-        }*/
         else {
             if (this.isEquals(segment)){
 
